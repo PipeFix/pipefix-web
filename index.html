@@ -1,14 +1,240 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PipeFix CZ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PipeFix CZ | Oprava kanalizace bez výkopu</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin:0;
+  font-family:'Montserrat', sans-serif;
+  background:#0b0f1a;
+  color:white;
+}
+
+/* NAV */
+
+nav {
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(11,15,26,0.9);
+  backdrop-filter:blur(10px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+  z-index:1000;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.logo {
+  font-weight:800;
+  color:#1da1f2;
+  font-size:22px;
+}
+
+nav ul {
+  display:flex;
+  gap:30px;
+  list-style:none;
+}
+
+nav a {
+  color:#ccc;
+  text-decoration:none;
+  font-weight:600;
+}
+
+nav a:hover {
+  color:#1da1f2;
+}
+
+/* HERO */
+
+.hero {
+  text-align:center;
+  padding:200px 20px 120px;
+}
+
+.hero h1 {
+  font-size:56px;
+  font-weight:800;
+}
+
+.hero span {
+  color:#1da1f2;
+}
+
+.hero p {
+  margin-top:20px;
+  font-size:20px;
+  color:#aaa;
+}
+
+.btn {
+  display:inline-block;
+  margin-top:30px;
+  padding:16px 36px;
+  background:#1da1f2;
+  border-radius:8px;
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* SECTIONS */
+
+section {
+  padding:100px 40px;
+  max-width:1100px;
+  margin:auto;
+}
+
+h2 {
+  font-size:40px;
+  margin-bottom:20px;
+}
+
+.sub {
+  color:#aaa;
+  margin-bottom:40px;
+}
+
+/* PROBLEM */
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
+
+.card {
+  padding:30px;
+  background:#111827;
+  border-radius:10px;
+}
+
+/* PROCESS */
+
+.step {
+  margin-bottom:40px;
+}
+
+.step h3 {
+  color:#1da1f2;
+}
+
+/* CONTACT */
+
+.contact-box {
+  background:#111827;
+  padding:30px;
+  border-radius:10px;
+}
+
+input, textarea {
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  margin-bottom:20px;
+  background:#0b0f1a;
+  border:1px solid #333;
+  color:white;
+  border-radius:6px;
+}
+
+button {
+  background:#1da1f2;
+  padding:14px;
+  border:none;
+  width:100%;
+  color:white;
+  font-weight:600;
+  border-radius:6px;
+}
+
+footer {
+  text-align:center;
+  padding:40px;
+  color:#666;
+}
+
+</style>
 </head>
-<body style="margin:0;font-family:Arial,sans-serif;background:#0b1220;color:white;display:flex;align-items:center;justify-content:center;min-height:100vh;">
-  <div style="text-align:center;padding:24px;">
-    <h1 style="font-size:48px;margin-bottom:12px;">PipeFix CZ</h1>
-    <p style="font-size:20px;color:#cbd5e1;">Oprava kanalizace bez výkopu</p>
+
+<body>
+
+<nav>
+  <div class="logo">PipeFix</div>
+  <ul>
+    <li><a href="#problem">Problém</a></li>
+    <li><a href="#process">Jak to funguje</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <h1>Oprava kanalizace <span>bez výkopu</span></h1>
+  <p>Rychlé řešení prasklého potrubí bez rozkopání zahrady</p>
+  <a href="#contact" class="btn">Nezávazná konzultace zdarma</a>
+</section>
+
+<section id="problem">
+  <h2>Máte tyto problémy?</h2>
+  <p class="sub">Tyto příznaky často znamenají poškozené potrubí</p>
+
+  <div class="grid">
+    <div class="card">Zápach z odpadu</div>
+    <div class="card">Vlhkost u základů</div>
+    <div class="card">Opakované ucpávání</div>
+    <div class="card">Propadlá dlažba</div>
   </div>
+</section>
+
+<section id="process">
+  <h2>Jak probíhá oprava</h2>
+  <p class="sub">Rychlý proces bez zbytečného zásahu</p>
+
+  <div class="step">
+    <h3>1️⃣ Kamerová kontrola</h3>
+    <p>Najdeme problém a přesně určíme poškození</p>
+  </div>
+
+  <div class="step">
+    <h3>2️⃣ Vložkování rukávcem</h3>
+    <p>Vytvoříme novou vrstvu uvnitř potrubí</p>
+  </div>
+
+  <div class="step">
+    <h3>3️⃣ Vytvrzení a hotovo</h3>
+    <p>Bez kopání, hotovo během jednoho dne</p>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Kontaktujte nás</h2>
+
+  <p>📞 +420 724 340 955</p>
+  <p>✉️ info@pipefix.cz</p>
+
+  <div class="contact-box">
+    <input placeholder="Jméno">
+    <input placeholder="Telefon">
+    <textarea placeholder="Popis problému"></textarea>
+    <button>Odeslat poptávku</button>
+  </div>
+</section>
+
+<footer>
+  © 2026 PipeFix CZ
+</footer>
+
 </body>
 </html>
