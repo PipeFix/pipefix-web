@@ -75,6 +75,13 @@ nav {
   margin-top:4px;
 }
 
+.nav-right {
+  display:flex;
+  align-items:center;
+  gap:20px;
+  margin-left:auto;
+}
+
 nav ul {
   display:flex;
   gap:24px;
@@ -83,6 +90,25 @@ nav ul {
   padding:0;
   flex-wrap:wrap;
   justify-content:flex-end;
+}
+
+.nav-contact {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+  font-size:14px;
+  color:#d6e6f8;
+}
+
+.nav-contact a {
+  color:#d6e6f8;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.nav-contact a:hover {
+  color:#1da1f2;
 }
 
 nav a {
@@ -220,13 +246,25 @@ footer {
     padding:10px 0 14px;
   }
 
+  .nav-right {
+    width:100%;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
   nav ul {
     gap:14px;
     font-size:14px;
   }
 
+  .nav-contact {
+    font-size:13px;
+    gap:10px;
+  }
+
   .hero {
-    padding-top:220px;
+    padding-top:260px;
   }
 }
 </style>
@@ -253,11 +291,17 @@ footer {
         <span>oprava kanalizace bez kopání</span>
       </div>
     </a>
-    <ul>
-      <li><a href="#problem">Problém</a></li>
-      <li><a href="#process">Jak to funguje</a></li>
-      <li><a href="#contact">Kontakt</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul>
+        <li><a href="#problem">Problém</a></li>
+        <li><a href="#process">Jak to funguje</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+      </ul>
+      <div class="nav-contact" aria-label="Rychlý kontakt">
+        <a href="tel:+420724340955">📞 +420 724 340 955</a>
+        <a href="mailto:info@pipefix.cz">✉️ info@pipefix.cz</a>
+      </div>
+    </div>
   </div>
 </nav>
 
