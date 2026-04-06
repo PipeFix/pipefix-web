@@ -136,6 +136,18 @@ nav a:hover {
   color:#aaa;
 }
 
+.hero-image {
+  width:100%;
+  height:clamp(220px, 42vw, 440px);
+  margin:22px 0 0;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.12);
+  display:block;
+  object-fit:cover;
+  object-position:center;
+  box-shadow:0 20px 45px rgba(0,0,0,0.35);
+}
+
 .btn {
   display:inline-block;
   margin-top:30px;
@@ -288,6 +300,12 @@ footer {
 
 <section class="hero">
   <h1>Oprava kanalizace <span>bez výkopu</span></h1>
+  <img
+    class="hero-image"
+    src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=2200&q=80"
+    alt="Průmyslová oprava kanalizačního potrubí bez výkopu"
+    loading="lazy"
+  >
   <p>Rychlé řešení prasklého potrubí bez rozkopání zahrady</p>
   <a href="#contact" class="btn">Nezávazná konzultace zdarma</a>
 </section>
