@@ -7,7 +7,6 @@
 <meta name="description" content="PipeFix CZ provádí opravy kanalizace bez výkopu, vložkování potrubí, frézování kořenů, čištění kanalizace a kamerové prohlídky v Praze, Středočeském, Jihomoravském, Olomouckém, Zlínském, Jihočeském kraji, Kraji Vysočina a Pardubickém kraji.">
 <meta name="keywords" content="oprava kanalizace bez výkopu, oprava kanalizace bez kopání, oprava potrubí bez výkopu, oprava odpadního potrubí, sanace kanalizace, rekonstrukce kanalizace, renovace kanalizace, bezvýkopová oprava kanalizace, vložkování kanalizace, vložkování potrubí, vložkování odpadu, rukávec kanalizace, CIPP vložkování, sanace potrubí rukávcem, frézování kanalizace, frézování kořenů v potrubí, čištění kanalizace, čištění odpadu, havárie kanalizace, prasklé potrubí, ucpaná kanalizace, kamerová kontrola kanalizace, kamerová prohlídka potrubí, inspekce kanalizace kamerou, oprava ležaté kanalizace, oprava přípojky kanalizace, oprava kanalizační přípojky, tlakové čištění kanalizace, non stop kanalizace, havarijní servis kanalizace, instalatér kanalizace, firma na kanalizace, kanalizace Praha, oprava kanalizace Praha, vložkování kanalizace Praha, čištění kanalizace Praha, oprava potrubí Praha, kanalizace Středočeský kraj, oprava kanalizace Středočeský kraj, vložkování potrubí Středočeský kraj, kanalizace Jihomoravský kraj, oprava kanalizace Brno, vložkování kanalizace Brno, čištění kanalizace Brno, kanalizace Olomoucký kraj, oprava kanalizace Olomouc, kanalizace Zlínský kraj, oprava kanalizace Zlín, kanalizace Jihočeský kraj, oprava kanalizace České Budějovice, kanalizace Vysočina, oprava kanalizace Jihlava, kanalizace Pardubický kraj, oprava kanalizace Pardubice, kanalizace bez výkopu Jihomoravský kraj, kanalizace bez výkopu Olomoucký kraj, kanalizace bez výkopu Zlínský kraj, kanalizace bez výkopu Jihočeský kraj, kanalizace bez výkopu Vysočina, kanalizace bez výkopu Praha, kanalizace bez výkopu Středočeský kraj, kanalizace bez výkopu Pardubický kraj">
 <link rel="icon" type="image/png" href="assets/logo.png">
-
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
@@ -15,232 +14,206 @@
 html { scroll-behavior: smooth; }
 
 body {
-  margin:0;
-  font-family:'Montserrat', sans-serif;
-  background:#0b0f1a;
-  color:white;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: #0b0f1a;
+  color: white;
 }
 
-/* NAV */
-
 nav {
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  background:rgba(11,15,26,0.9);
-  backdrop-filter:blur(10px);
-  z-index:1000;
-  border-bottom:1px solid rgba(255,255,255,0.05);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(11, 15, 26, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .nav-inner {
-  width:min(1100px, 100% - 32px);
-  margin:0 auto;
-  display:flex;
-  justify-content:flex-end;
-  align-items:center;
-  gap:20px;
-  padding:12px 0;
+  width: min(1100px, 100% - 32px);
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 0;
 }
 
 .nav-right {
-  display:flex;
-  align-items:center;
-  gap:20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 nav ul {
-  display:flex;
-  gap:24px;
-  list-style:none;
-  margin:0;
-  padding:0;
-  flex-wrap:wrap;
-  justify-content:flex-end;
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .nav-contact {
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  gap:6px;
-  font-size:14px;
-  color:#d6e6f8;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  font-size: 14px;
+  color: #d6e6f8;
 }
 
 .nav-contact a {
-  color:#d6e6f8;
-  text-decoration:none;
-  font-weight:600;
+  color: #d6e6f8;
+  text-decoration: none;
+  font-weight: 600;
 }
 
-.nav-contact a:hover {
-  color:#1da1f2;
-}
+.nav-contact a:hover { color: #1da1f2; }
 
 nav a {
-  color:#ccc;
-  text-decoration:none;
-  font-weight:600;
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 600;
 }
 
-nav a:hover {
-  color:#1da1f2;
-}
-
-/* HERO */
+nav a:hover { color: #1da1f2; }
 
 .hero {
-  text-align:center;
-  padding:190px 20px 110px;
+  text-align: center;
+  padding: 190px 20px 110px;
 }
 
 .hero h1 {
-  font-size:clamp(34px, 6vw, 56px);
-  font-weight:800;
-  margin:0;
+  font-size: clamp(34px, 6vw, 56px);
+  font-weight: 800;
+  margin: 0;
 }
 
-.hero span {
-  color:#1da1f2;
-}
+.hero span { color: #1da1f2; }
 
 .hero p {
-  margin-top:20px;
-  font-size:clamp(18px, 3vw, 20px);
-  color:#aaa;
+  margin-top: 20px;
+  font-size: clamp(18px, 3vw, 20px);
+  color: #aaa;
 }
 
 .btn {
-  display:inline-block;
-  margin-top:30px;
-  padding:16px 36px;
-  background:#1da1f2;
-  border-radius:8px;
-  color:white;
-  text-decoration:none;
-  font-weight:600;
+  display: inline-block;
+  margin-top: 30px;
+  padding: 16px 36px;
+  background: #1da1f2;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
 }
 
-/* SECTIONS */
-
 section {
-  padding:90px 20px;
-  max-width:1100px;
-  margin:auto;
+  padding: 90px 20px;
+  max-width: 1100px;
+  margin: auto;
 }
 
 h2 {
-  font-size:clamp(28px, 5vw, 40px);
-  margin-bottom:20px;
+  font-size: clamp(28px, 5vw, 40px);
+  margin-bottom: 20px;
 }
 
 .sub {
-  color:#aaa;
-  margin-bottom:40px;
+  color: #aaa;
+  margin-bottom: 40px;
 }
 
-/* PROBLEM */
-
 .grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
 }
 
 .card {
-  padding:30px;
-  background:#111827;
-  border-radius:10px;
+  padding: 30px;
+  background: #111827;
+  border-radius: 10px;
 }
 
-/* PROCESS */
-
-.step {
-  margin-bottom:40px;
-}
-
-.step h3 {
-  color:#1da1f2;
-}
-
-/* CONTACT */
+.step { margin-bottom: 40px; }
+.step h3 { color: #1da1f2; }
 
 .contact-box {
-  background:#111827;
-  padding:30px;
-  border-radius:10px;
+  background: #111827;
+  padding: 30px;
+  border-radius: 10px;
 }
 
 input, textarea {
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  margin-bottom:20px;
-  background:#0b0f1a;
-  border:1px solid #333;
-  color:white;
-  border-radius:6px;
-  font-family:inherit;
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background: #0b0f1a;
+  border: 1px solid #333;
+  color: white;
+  border-radius: 6px;
+  font-family: inherit;
 }
 
 textarea {
-  min-height:120px;
-  resize:vertical;
+  min-height: 120px;
+  resize: vertical;
 }
 
 button {
-  background:#1da1f2;
-  padding:14px;
-  border:none;
-  width:100%;
-  color:white;
-  font-weight:600;
-  border-radius:6px;
-  cursor:pointer;
+  background: #1da1f2;
+  padding: 14px;
+  border: none;
+  width: 100%;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 footer {
-  text-align:center;
-  padding:40px;
-  color:#666;
+  text-align: center;
+  padding: 40px;
+  color: #666;
 }
 
 @media (max-width: 760px) {
   .nav-inner {
-    flex-direction:column;
-    align-items:flex-start;
-    padding:10px 0 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 0 14px;
   }
 
   .nav-right {
-    width:100%;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:10px;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 
   nav ul {
-    gap:14px;
-    font-size:14px;
+    gap: 14px;
+    font-size: 14px;
   }
 
   .nav-contact {
-    align-items:flex-start;
-    font-size:13px;
-    gap:6px;
+    align-items: flex-start;
+    font-size: 13px;
+    gap: 6px;
   }
 
-  .hero {
-    padding-top:260px;
-  }
+  .hero { padding-top: 260px; }
 }
 </style>
 </head>
 
 <body>
-
 <nav>
   <div class="nav-inner">
     <div class="nav-right">
@@ -347,6 +320,5 @@ footer {
 <footer>
   © 2026 PipeFix CZ
 </footer>
-
 </body>
 </html>
