@@ -778,7 +778,10 @@
         <div class="card form-card">
           <h3>Odeslat poptávku</h3>
 
-          <form id="lead-form" action="#" method="POST">
+          <form action="submit.php" method="POST">
+            <input type="hidden" name="_subject" value="Nová poptávka z pipefix.cz" />
+            <input type="hidden" name="_next" value="/#contact" />
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
             <div class="field">
               <label for="name">Jméno</label>
               <input id="name" name="name" type="text" placeholder="Vaše jméno" required />
@@ -814,7 +817,7 @@
             </div>
 
             <button class="btn btn-primary" type="submit">Odeslat poptávku</button>
-            <p class="form-note">Po odeslání se otevře váš e-mailový klient s předvyplněnou poptávkou pro info@pipefix.cz.</p>
+            <p class="form-note">Po odeslání formuláře se vám ozveme zpět.</p>
             <p id="form-status" class="form-note" aria-live="polite"></p>
           </form>
         </div>
@@ -827,45 +830,25 @@
   </footer>
   <script>
     (function () {
-      const form = document.getElementById("lead-form");
       const statusNode = document.getElementById("form-status");
-      if (!form || !statusNode) return;
+      if (!statusNode) return;
 
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
+      const params = new URLSearchParams(window.location.search);
+      const status = params.get("status");
 
-        if (!form.reportValidity()) {
-          statusNode.textContent = "Prosím vyplňte všechna povinná pole.";
-          statusNode.style.color = "#ffd27d";
-          return;
-        }
-
-        const name = form.elements.name.value.trim();
-        const phone = form.elements.phone.value.trim();
-        const email = form.elements.email.value.trim();
-        const service = form.elements.service.value.trim();
-        const address = form.elements.address.value.trim();
-        const message = form.elements.message.value.trim();
-
-        const subject = "Nová poptávka z pipefix.cz";
-        const body = [
-          "Nová poptávka z webu pipefix.cz",
-          "----------------------------------------",
-          "Jméno: " + name,
-          "Telefon: " + phone,
-          "E-mail: " + email,
-          "Služba: " + service,
-          "Adresa: " + address,
-          "Popis problému:",
-          message
-        ].join("\\n");
-
-        const mailto = "mailto:info@pipefix.cz?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-        window.location.href = mailto;
-
+      if (status === "ok") {
         statusNode.textContent = "Vaše poptávka byla v pořádku odeslána.";
         statusNode.style.color = "#7ee0a6";
-      });
+      } else if (status === "missing") {
+        statusNode.textContent = "Prosím vyplňte všechna povinná pole.";
+        statusNode.style.color = "#ffd27d";
+      } else if (status === "invalid_email") {
+        statusNode.textContent = "Zkontrolujte prosím správnost e-mailu.";
+        statusNode.style.color = "#ffd27d";
+      } else if (status === "error") {
+        statusNode.textContent = "Odeslání se nepodařilo. Zkuste to prosím znovu.";
+        statusNode.style.color = "#ff9a9a";
+      }
     })();
   </script>
 </body>
