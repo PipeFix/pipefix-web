@@ -778,11 +778,11 @@
         <div class="card form-card">
           <h3>Odeslat poptávku</h3>
 
-          <form action="https://formsubmit.co/info@pipefix.cz" method="POST">
+          <!-- Formspree endpoint lze změnit za váš vlastní form ID, pokud budete chtít oddělit test/prod prostředí. -->
+          <form action="https://formspree.io/f/xzzpbeqr" method="POST">
             <input type="hidden" name="_subject" value="Nová poptávka z pipefix.cz" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_next" value="https://pipefix.cz/?sent=1#contact" />
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
             <div class="field">
               <label for="name">Jméno</label>
               <input id="name" name="name" type="text" placeholder="Vaše jméno" required />
