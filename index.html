@@ -136,6 +136,15 @@ nav a:hover {
   color:#aaa;
 }
 
+.hero-image {
+  width:min(720px, 100%);
+  margin:30px auto 0;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.12);
+  display:block;
+  box-shadow:0 20px 45px rgba(0,0,0,0.35);
+}
+
 .btn {
   display:inline-block;
   margin-top:30px;
@@ -289,6 +298,12 @@ footer {
 <section class="hero">
   <h1>Oprava kanalizace <span>bez výkopu</span></h1>
   <p>Rychlé řešení prasklého potrubí bez rozkopání zahrady</p>
+  <img
+    class="hero-image"
+    src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=1600&q=80"
+    alt="Technik při kontrole potrubí kamerou při opravě kanalizace bez výkopu"
+    loading="lazy"
+  >
   <a href="#contact" class="btn">Nezávazná konzultace zdarma</a>
 </section>
 
