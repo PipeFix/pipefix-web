@@ -1,403 +1,760 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PipeFix CZ | Oprava kanalizace bez výkopu</title>
-<meta name="description" content="PipeFix CZ provádí opravy kanalizace bez výkopu, vložkování potrubí, frézování kořenů, čištění kanalizace a kamerové prohlídky v Praze, Středočeském, Jihomoravském, Olomouckém, Zlínském, Jihočeském kraji, Kraji Vysočina a Pardubickém kraji.">
-<meta name="keywords" content="oprava kanalizace bez výkopu, oprava kanalizace bez kopání, oprava potrubí bez výkopu, oprava odpadního potrubí, sanace kanalizace, rekonstrukce kanalizace, renovace kanalizace, bezvýkopová oprava kanalizace, vložkování kanalizace, vložkování potrubí, vložkování odpadu, rukávec kanalizace, CIPP vložkování, sanace potrubí rukávcem, frézování kanalizace, frézování kořenů v potrubí, čištění kanalizace, čištění odpadu, havárie kanalizace, prasklé potrubí, ucpaná kanalizace, kamerová kontrola kanalizace, kamerová prohlídka potrubí, inspekce kanalizace kamerou, oprava ležaté kanalizace, oprava přípojky kanalizace, oprava kanalizační přípojky, tlakové čištění kanalizace, non stop kanalizace, havarijní servis kanalizace, instalatér kanalizace, firma na kanalizace, kanalizace Praha, oprava kanalizace Praha, vložkování kanalizace Praha, čištění kanalizace Praha, oprava potrubí Praha, kanalizace Středočeský kraj, oprava kanalizace Středočeský kraj, vložkování potrubí Středočeský kraj, kanalizace Jihomoravský kraj, oprava kanalizace Brno, vložkování kanalizace Brno, čištění kanalizace Brno, kanalizace Olomoucký kraj, oprava kanalizace Olomouc, kanalizace Zlínský kraj, oprava kanalizace Zlín, kanalizace Jihočeský kraj, oprava kanalizace České Budějovice, kanalizace Vysočina, oprava kanalizace Jihlava, kanalizace Pardubický kraj, oprava kanalizace Pardubice, kanalizace bez výkopu Jihomoravský kraj, kanalizace bez výkopu Olomoucký kraj, kanalizace bez výkopu Zlínský kraj, kanalizace bez výkopu Jihočeský kraj, kanalizace bez výkopu Vysočina, kanalizace bez výkopu Praha, kanalizace bez výkopu Středočeský kraj, kanalizace bez výkopu Pardubický kraj">
-<link rel="icon" type="image/png" href="assets/logo.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PipeFix CZ | Oprava kanalizace bez výkopu</title>
+  <meta
+    name="description"
+    content="Oprava kanalizace bez výkopu. Rychlé řešení prasklého potrubí bez rozkopání zahrady. PipeFix CZ."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-2: #0b1729;
+      --card: #0d1b2e;
+      --card-2: #10233b;
+      --line: rgba(255, 255, 255, 0.08);
+      --text: #f4f8ff;
+      --muted: #9fb0c9;
+      --accent: #25a8ff;
+      --accent-2: #5dc2ff;
+      --shadow: 0 10px 40px rgba(0, 0, 0, 0.28);
+      --radius: 18px;
+      --max: 1180px;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+    * {
+      box-sizing: border-box;
+    }
 
-<style>
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-body {
-  margin:0;
-  font-family:'Montserrat', sans-serif;
-  background:#0b0f1a;
-  color:white;
-}
+    body {
+      margin: 0;
+      font-family: "Montserrat", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(37, 168, 255, 0.14), transparent 28%),
+        radial-gradient(circle at top left, rgba(93, 194, 255, 0.1), transparent 24%),
+        linear-gradient(180deg, #06101d 0%, #0a1423 100%);
+    }
 
-/* NAV */
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-nav {
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  background:rgba(11,15,26,0.9);
-  backdrop-filter:blur(10px);
-  z-index:1000;
-  border-bottom:1px solid rgba(255,255,255,0.05);
-}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-.nav-inner {
-  width:min(1100px, 100% - 32px);
-  margin:0 auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-  padding:12px 0;
-}
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
 
-.logo-wrap {
-  display:flex;
-  align-items:center;
-  gap:10px;
-  text-decoration:none;
-}
+    .topbar {
+      border-bottom: 1px solid var(--line);
+      background: rgba(5, 12, 22, 0.7);
+      backdrop-filter: blur(10px);
+    }
 
-.logo-slot {
-  width:260px;
-  max-width:clamp(160px, 24vw, 260px);
-  min-height:64px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:12px 16px;
-  border:1px dashed rgba(255,255,255,0.35);
-  border-radius:10px;
-  color:#9db2c8;
-  font-size:13px;
-  text-transform:uppercase;
-  letter-spacing:0.08em;
-}
+    .topbar-inner {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
 
-.nav-right {
-  display:flex;
-  align-items:center;
-  gap:20px;
-  margin-left:auto;
-}
+    .topbar a:hover {
+      color: var(--text);
+    }
 
-nav ul {
-  display:flex;
-  gap:24px;
-  list-style:none;
-  margin:0;
-  padding:0;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-}
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7, 17, 31, 0.84);
+      backdrop-filter: blur(12px);
+    }
 
-nav ul a {
-  font-family:'Poppins', sans-serif;
-  letter-spacing:0.2px;
-}
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
 
-.nav-contact {
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  gap:6px;
-  font-size:14px;
-  color:#d6e6f8;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
 
-.nav-contact a {
-  color:#d6e6f8;
-  text-decoration:none;
-  font-weight:600;
-}
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 10px 30px rgba(37,168,255,0.35);
+      position: relative;
+    }
 
-.nav-contact a:hover {
-  color:#1da1f2;
-}
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      background: rgba(255,255,255,0.92);
+      border-radius: 999px;
+    }
 
-nav a {
-  color:#ccc;
-  text-decoration:none;
-  font-weight:600;
-}
+    .brand-mark::before {
+      width: 20px;
+      height: 8px;
+      left: 11px;
+      top: 17px;
+    }
 
-nav a:hover {
-  color:#1da1f2;
-}
+    .brand-mark::after {
+      width: 8px;
+      height: 20px;
+      left: 17px;
+      top: 11px;
+      opacity: 0.22;
+    }
 
-/* HERO */
+    .brand-text {
+      font-size: 18px;
+    }
 
-.hero {
-  text-align:center;
-  padding:190px 20px 110px;
-}
+    .brand-text span {
+      color: var(--accent-2);
+    }
 
-.hero h1 {
-  font-size:clamp(34px, 6vw, 56px);
-  font-weight:800;
-  margin:0;
-}
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-size: 15px;
+      color: var(--muted);
+    }
 
-.hero span {
-  color:#1da1f2;
-}
+    .nav-links a:hover {
+      color: var(--text);
+    }
 
-.hero p {
-  margin-top:20px;
-  font-size:clamp(18px, 3vw, 20px);
-  color:#aaa;
-}
+    .hero {
+      padding: 72px 0 44px;
+    }
 
-.hero-logo-slot {
-  width:min(420px, 92%);
-  min-height:120px;
-  margin:32px auto 0;
-  padding:20px;
-  border:1px dashed rgba(255,255,255,0.35);
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#9db2c8;
-  font-size:15px;
-  text-transform:uppercase;
-  letter-spacing:0.08em;
-}
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
 
-.btn {
-  display:inline-block;
-  margin-top:30px;
-  padding:16px 36px;
-  background:#1da1f2;
-  border-radius:8px;
-  color:white;
-  text-decoration:none;
-  font-weight:600;
-}
+    .hero-copy {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 42px;
+      box-shadow: var(--shadow);
+    }
 
-/* SECTIONS */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      margin-bottom: 16px;
+    }
 
-section {
-  padding:90px 20px;
-  max-width:1100px;
-  margin:auto;
-}
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(37, 168, 255, 0.65);
+    }
 
-h2 {
-  font-size:clamp(28px, 5vw, 40px);
-  margin-bottom:20px;
-}
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 6vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
 
-.sub {
-  color:#aaa;
-  margin-bottom:40px;
-}
+    .hero p {
+      margin: 18px 0 0;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 740px;
+    }
 
-/* PROBLEM */
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
 
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-}
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
 
-.card {
-  padding:30px;
-  background:#111827;
-  border-radius:10px;
-}
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #031221;
+      box-shadow: 0 12px 28px rgba(37, 168, 255, 0.24);
+    }
 
-/* PROCESS */
+    .btn-primary:hover {
+      transform: translateY(-1px);
+    }
 
-.step {
-  margin-bottom:40px;
-}
+    .btn-secondary {
+      border-color: var(--line);
+      color: var(--text);
+      background: rgba(255,255,255,0.02);
+    }
 
-.step h3 {
-  color:#1da1f2;
-}
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.04);
+    }
 
-/* CONTACT */
+    .hero-side {
+      display: grid;
+      gap: 16px;
+    }
 
-.contact-box {
-  background:#111827;
-  padding:30px;
-  border-radius:10px;
-}
+    .mini-card {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
 
-input, textarea {
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  margin-bottom:20px;
-  background:#0b0f1a;
-  border:1px solid #333;
-  color:white;
-  border-radius:6px;
-  font-family:inherit;
-}
+    .mini-card strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
 
-textarea {
-  min-height:120px;
-  resize:vertical;
-}
+    .mini-card span {
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 15px;
+    }
 
-button {
-  background:#1da1f2;
-  padding:14px;
-  border:none;
-  width:100%;
-  color:white;
-  font-weight:600;
-  border-radius:6px;
-  cursor:pointer;
-}
+    section {
+      padding: 44px 0;
+    }
 
-footer {
-  text-align:center;
-  padding:40px;
-  color:#666;
-}
+    .section-head {
+      margin-bottom: 22px;
+    }
 
-@media (max-width: 760px) {
-  .nav-inner {
-    flex-direction:column;
-    align-items:flex-start;
-    padding:10px 0 14px;
-  }
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: -0.02em;
+    }
 
-  .nav-right {
-    width:100%;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:10px;
-  }
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 760px;
+    }
 
-  nav ul {
-    gap:14px;
-    font-size:14px;
-  }
+    .problem-grid,
+    .services-grid,
+    .regions-grid {
+      display: grid;
+      gap: 18px;
+    }
 
-  .nav-contact {
-    align-items:flex-start;
-    font-size:13px;
-    gap:6px;
-  }
+    .problem-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
 
-  .hero {
-    padding-top:260px;
-  }
-}
-</style>
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--card), var(--card-2));
+      box-shadow: var(--shadow);
+    }
+
+    .problem-card {
+      padding: 24px;
+      min-height: 128px;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .problem-card::before {
+      content: "";
+      position: absolute;
+      inset: auto auto 0 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0.8;
+    }
+
+    .problem-card strong {
+      font-size: 20px;
+      line-height: 1.3;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .service-card {
+      padding: 28px;
+    }
+
+    .service-card h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
+    }
+
+    .service-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .steps {
+      display: grid;
+      gap: 16px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 24px;
+    }
+
+    .step-number {
+      min-height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 22px;
+      background: linear-gradient(135deg, rgba(37,168,255,0.18), rgba(93,194,255,0.08));
+      border: 1px solid rgba(93,194,255,0.18);
+      color: var(--accent-2);
+    }
+
+    .step h3 {
+      margin: 2px 0 8px;
+      font-size: 22px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .regions-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .region {
+      padding: 20px 18px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 22px;
+    }
+
+    .contact-card,
+    .form-card {
+      padding: 28px;
+    }
+
+    .contact-card h3,
+    .form-card h3 {
+      margin: 0 0 14px;
+      font-size: 24px;
+    }
+
+    .contact-card p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+      font-weight: 600;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+      padding: 14px 16px;
+      font: inherit;
+      outline: none;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: rgba(37,168,255,0.6);
+      box-shadow: 0 0 0 3px rgba(37,168,255,0.14);
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 128px;
+    }
+
+    .form-note {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 4px 0 0;
+    }
+
+    footer {
+      padding: 26px 0 42px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 1100px) {
+      .problem-grid,
+      .regions-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-grid,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner {
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 10px 0;
+        text-align: center;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        gap: 14px 18px;
+        justify-content: flex-start;
+      }
+
+      .hero {
+        padding-top: 42px;
+      }
+
+      .hero-copy,
+      .mini-card,
+      .service-card,
+      .step,
+      .contact-card,
+      .form-card {
+        padding: 22px;
+      }
+
+      .services-grid,
+      .problem-grid,
+      .regions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        grid-template-columns: 1fr;
+      }
+
+      .step-number {
+        width: 84px;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a href="tel:+420724340955">+420 724 340 955</a>
+      <a href="mailto:info@pipefix.cz">✉️ info@pipefix.cz</a>
+    </div>
+  </div>
 
-<nav>
-  <div class="nav-inner">
-    <a href="#" class="logo-wrap" aria-label="Místo pro nové logo">
-      <div class="logo-slot" role="img" aria-label="Místo pro nové PNG logo">Sem vložte nové logo (PNG)</div>
-    </a>
-    <div class="nav-right">
-      <ul>
-        <li><a href="#problem">Problém</a></li>
-        <li><a href="#services">Služby</a></li>
-        <li><a href="#process">Jak to funguje</a></li>
-        <li><a href="#regions">Kde působíme</a></li>
-        <li><a href="#contact">Kontakt</a></li>
-      </ul>
-      <div class="nav-contact" aria-label="Rychlý kontakt">
-        <a href="tel:+420724340955">📞 +420 724 340 955</a>
-        <a href="mailto:info@pipefix.cz">✉️ info@pipefix.cz</a>
+  <div class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-text">Pipe<span>Fix</span></div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#problem">Problém</a>
+        <a href="#services">Služby</a>
+        <a href="#process">Jak to funguje</a>
+        <a href="#regions">Kde působíme</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Bezvýkopová oprava kanalizace</div>
+          <h1>Oprava kanalizace bez výkopu</h1>
+          <p>Rychlé řešení prasklého potrubí bez rozkopání zahrady.</p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Nezávazná konzultace zdarma</a>
+            <a class="btn btn-secondary" href="tel:+420724340955">Zavolat</a>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="mini-card">
+            <strong>Bez rozkopání zahrady</strong>
+            <span>Moderní sanace potrubí bez zbytečného nepořádku a zásahu do okolí.</span>
+          </div>
+          <div class="mini-card">
+            <strong>Rychlé řešení</strong>
+            <span>Vhodné pro prasklé potrubí, zápach z odpadu, vlhkost u základů i opakované ucpávání.</span>
+          </div>
+          <div class="mini-card">
+            <strong>Jasný postup</strong>
+            <span>Nejprve problém vyhodnotíme, potom navrhneme opravu a připravíme cenovou nabídku.</span>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</nav>
+    </section>
 
-<section class="hero">
-  <h1>Oprava kanalizace <span>bez výkopu</span></h1>
-  <p>Rychlé řešení prasklého potrubí bez rozkopání zahrady</p>
-  <div class="hero-logo-slot" role="img" aria-label="Místo pro nové hlavní logo">
-    Místo pro nové hlavní logo
-  </div>
-  <a href="#contact" class="btn">Nezávazná konzultace zdarma</a>
-</section>
+    <section id="problem">
+      <div class="container">
+        <div class="section-head">
+          <h2>Máte tyto problémy?</h2>
+          <p>Tyto příznaky často znamenají poškozené potrubí.</p>
+        </div>
 
-<section id="problem">
-  <h2>Máte tyto problémy?</h2>
-  <p class="sub">Tyto příznaky často znamenají poškozené potrubí</p>
+        <div class="problem-grid">
+          <div class="card problem-card"><strong>Zápach z odpadu</strong></div>
+          <div class="card problem-card"><strong>Vlhkost u základů</strong></div>
+          <div class="card problem-card"><strong>Opakované ucpávání</strong></div>
+          <div class="card problem-card"><strong>Propadlá dlažba</strong></div>
+        </div>
+      </div>
+    </section>
 
-  <div class="grid">
-    <div class="card">Zápach z odpadu</div>
-    <div class="card">Vlhkost u základů</div>
-    <div class="card">Opakované ucpávání</div>
-    <div class="card">Propadlá dlažba</div>
-  </div>
-</section>
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2>Naše služby</h2>
+          <p>Vyberte variantu, která vám nejvíc vyhovuje.</p>
+        </div>
 
-<section id="services">
-  <h2>Naše služby</h2>
-  <p class="sub">Vyberte variantu, která vám nejvíc vyhovuje</p>
+        <div class="services-grid">
+          <article class="card service-card">
+            <h3>Kamerová kontrola + návrh opravy</h3>
+            <p>Přijedeme, provedeme kamerovou kontrolu potrubí a pošleme vám záznam. Současně připravíme navrhovaný postup opravy a cenovou nabídku.</p>
+          </article>
 
-  <div class="grid">
-    <div class="card">
-      <h3>📹 Kamerová kontrola + návrh opravy</h3>
-      <p>Přijedeme, provedeme kamerovou kontrolu potrubí a pošleme vám záznam. Současně připravíme navrhovaný postup opravy a cenovou nabídku.</p>
-    </div>
-    <div class="card">
-      <h3>📩 Vyhodnocení vašeho záznamu + nacenění opravy</h3>
-      <p>Pokud už záznam z kamery máte, stačí nám ho poslat. Záznam vyhodnotíme a připravíme nacenění samotné opravy bez další kamerové prohlídky.</p>
-    </div>
-  </div>
-</section>
+          <article class="card service-card">
+            <h3>Vyhodnocení vašeho záznamu + nacenění opravy</h3>
+            <p>Pokud už záznam z kamery máte, stačí nám ho poslat. Záznam vyhodnotíme a připravíme nacenění samotné opravy bez další kamerové prohlídky.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<section id="process">
-  <h2>Jak probíhá oprava</h2>
-  <p class="sub">Rychlý proces bez zbytečného zásahu</p>
+    <section id="process">
+      <div class="container">
+        <div class="section-head">
+          <h2>Jak probíhá oprava</h2>
+          <p>Rychlý proces bez zbytečného zásahu.</p>
+        </div>
 
-  <div class="step">
-    <h3>1️⃣ Kamerová kontrola</h3>
-    <p>Najdeme problém a přesně určíme poškození</p>
-  </div>
+        <div class="steps">
+          <article class="card step">
+            <div class="step-number">1️⃣</div>
+            <div>
+              <h3>Kamerová kontrola</h3>
+              <p>Najdeme problém a přesně určíme poškození.</p>
+            </div>
+          </article>
 
-  <div class="step">
-    <h3>2️⃣ Vložkování rukávcem</h3>
-    <p>Vytvoříme novou vrstvu uvnitř potrubí</p>
-  </div>
+          <article class="card step">
+            <div class="step-number">2️⃣</div>
+            <div>
+              <h3>Vložkování rukávcem</h3>
+              <p>Vytvoříme novou vrstvu uvnitř potrubí.</p>
+            </div>
+          </article>
 
-  <div class="step">
-    <h3>3️⃣ Vytvrzení a hotovo</h3>
-    <p>Bez kopání, hotovo během jednoho dne</p>
-  </div>
-</section>
+          <article class="card step">
+            <div class="step-number">3️⃣</div>
+            <div>
+              <h3>Vytvrzení a hotovo</h3>
+              <p>Bez kopání, hotovo během jednoho dne.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<section id="regions">
-  <h2>Kde působíme</h2>
-  <p class="sub">Realizace provádíme v těchto krajích:</p>
-  <div class="grid">
-    <div class="card">Praha</div>
-    <div class="card">Středočeský kraj</div>
-    <div class="card">Jihomoravský kraj</div>
-    <div class="card">Olomoucký kraj</div>
-    <div class="card">Zlínský kraj</div>
-    <div class="card">Jihočeský kraj</div>
-    <div class="card">Kraj Vysočina</div>
-    <div class="card">Pardubický kraj</div>
-  </div>
-</section>
+    <section id="regions">
+      <div class="container">
+        <div class="section-head">
+          <h2>Kde působíme</h2>
+          <p>Realizace provádíme v těchto krajích:</p>
+        </div>
 
-<section id="contact">
-  <h2>Kontaktujte nás</h2>
+        <div class="regions-grid">
+          <div class="card region">Praha</div>
+          <div class="card region">Středočeský kraj</div>
+          <div class="card region">Jihomoravský kraj</div>
+          <div class="card region">Olomoucký kraj</div>
+          <div class="card region">Zlínský kraj</div>
+          <div class="card region">Jihočeský kraj</div>
+          <div class="card region">Kraj Vysočina</div>
+          <div class="card region">Pardubický kraj</div>
+        </div>
+      </div>
+    </section>
 
-  <p>📞 +420 724 340 955</p>
-  <p>✉️ info@pipefix.cz</p>
+    <section id="contact">
+      <div class="container contact-wrap">
+        <div class="card contact-card">
+          <h3>Kontaktujte nás</h3>
+          <p>Máte problém s kanalizací? Napište nám nebo zavolejte. Ozveme se vám co nejdříve.</p>
 
-  <div class="contact-box">
-    <input type="text" placeholder="Jméno">
-    <input type="tel" placeholder="Telefon">
-    <input type="email" placeholder="E-mail">
-    <input type="text" placeholder="Adresa">
-    <textarea placeholder="Popis problému"></textarea>
-    <button>Odeslat poptávku</button>
-  </div>
-</section>
+          <div class="contact-list">
+            <a href="tel:+420724340955">+420 724 340 955</a>
+            <a href="mailto:info@pipefix.cz">✉️ info@pipefix.cz</a>
+          </div>
+        </div>
 
-<footer>
-  © 2026 PipeFix CZ
-</footer>
+        <div class="card form-card">
+          <h3>Odeslat poptávku</h3>
 
+          <form>
+            <div class="field">
+              <label for="name">Jméno</label>
+              <input id="name" name="name" type="text" placeholder="Vaše jméno" />
+            </div>
+
+            <div class="field">
+              <label for="phone">Telefon</label>
+              <input id="phone" name="phone" type="tel" placeholder="Telefonní číslo" />
+            </div>
+
+            <div class="field">
+              <label for="email">E-mail</label>
+              <input id="email" name="email" type="email" placeholder="Váš e-mail" />
+            </div>
+
+            <div class="field">
+              <label for="address">Adresa</label>
+              <input id="address" name="address" type="text" placeholder="Místo realizace" />
+            </div>
+
+            <div class="field">
+              <label for="message">Popis problému</label>
+              <textarea id="message" name="message" placeholder="Napište, co se děje."></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Odeslat poptávku</button>
+            <p class="form-note">Po odeslání formuláře se vám ozveme zpět.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 PipeFix CZ</div>
+  </footer>
 </body>
 </html>
