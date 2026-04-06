@@ -18,6 +18,20 @@ function redirect_back(string $status): void
         $next = '/#contact';
     }
 
+    $parts = parse_url($next);
+    $path = $parts['path'] ?? '/';
+    $query = [];
+    if (!empty($parts['query'])) {
+        parse_str($parts['query'], $query);
+    }
+    $query['status'] = $status;
+
+    $location = $path . '?' . http_build_query($query);
+    if (!empty($parts['fragment'])) {
+        $location .= '#' . $parts['fragment'];
+    }
+
+    header('Location: ' . $location);
     $separator = str_contains($next, '?') ? '&' : '?';
     header('Location: ' . $next . $separator . 'status=' . $status);
     exit;
@@ -49,6 +63,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 $to = 'info@pipefix.cz';
+$safeSubject = substr($subject, 0, 180);
 $safeSubject = mb_substr($subject, 0, 180);
 
 $body = implode("\n", [
@@ -64,6 +79,7 @@ $body = implode("\n", [
 ]);
 
 $headers = [
+    'From: PipeFix Web <info@pipefix.cz>',
     'From: PipeFix Web <no-reply@pipefix.cz>',
     'Reply-To: ' . $email,
     'Content-Type: text/plain; charset=UTF-8',
