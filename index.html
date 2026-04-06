@@ -136,13 +136,20 @@ nav a:hover {
   color:#aaa;
 }
 
-.hero-image {
-  width:min(720px, 100%);
-  margin:30px auto 0;
+.hero-logo-slot {
+  width:min(420px, 92%);
+  min-height:120px;
+  margin:32px auto 0;
+  padding:20px;
+  border:1px dashed rgba(255,255,255,0.35);
   border-radius:14px;
-  border:1px solid rgba(255,255,255,0.12);
-  display:block;
-  box-shadow:0 20px 45px rgba(0,0,0,0.35);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#9db2c8;
+  font-size:15px;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
 }
 
 .btn {
@@ -298,12 +305,9 @@ footer {
 <section class="hero">
   <h1>Oprava kanalizace <span>bez výkopu</span></h1>
   <p>Rychlé řešení prasklého potrubí bez rozkopání zahrady</p>
-  <img
-    class="hero-image"
-    src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=1600&q=80"
-    alt="Technik při kontrole potrubí kamerou při opravě kanalizace bez výkopu"
-    loading="lazy"
-  >
+  <div class="hero-logo-slot" role="img" aria-label="Místo pro nové hlavní logo">
+    Místo pro nové hlavní logo
+  </div>
   <a href="#contact" class="btn">Nezávazná konzultace zdarma</a>
 </section>
 
