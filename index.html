@@ -44,29 +44,6 @@ nav {
   padding:12px 0;
 }
 
-.logo-wrap {
-  display:flex;
-  align-items:center;
-  gap:10px;
-  text-decoration:none;
-}
-
-.logo-slot {
-  width:260px;
-  max-width:clamp(160px, 24vw, 260px);
-  min-height:64px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:12px 16px;
-  border:1px dashed rgba(255,255,255,0.35);
-  border-radius:10px;
-  color:#9db2c8;
-  font-size:13px;
-  text-transform:uppercase;
-  letter-spacing:0.08em;
-}
-
 .nav-right {
   display:flex;
   align-items:center;
@@ -134,15 +111,6 @@ nav a:hover {
   margin-top:20px;
   font-size:clamp(18px, 3vw, 20px);
   color:#aaa;
-}
-
-.hero-image {
-  width:min(720px, 100%);
-  margin:30px auto 0;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,0.12);
-  display:block;
-  box-shadow:0 20px 45px rgba(0,0,0,0.35);
 }
 
 .btn {
@@ -276,9 +244,6 @@ footer {
 
 <nav>
   <div class="nav-inner">
-    <a href="#" class="logo-wrap" aria-label="Místo pro nové logo">
-      <div class="logo-slot" role="img" aria-label="Místo pro nové PNG logo">Sem vložte nové logo (PNG)</div>
-    </a>
     <div class="nav-right">
       <ul>
         <li><a href="#problem">Problém</a></li>
@@ -298,12 +263,6 @@ footer {
 <section class="hero">
   <h1>Oprava kanalizace <span>bez výkopu</span></h1>
   <p>Rychlé řešení prasklého potrubí bez rozkopání zahrady</p>
-  <img
-    class="hero-image"
-    src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=1600&q=80"
-    alt="Technik při kontrole potrubí kamerou při opravě kanalizace bez výkopu"
-    loading="lazy"
-  >
   <a href="#contact" class="btn">Nezávazná konzultace zdarma</a>
 </section>
 
