@@ -32,6 +32,8 @@ function redirect_back(string $status): void
     }
 
     header('Location: ' . $location);
+    $separator = str_contains($next, '?') ? '&' : '?';
+    header('Location: ' . $next . $separator . 'status=' . $status);
     exit;
 }
 
@@ -62,6 +64,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
 $to = 'info@pipefix.cz';
 $safeSubject = substr($subject, 0, 180);
+$safeSubject = mb_substr($subject, 0, 180);
 
 $body = implode("\n", [
     "Nová poptávka z webu pipefix.cz",
@@ -77,6 +80,7 @@ $body = implode("\n", [
 
 $headers = [
     'From: PipeFix Web <info@pipefix.cz>',
+    'From: PipeFix Web <no-reply@pipefix.cz>',
     'Reply-To: ' . $email,
     'Content-Type: text/plain; charset=UTF-8',
 ];
