@@ -778,10 +778,9 @@
         <div class="card form-card">
           <h3>Odeslat poptávku</h3>
 
-          <!-- Formspree endpoint lze změnit za váš vlastní form ID, pokud budete chtít oddělit test/prod prostředí. -->
-          <form action="https://formspree.io/f/xzzpbeqr" method="POST">
+          <form action="submit.php" method="POST">
             <input type="hidden" name="_subject" value="Nová poptávka z pipefix.cz" />
-            <input type="hidden" name="_next" value="https://pipefix.cz/?sent=1#contact" />
+            <input type="hidden" name="_next" value="/#contact" />
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
             <div class="field">
               <label for="name">Jméno</label>
@@ -819,6 +818,7 @@
 
             <button class="btn btn-primary" type="submit">Odeslat poptávku</button>
             <p class="form-note">Po odeslání formuláře se vám ozveme zpět.</p>
+            <p id="form-status" class="form-note" aria-live="polite"></p>
           </form>
         </div>
       </div>
@@ -828,5 +828,28 @@
   <footer>
     <div class="container">© 2026 PipeFix CZ</div>
   </footer>
+  <script>
+    (function () {
+      const statusNode = document.getElementById("form-status");
+      if (!statusNode) return;
+
+      const params = new URLSearchParams(window.location.search);
+      const status = params.get("status");
+
+      if (status === "ok") {
+        statusNode.textContent = "Vaše poptávka byla v pořádku odeslána.";
+        statusNode.style.color = "#7ee0a6";
+      } else if (status === "missing") {
+        statusNode.textContent = "Prosím vyplňte všechna povinná pole.";
+        statusNode.style.color = "#ffd27d";
+      } else if (status === "invalid_email") {
+        statusNode.textContent = "Zkontrolujte prosím správnost e-mailu.";
+        statusNode.style.color = "#ffd27d";
+      } else if (status === "error") {
+        statusNode.textContent = "Odeslání se nepodařilo. Zkuste to prosím znovu.";
+        statusNode.style.color = "#ff9a9a";
+      }
+    })();
+  </script>
 </body>
 </html>
