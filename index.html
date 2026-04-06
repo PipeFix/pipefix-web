@@ -6,6 +6,7 @@
 <title>PipeFix CZ | Oprava kanalizace bez výkopu</title>
 <meta name="description" content="PipeFix CZ provádí opravy kanalizace bez výkopu, vložkování potrubí, frézování kořenů, čištění kanalizace a kamerové prohlídky v Praze, Středočeském, Jihomoravském, Olomouckém, Zlínském, Jihočeském kraji, Kraji Vysočina a Pardubickém kraji.">
 <meta name="keywords" content="oprava kanalizace bez výkopu, oprava kanalizace bez kopání, oprava potrubí bez výkopu, oprava odpadního potrubí, sanace kanalizace, rekonstrukce kanalizace, renovace kanalizace, bezvýkopová oprava kanalizace, vložkování kanalizace, vložkování potrubí, vložkování odpadu, rukávec kanalizace, CIPP vložkování, sanace potrubí rukávcem, frézování kanalizace, frézování kořenů v potrubí, čištění kanalizace, čištění odpadu, havárie kanalizace, prasklé potrubí, ucpaná kanalizace, kamerová kontrola kanalizace, kamerová prohlídka potrubí, inspekce kanalizace kamerou, oprava ležaté kanalizace, oprava přípojky kanalizace, oprava kanalizační přípojky, tlakové čištění kanalizace, non stop kanalizace, havarijní servis kanalizace, instalatér kanalizace, firma na kanalizace, kanalizace Praha, oprava kanalizace Praha, vložkování kanalizace Praha, čištění kanalizace Praha, oprava potrubí Praha, kanalizace Středočeský kraj, oprava kanalizace Středočeský kraj, vložkování potrubí Středočeský kraj, kanalizace Jihomoravský kraj, oprava kanalizace Brno, vložkování kanalizace Brno, čištění kanalizace Brno, kanalizace Olomoucký kraj, oprava kanalizace Olomouc, kanalizace Zlínský kraj, oprava kanalizace Zlín, kanalizace Jihočeský kraj, oprava kanalizace České Budějovice, kanalizace Vysočina, oprava kanalizace Jihlava, kanalizace Pardubický kraj, oprava kanalizace Pardubice, kanalizace bez výkopu Jihomoravský kraj, kanalizace bez výkopu Olomoucký kraj, kanalizace bez výkopu Zlínský kraj, kanalizace bez výkopu Jihočeský kraj, kanalizace bez výkopu Vysočina, kanalizace bez výkopu Praha, kanalizace bez výkopu Středočeský kraj, kanalizace bez výkopu Pardubický kraj">
+<link rel="icon" type="image/svg+xml" href="assets/pipefix-logo.svg">
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
@@ -50,31 +51,11 @@ nav {
   text-decoration:none;
 }
 
-.logo-svg {
-  width:50px;
-  height:50px;
-  flex-shrink:0;
-}
-
-.logo-text {
-  display:flex;
-  flex-direction:column;
-  line-height:1;
-}
-
-.logo-text strong {
-  font-weight:800;
-  color:#7fd3ff;
-  font-size:20px;
-  letter-spacing:0.4px;
-}
-
-.logo-text span {
-  color:#9ab6d8;
-  font-size:10px;
-  letter-spacing:1.1px;
-  text-transform:uppercase;
-  margin-top:4px;
+.logo-img {
+  width:260px;
+  max-width:clamp(160px, 24vw, 260px);
+  height:auto;
+  display:block;
 }
 
 .nav-right {
@@ -278,21 +259,7 @@ footer {
 <nav>
   <div class="nav-inner">
     <a href="#" class="logo-wrap" aria-label="PipeFix logo">
-      <svg class="logo-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-        <defs>
-          <linearGradient id="pipeBlue" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#6fe2ff"/>
-            <stop offset="100%" stop-color="#1da1f2"/>
-          </linearGradient>
-        </defs>
-        <circle cx="40" cy="40" r="32" fill="none" stroke="#7d8ba3" stroke-width="6"/>
-        <path d="M18 42 C28 24, 52 24, 62 42" fill="none" stroke="url(#pipeBlue)" stroke-width="8" stroke-linecap="round"/>
-        <rect x="28" y="36" width="24" height="10" rx="5" fill="#111827" stroke="#8aa6c7"/>
-      </svg>
-      <div class="logo-text">
-        <strong>PIPEFIX</strong>
-        <span>oprava kanalizace bez kopání</span>
-      </div>
+      <img src="assets/pipefix-logo.svg" class="logo-img" alt="PipeFix – Oprava kanalizace bez kopání">
     </a>
     <div class="nav-right">
       <ul>
