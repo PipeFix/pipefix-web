@@ -8,190 +8,146 @@
     :root {
       --bg: #0b0f1a;
       --surface: #111827;
-      --surface-elev: #18253a;
       --text: #f7fbff;
       --muted: #adc1da;
       --accent: #27b2ff;
-      --accent-soft: rgba(39, 178, 255, 0.2);
+      --accent-soft: rgba(39, 178, 255, 0.25);
       --stroke: #29405d;
-      --card-h: 86px;
-      --panel-h: clamp(430px, 58vw, 560px);
+      --card-h: 78px;
+      --panel-h: clamp(420px, 48vw, 500px);
     }
-
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: "Montserrat", "Segoe UI", system-ui, sans-serif;
       color: var(--text);
       background: radial-gradient(1000px 600px at 50% -100px, #1a2940, #0b0f1a 60%);
     }
-
     main {
-      width: min(1240px, calc(100% - 2rem));
+      width: min(1120px, calc(100% - 1.5rem));
       margin: 0 auto;
-      padding: clamp(2rem, 4vw, 3.2rem) 0 4rem;
+      padding: clamp(1.2rem, 3vw, 2rem) 0 2.5rem;
     }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2rem, 4vw, 3rem);
-      letter-spacing: 0.01em;
-    }
-
+    h1 { margin: 0; font-size: clamp(2rem, 4vw, 2.7rem); }
     .sub {
-      margin: 0.85rem 0 0;
+      margin: 0.65rem 0 0;
       color: var(--muted);
-      max-width: 72ch;
-      line-height: 1.6;
-      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      max-width: 70ch;
+      line-height: 1.55;
+      font-size: clamp(0.98rem, 1.2vw, 1.08rem);
     }
-
     #regions {
-      margin-top: 2rem;
+      margin-top: 1.2rem;
       background: linear-gradient(180deg, #121d2f 0%, #101a2b 100%);
       border: 1px solid #223852;
-      border-radius: 18px;
-      padding: clamp(1rem, 3vw, 1.6rem);
-      box-shadow: 0 24px 44px rgba(0, 0, 0, 0.32);
+      border-radius: 16px;
+      padding: clamp(0.8rem, 2vw, 1.2rem);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.3);
     }
-
-    #regions h2 {
-      margin: 0 0 1rem;
-      font-size: clamp(1.3rem, 2vw, 1.7rem);
-    }
-
+    #regions h2 { margin: 0 0 0.7rem; font-size: clamp(1.18rem, 1.8vw, 1.45rem); }
     .regions-layout {
       display: grid;
-      grid-template-columns: minmax(220px, 0.94fr) minmax(380px, 1.24fr) minmax(220px, 0.94fr);
-      gap: 0.95rem;
+      grid-template-columns: minmax(130px, 0.65fr) minmax(360px, 1.7fr) minmax(130px, 0.65fr);
+      gap: 0.7rem;
       align-items: stretch;
     }
-
     .panel {
       height: var(--panel-h);
       border: 1px solid var(--stroke);
-      border-radius: 14px;
+      border-radius: 12px;
       background: var(--surface);
-      padding: 0.9rem;
+      padding: 0.6rem;
       overflow: hidden;
     }
-
-    .side-panel {
-      display: flex;
-      align-items: stretch;
-    }
-
+    .side-panel { display: flex; justify-content: center; }
     .region-list {
-      width: 100%;
+      width: min(170px, 100%);
       display: grid;
       grid-template-rows: repeat(4, minmax(var(--card-h), 1fr));
-      gap: 0.75rem;
-      align-content: stretch;
+      gap: 0.55rem;
     }
-
     .map-panel {
       display: grid;
-      align-items: center;
-      justify-items: center;
-      padding: 0.55rem;
+      place-items: center;
       background: radial-gradient(circle at 50% 45%, #1c2b43 0%, #131f32 65%, #111827 100%);
+      padding: 0.35rem;
     }
-
     .map-wrap {
       width: 100%;
       height: 100%;
       display: grid;
       place-items: center;
     }
-
     .map-wrap svg {
-      width: min(100%, 98%);
-      height: min(100%, 98%);
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
       max-height: 100%;
       display: block;
     }
-
     .region-chip {
-      border: 1px solid #365075;
-      border-radius: 13px;
+      border: 1px solid #3f5f89;
+      border-radius: 12px;
       background: linear-gradient(180deg, #1b2b43 0%, #16243a 100%);
       color: var(--text);
-      font: 700 clamp(1rem, 1.22vw, 1.16rem) / 1.2 inherit;
+      font: 700 clamp(1.55rem, 2.4vw, 2rem) / 1.05 inherit;
       letter-spacing: 0.01em;
       width: 100%;
       min-height: var(--card-h);
-      padding: 0.9rem 0.95rem;
+      padding: 0.5rem 0.6rem;
       text-align: left;
       cursor: pointer;
-      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+      transition: transform .14s ease, border-color .14s ease, box-shadow .14s ease, background .14s ease;
     }
-
     .region-chip:hover,
     .region-chip:focus-visible,
     .region-chip.is-active {
       transform: translateY(-1px);
-      border-color: #67cbff;
-      background: linear-gradient(180deg, #1f3552 0%, #1a2d47 100%);
-      box-shadow: 0 0 0 2px var(--accent-soft), 0 12px 24px rgba(0, 0, 0, 0.24);
+      border-color: #7ad3ff;
+      background: linear-gradient(180deg, #213754 0%, #1a2d47 100%);
+      box-shadow: 0 0 0 2px var(--accent-soft), 0 8px 16px rgba(0,0,0,0.23);
       outline: none;
     }
-
     .map-region {
-      fill: #2b3d59;
-      stroke: #8aa5c3;
-      stroke-width: 1.4;
-      transition: fill 0.14s ease, stroke 0.14s ease, filter 0.14s ease;
+      fill: #1f2b3f;
+      stroke: #3d5374;
+      stroke-width: 1.1;
+      opacity: .6;
+      transition: fill .14s ease, stroke .14s ease, filter .14s ease, opacity .14s ease;
+      pointer-events: none;
     }
-
     .map-region.service-region {
+      fill: #2d4262;
+      stroke: #9bb9d8;
+      opacity: 1;
+      pointer-events: auto;
       cursor: pointer;
     }
-
     .map-region.service-region:hover,
     .map-region.service-region:focus-visible,
     .map-region.service-region.is-active {
       fill: var(--accent) !important;
       stroke: #f3f9ff;
-      stroke-width: 2.1;
-      filter: drop-shadow(0 4px 8px rgba(39, 178, 255, 0.45));
+      stroke-width: 1.8;
+      filter: drop-shadow(0 3px 7px rgba(39,178,255,.45));
       outline: none;
     }
-
-    .map-region.is-muted {
-      fill: #1f2b3f !important;
-      stroke: #394d6c;
-      opacity: 0.52;
-      pointer-events: none;
-    }
-
     .map-fallback {
       margin: 0;
       color: var(--muted);
       text-align: center;
       padding: 1rem;
-      font-size: 1rem;
-      line-height: 1.5;
     }
-
     @media (max-width: 1040px) {
-      :root { --panel-h: clamp(420px, 84vw, 620px); }
-
-      .regions-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .side-panel,
-      .map-panel {
-        height: auto;
-      }
-
+      :root { --panel-h: clamp(380px, 92vw, 560px); --card-h: 74px; }
+      .regions-layout { grid-template-columns: 1fr; }
+      .side-panel, .map-panel { height: auto; }
       .region-list {
-        grid-template-columns: repeat(2, minmax(150px, 1fr));
+        width: 100%;
+        grid-template-columns: repeat(2, minmax(140px, 1fr));
         grid-template-rows: auto;
       }
-
-      .region-chip { min-height: 74px; }
+      .region-chip { font-size: clamp(1.15rem, 5.2vw, 1.55rem); }
     }
   </style>
 </head>
@@ -202,30 +158,21 @@
 
     <section id="regions" aria-labelledby="regions-heading">
       <h2 id="regions-heading">Kraje, kde realizujeme zakázky</h2>
-
       <div class="regions-layout">
-        <aside class="panel side-panel" aria-label="Kraje vlevo">
-          <div class="region-list" id="leftRegionList"></div>
-        </aside>
-
-        <div class="panel map-panel">
-          <div class="map-wrap" id="mapWrap" aria-live="polite"></div>
-        </div>
-
-        <aside class="panel side-panel" aria-label="Kraje vpravo">
-          <div class="region-list" id="rightRegionList"></div>
-        </aside>
+        <aside class="panel side-panel" aria-label="Kraje vlevo"><div class="region-list" id="leftRegionList"></div></aside>
+        <div class="panel map-panel"><div class="map-wrap" id="mapWrap"></div></div>
+        <aside class="panel side-panel" aria-label="Kraje vpravo"><div class="region-list" id="rightRegionList"></div></aside>
       </div>
     </section>
   </main>
 
   <script>
     const SVG_URLS = [
+      './cz.svg',
       'https://cdn.jsdelivr.net/gh/PipeFix/pipefix-web@main/cz.svg',
       'https://raw.githubusercontent.com/PipeFix/pipefix-web/main/cz.svg',
       'https://raw.githubusercontent.com/PipeFix/pipefix-web/refs/heads/main/cz.svg'
     ];
-
     const leftRegionList = document.getElementById('leftRegionList');
     const rightRegionList = document.getElementById('rightRegionList');
     const mapWrap = document.getElementById('mapWrap');
@@ -240,10 +187,9 @@
       { key: 'zlinsky', label: 'Zlínský kraj', side: 'right', aliases: ['zlinsky kraj', 'zlinsky'] },
       { key: 'pardubicky', label: 'Pardubický kraj', side: 'right', aliases: ['pardubicky kraj', 'pardubicky'] }
     ];
-
     const TECHNICAL_IDS = new Set(['features', 'points', 'label points', 'label-points', 'labels', 'labelpoints']);
     const chipByKey = new Map();
-    const mapRegionByKey = new Map();
+    const mapRegionsByKey = new Map();
 
     const normalize = (value) => (value || '')
       .toString()
@@ -255,26 +201,20 @@
       .toLowerCase();
 
     const setActiveByKey = (key, active) => {
-      const chip = chipByKey.get(key);
-      const region = mapRegionByKey.get(key);
-      if (chip) chip.classList.toggle('is-active', active);
-      if (region) region.classList.toggle('is-active', active);
+      chipByKey.get(key)?.classList.toggle('is-active', active);
+      for (const el of (mapRegionsByKey.get(key) || [])) el.classList.toggle('is-active', active);
     };
 
-    const bindPair = (key, chip, region) => {
+    const bindPair = (key, chip, mapNodes) => {
       const activate = () => setActiveByKey(key, true);
       const deactivate = () => setActiveByKey(key, false);
-      const onClick = () => {
-        const shouldActivate = !chip.classList.contains('is-active');
-        setActiveByKey(key, shouldActivate);
-      };
-
-      for (const el of [chip, region]) {
+      const toggle = () => setActiveByKey(key, !chip.classList.contains('is-active'));
+      for (const el of [chip, ...mapNodes]) {
         el.addEventListener('mouseenter', activate);
         el.addEventListener('mouseleave', deactivate);
         el.addEventListener('focus', activate);
         el.addEventListener('blur', deactivate);
-        el.addEventListener('click', onClick);
+        el.addEventListener('click', toggle);
       }
     };
 
@@ -284,84 +224,78 @@
         chip.type = 'button';
         chip.className = 'region-chip';
         chip.textContent = region.label;
-        chip.dataset.regionKey = region.key;
         chipByKey.set(region.key, chip);
-
-        if (region.side === 'left') {
-          leftRegionList.appendChild(chip);
-        } else {
-          rightRegionList.appendChild(chip);
-        }
+        (region.side === 'left' ? leftRegionList : rightRegionList).appendChild(chip);
       }
     };
 
     const resolveServiceRegion = (node) => {
+      const anchor = node.closest('[id],[name]') || node;
       const candidates = [
         node.id,
         node.getAttribute('name'),
-        node.getAttribute('inkscape:label'),
-        node.getAttribute('aria-label')
+        anchor.id,
+        anchor.getAttribute && anchor.getAttribute('name'),
+        anchor.getAttribute && anchor.getAttribute('inkscape:label'),
+        node.getAttribute('inkscape:label')
       ].map(normalize).filter(Boolean);
 
-      return SERVICE_REGIONS.find((service) =>
-        candidates.some((candidate) => service.aliases.some((alias) => candidate.includes(normalize(alias))))
-      );
+      return SERVICE_REGIONS.find((service) => candidates.some((candidate) => service.aliases.some((alias) => candidate.includes(normalize(alias)))));
     };
 
     const hideTechnicalLayers = (svg) => {
       for (const node of svg.querySelectorAll('[id]')) {
-        if (TECHNICAL_IDS.has(normalize(node.id))) {
-          node.style.display = 'none';
-        }
+        if (TECHNICAL_IDS.has(normalize(node.id))) node.style.display = 'none';
       }
     };
 
     const fetchSvgText = async () => {
       for (const url of SVG_URLS) {
         try {
-          const response = await fetch(url, { cache: 'no-store' });
-          if (response.ok) return response.text();
-        } catch (_) {
-          // Try next endpoint.
-        }
+          const res = await fetch(url, { cache: 'no-store' });
+          if (res.ok) return res.text();
+        } catch (_) {}
       }
+      throw new Error('Map unavailable');
+    };
 
-      throw new Error('SVG map is unavailable on all configured endpoints.');
+    const normalizeSvgViewport = (svg) => {
+      svg.removeAttribute('width');
+      svg.removeAttribute('height');
+      if (!svg.getAttribute('viewBox')) {
+        const w = Number(svg.getAttribute('width')) || 1000;
+        const h = Number(svg.getAttribute('height')) || 700;
+        svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+      }
+      svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     };
 
     const initMap = async () => {
       buildRegionLists();
-
       try {
         const svgText = await fetchSvgText();
         mapWrap.innerHTML = svgText;
-
         const svg = mapWrap.querySelector('svg');
-        if (!svg) throw new Error('Invalid SVG content.');
-
-        svg.setAttribute('role', 'img');
-        svg.setAttribute('aria-label', 'Mapa krajů České republiky');
-
+        if (!svg) throw new Error('bad svg');
+        normalizeSvgViewport(svg);
         hideTechnicalLayers(svg);
 
-        const nodes = [...svg.querySelectorAll('[id]')]
-          .filter((node) => /^(path|polygon|g)$/i.test(node.tagName));
+        const shapes = [...svg.querySelectorAll('path, polygon')];
+        shapes.forEach((s) => s.classList.add('map-region'));
 
-        for (const node of nodes) {
-          node.classList.add('map-region');
-          const matched = resolveServiceRegion(node);
+        for (const shape of shapes) {
+          const matched = resolveServiceRegion(shape);
+          if (!matched) continue;
+          shape.classList.add('service-region');
+          shape.setAttribute('tabindex', '0');
+          if (!mapRegionsByKey.has(matched.key)) mapRegionsByKey.set(matched.key, []);
+          mapRegionsByKey.get(matched.key).push(shape);
+        }
 
-          if (!matched || mapRegionByKey.has(matched.key)) {
-            node.classList.add('is-muted');
-            continue;
-          }
-
-          node.classList.add('service-region');
-          node.setAttribute('tabindex', '0');
-          mapRegionByKey.set(matched.key, node);
-
-          const chip = chipByKey.get(matched.key);
-          if (chip) bindPair(matched.key, chip, node);
+        for (const region of SERVICE_REGIONS) {
+          const chip = chipByKey.get(region.key);
+          const nodes = mapRegionsByKey.get(region.key) || [];
+          if (chip && nodes.length) bindPair(region.key, chip, nodes);
         }
       } catch (_) {
         mapWrap.innerHTML = '<p class="map-fallback">Mapa je dočasně nedostupná. Zkuste prosím stránku znovu načíst.</p>';
