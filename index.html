@@ -488,13 +488,77 @@
     }
 
     .regions-grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: stretch;
     }
 
-    .region {
-      padding: 20px 18px;
-      text-align: center;
-      font-weight: 700;
+    .regions-map-wrap,
+    .regions-list-wrap {
+      padding: 20px;
+    }
+
+    .regions-map-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 420px;
+    }
+
+    .cz-map {
+      width: min(100%, 560px);
+      height: auto;
+    }
+
+    .map-outline {
+      fill: rgba(255,255,255,0.02);
+      stroke: rgba(255,255,255,0.28);
+      stroke-width: 2;
+    }
+
+    .map-region {
+      fill: rgba(255,255,255,0.04);
+      stroke: rgba(255,255,255,0.24);
+      stroke-width: 1.4;
+      transition: fill .2s ease, stroke .2s ease, filter .2s ease, transform .2s ease;
+      cursor: pointer;
+    }
+
+    .map-region:hover,
+    .map-region.active {
+      fill: rgba(255,255,255,0.86);
+      stroke: rgba(255,255,255,1);
+      filter: drop-shadow(0 0 12px rgba(255,255,255,0.45));
+      transform: translateY(-1px);
+    }
+
+    .regions-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .region-btn {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 12px 14px;
+      text-align: left;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+    }
+
+    .region-btn:hover,
+    .region-btn.active {
+      border-color: rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.10);
+      color: #fff;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.12);
     }
 
     .contact-wrap {
@@ -714,6 +778,10 @@
         grid-template-columns: 1fr;
       }
 
+      .regions-map-wrap {
+        min-height: auto;
+      }
+
       .step {
         grid-template-columns: 1fr;
       }
@@ -896,14 +964,33 @@
         </div>
 
         <div class="regions-grid">
-          <div class="card region">Praha</div>
-          <div class="card region">Středočeský kraj</div>
-          <div class="card region">Jihomoravský kraj</div>
-          <div class="card region">Olomoucký kraj</div>
-          <div class="card region">Zlínský kraj</div>
-          <div class="card region">Jihočeský kraj</div>
-          <div class="card region">Kraj Vysočina</div>
-          <div class="card region">Pardubický kraj</div>
+          <div class="card regions-map-wrap">
+            <svg class="cz-map" viewBox="0 0 700 440" role="img" aria-label="Mapa ČR s kraji, kde působíme">
+              <path class="map-outline" d="M88 214 C95 130, 163 83, 250 73 L370 59 L468 70 L565 123 L632 201 L611 286 L553 342 L466 375 L343 386 L243 372 L163 343 L111 291 Z"></path>
+
+              <path class="map-region" data-region="jihocesky" d="M132 257 L173 217 L229 215 L241 261 L212 307 L157 318 L127 287 Z"></path>
+              <path class="map-region" data-region="praha" d="M274 196 L285 196 L289 207 L280 214 L270 210 Z"></path>
+              <path class="map-region" data-region="stredocesky" d="M223 168 L284 148 L349 164 L360 224 L327 269 L250 274 L229 216 Z"></path>
+              <path class="map-region" data-region="vysocina" d="M330 214 L360 169 L432 178 L448 242 L422 290 L344 300 Z"></path>
+              <path class="map-region" data-region="pardubicky" d="M349 164 L392 133 L448 146 L432 178 L360 169 Z"></path>
+              <path class="map-region" data-region="olomoucky" d="M448 146 L515 162 L533 216 L488 246 L448 242 L432 178 Z"></path>
+              <path class="map-region" data-region="zlinsky" d="M488 246 L536 223 L570 272 L543 325 L494 313 L468 275 Z"></path>
+              <path class="map-region" data-region="jihomoravsky" d="M422 290 L488 246 L468 275 L494 313 L447 347 L385 341 L349 299 Z"></path>
+            </svg>
+          </div>
+
+          <div class="card regions-list-wrap">
+            <ul class="regions-list">
+              <li><button class="region-btn" type="button" data-region="praha">Praha</button></li>
+              <li><button class="region-btn" type="button" data-region="stredocesky">Středočeský kraj</button></li>
+              <li><button class="region-btn" type="button" data-region="jihomoravsky">Jihomoravský kraj</button></li>
+              <li><button class="region-btn" type="button" data-region="olomoucky">Olomoucký kraj</button></li>
+              <li><button class="region-btn" type="button" data-region="zlinsky">Zlínský kraj</button></li>
+              <li><button class="region-btn" type="button" data-region="jihocesky">Jihočeský kraj</button></li>
+              <li><button class="region-btn" type="button" data-region="vysocina">Kraj Vysočina</button></li>
+              <li><button class="region-btn" type="button" data-region="pardubicky">Pardubický kraj</button></li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -1029,6 +1116,37 @@
       rejectAllBtn.addEventListener("click", function () {
         localStorage.setItem("cookie_consent", "rejected_all");
         banner.classList.remove("show");
+      });
+    })();
+
+    (function () {
+      const regions = document.querySelectorAll("[data-region]");
+      if (!regions.length) return;
+
+      const clearActive = function () {
+        regions.forEach(function (node) {
+          node.classList.remove("active");
+        });
+      };
+
+      const setActive = function (region) {
+        clearActive();
+        regions.forEach(function (node) {
+          if (node.getAttribute("data-region") === region) {
+            node.classList.add("active");
+          }
+        });
+      };
+
+      regions.forEach(function (node) {
+        const region = node.getAttribute("data-region");
+        node.addEventListener("mouseenter", function () {
+          setActive(region);
+        });
+        node.addEventListener("mouseleave", clearActive);
+        node.addEventListener("click", function () {
+          setActive(region);
+        });
       });
     })();
   </script>
