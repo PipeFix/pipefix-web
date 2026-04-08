@@ -779,6 +779,7 @@
           <h3>Odeslat poptávku</h3>
           <form action="https://formspree.io/f/xdapjzla" method="POST">
             <input type="hidden" name="_subject" value="Nová poptávka z pipefix.cz" />
+            <input type="hidden" name="_next" value="https://www.pipefix.cz/?sent=1#contact" />
             <div class="field">
               <label for="name">Jméno</label>
               <input id="name" name="name" type="text" placeholder="Vaše jméno" required />
@@ -815,6 +816,7 @@
 
             <button class="btn btn-primary" type="submit">Odeslat poptávku</button>
             <p class="form-note">Po prvním odeslání potvrďte aktivaci formuláře v e-mailu od Formspree.</p>
+            <p id="form-success" class="form-note" aria-live="polite"></p>
           </form>
         </div>
       </div>
@@ -826,24 +828,12 @@
   </footer>
   <script>
     (function () {
-      const statusNode = document.getElementById("form-status");
-      if (!statusNode) return;
-
+      const note = document.getElementById("form-success");
+      if (!note) return;
       const params = new URLSearchParams(window.location.search);
-      const status = params.get("status");
-
-      if (status === "ok") {
-        statusNode.textContent = "Vaše poptávka byla v pořádku odeslána.";
-        statusNode.style.color = "#7ee0a6";
-      } else if (status === "missing") {
-        statusNode.textContent = "Prosím vyplňte všechna povinná pole.";
-        statusNode.style.color = "#ffd27d";
-      } else if (status === "invalid_email") {
-        statusNode.textContent = "Zkontrolujte prosím správnost e-mailu.";
-        statusNode.style.color = "#ffd27d";
-      } else if (status === "error") {
-        statusNode.textContent = "Odeslání se nepodařilo. Zkuste to prosím znovu.";
-        statusNode.style.color = "#ff9a9a";
+      if (params.get("sent") === "1") {
+        note.textContent = "Vaše poptávka byla v pořádku odeslaná.";
+        note.style.color = "#7ee0a6";
       }
     })();
   </script>
