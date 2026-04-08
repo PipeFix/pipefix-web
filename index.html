@@ -460,7 +460,8 @@
     }
 
     .field input,
-    .field textarea {
+    .field textarea,
+    .field select {
       width: 100%;
       border: 1px solid var(--line);
       border-radius: 14px;
@@ -472,7 +473,8 @@
     }
 
     .field input:focus,
-    .field textarea:focus {
+    .field textarea:focus,
+    .field select:focus {
       border-color: rgba(37,168,255,0.6);
       box-shadow: 0 0 0 3px rgba(37,168,255,0.14);
     }
@@ -480,6 +482,39 @@
     .field textarea {
       resize: vertical;
       min-height: 128px;
+    }
+
+    .field select option {
+      background: #0a4c8a;
+      color: #ffffff;
+    }
+
+    .consent {
+      margin-top: 8px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .checkbox-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .checkbox-line input[type="checkbox"] {
+      margin-top: 3px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      flex: 0 0 auto;
+    }
+
+    .checkbox-line a {
+      color: var(--accent-2);
+      text-decoration: underline;
     }
 
     .form-note {
@@ -718,21 +753,31 @@
 
         <div class="card form-card">
           <h3>Odeslat poptávku</h3>
-
-          <form>
+          <form action="https://formspree.io/f/xdapjzla" method="POST">
+            <input type="hidden" name="_subject" value="Nová poptávka z pipefix.cz" />
+            <input type="hidden" name="_next" value="https://www.pipefix.cz/?sent=1#contact" />
             <div class="field">
               <label for="name">Jméno</label>
-              <input id="name" name="name" type="text" placeholder="Vaše jméno" />
+              <input id="name" name="name" type="text" placeholder="Vaše jméno" required />
             </div>
 
             <div class="field">
               <label for="phone">Telefon</label>
-              <input id="phone" name="phone" type="tel" placeholder="Telefonní číslo" />
+              <input id="phone" name="phone" type="tel" placeholder="Telefonní číslo" required />
             </div>
 
             <div class="field">
               <label for="email">E-mail</label>
-              <input id="email" name="email" type="email" placeholder="Váš e-mail" />
+              <input id="email" name="email" type="email" placeholder="Váš e-mail" required />
+            </div>
+
+            <div class="field">
+              <label for="service">O jakou službu máte zájem?</label>
+              <select id="service" name="service" required>
+                <option value="" selected disabled>Vyberte službu</option>
+                <option value="Kamerová kontrola + návrh opravy">Kamerová kontrola + návrh opravy</option>
+                <option value="Vyhodnocení vašeho záznamu + nacenění opravy">Vyhodnocení vašeho záznamu + nacenění opravy</option>
+              </select>
             </div>
 
             <div class="field">
@@ -742,11 +787,23 @@
 
             <div class="field">
               <label for="message">Popis problému</label>
-              <textarea id="message" name="message" placeholder="Napište, co se děje."></textarea>
+              <textarea id="message" name="message" placeholder="Uveďte, jestli se jedná o rodinný dům / bytový dům / firmu a případně délku a průměr přípojky."></textarea>
+            </div>
+
+            <div class="consent">
+              <label class="checkbox-line" for="not-robot">
+                <input id="not-robot" name="not_robot" type="checkbox" required />
+                <span>Nejsem robot.</span>
+              </label>
+
+              <label class="checkbox-line" for="cookies-consent">
+                <input id="cookies-consent" name="cookies_consent" type="checkbox" required />
+                <span>Souhlasím se zpracováním cookies a osobních údajů pro vyřízení poptávky.</span>
+              </label>
             </div>
 
             <button class="btn btn-primary" type="submit">Odeslat poptávku</button>
-            <p class="form-note">Po odeslání formuláře se vám ozveme zpět.</p>
+            <p id="form-success" class="form-note" aria-live="polite"></p>
           </form>
         </div>
       </div>
@@ -756,5 +813,16 @@
   <footer>
     <div class="container">© 2026 PipeFix CZ</div>
   </footer>
+  <script>
+    (function () {
+      const note = document.getElementById("form-success");
+      if (!note) return;
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("sent") === "1") {
+        note.textContent = "Vaše poptávka byla v pořádku odeslaná.";
+        note.style.color = "#7ee0a6";
+      }
+    })();
+  </script>
 </body>
 </html>
