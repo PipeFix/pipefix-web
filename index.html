@@ -307,9 +307,66 @@
 
     .problem-grid,
     .services-grid,
-    .regions-grid {
+    .regions-grid,
+    .reasons-grid {
       display: grid;
       gap: 18px;
+    }
+
+    .reasons {
+      padding-top: 26px;
+    }
+
+    .reasons-grid {
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+    }
+
+    .reason-card {
+      grid-column: span 2;
+      min-height: 220px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .reason-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
+    .reason-card h3 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.3;
+      min-height: 54px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+      letter-spacing: 0.01em;
+    }
+
+    .reason-card p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 14px;
+    }
+
+    .reasons-grid .reason-card:nth-child(4) {
+      grid-column: 2 / span 2;
+    }
+
+    .reasons-grid .reason-card:nth-child(5) {
+      grid-column: 4 / span 2;
     }
 
     .problem-grid {
@@ -404,13 +461,79 @@
     }
 
     .regions-grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: 0.9fr 1.25fr 0.9fr;
+      align-items: stretch;
+      gap: 16px;
     }
 
-    .region {
-      padding: 20px 18px;
-      text-align: center;
-      font-weight: 700;
+    .regions-map-wrap,
+    .regions-list-wrap {
+      padding: 16px;
+    }
+
+    .regions-map-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 460px;
+    }
+
+    .cz-map {
+      width: min(100%, 620px);
+      height: auto;
+    }
+
+    .map-outline {
+      fill: rgba(255,255,255,0.02);
+      stroke: rgba(255,255,255,0.28);
+      stroke-width: 2;
+    }
+
+    .map-region {
+      fill: rgba(255,255,255,0.04);
+      stroke: rgba(255,255,255,0.24);
+      stroke-width: 1.4;
+      transition: fill .2s ease, stroke .2s ease, filter .2s ease, transform .2s ease;
+      cursor: pointer;
+    }
+
+    .map-region:hover,
+    .map-region.active {
+      fill: rgba(255,255,255,0.86);
+      stroke: rgba(255,255,255,1);
+      filter: drop-shadow(0 0 12px rgba(255,255,255,0.45));
+      transform: translateY(-1px);
+    }
+
+    .regions-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .region-btn {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 12px;
+      text-align: left;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+    }
+
+    .region-btn:hover,
+    .region-btn.active {
+      border-color: rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.10);
+      color: #fff;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.12);
     }
 
     .contact-wrap {
@@ -460,7 +583,8 @@
     }
 
     .field input,
-    .field textarea {
+    .field textarea,
+    .field select {
       width: 100%;
       border: 1px solid var(--line);
       border-radius: 14px;
@@ -472,7 +596,8 @@
     }
 
     .field input:focus,
-    .field textarea:focus {
+    .field textarea:focus,
+    .field select:focus {
       border-color: rgba(37,168,255,0.6);
       box-shadow: 0 0 0 3px rgba(37,168,255,0.14);
     }
@@ -480,6 +605,39 @@
     .field textarea {
       resize: vertical;
       min-height: 128px;
+    }
+
+    .field select option {
+      background: #0a4c8a;
+      color: #ffffff;
+    }
+
+    .consent {
+      margin-top: 8px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .checkbox-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .checkbox-line input[type="checkbox"] {
+      margin-top: 3px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      flex: 0 0 auto;
+    }
+
+    .checkbox-line a {
+      color: var(--accent-2);
+      text-decoration: underline;
     }
 
     .form-note {
@@ -496,15 +654,88 @@
       font-size: 14px;
     }
 
+    .cookie-banner {
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 1200;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(9, 19, 34, 0.96);
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      display: none;
+    }
+
+    .cookie-banner.show {
+      display: block;
+    }
+
+    .cookie-banner p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .cookie-actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
     @media (max-width: 1100px) {
       .problem-grid,
-      .regions-grid {
+      .reasons-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .regions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .regions-map-wrap {
+        order: 1;
+      }
+
+      .regions-list-left {
+        order: 2;
+      }
+
+      .regions-list-right {
+        order: 3;
+      }
+
+      .reason-card {
+        grid-column: span 1;
+        min-height: 200px;
+      }
+
+      .reasons-grid .reason-card:nth-child(4),
+      .reasons-grid .reason-card:nth-child(5) {
+        grid-column: span 1;
       }
 
       .hero-grid,
       .contact-wrap {
         grid-template-columns: 1fr;
+      }
+
+      .regions-map-wrap {
+        min-height: auto;
+      }
+
+      .cz-map {
+        width: min(100%, 680px);
+      }
+
+      .regions-list {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
@@ -542,8 +773,17 @@
 
       .services-grid,
       .problem-grid,
-      .regions-grid {
+      .regions-grid,
+      .reasons-grid {
         grid-template-columns: 1fr;
+      }
+
+      .regions-list {
+        grid-template-columns: 1fr;
+      }
+
+      .regions-map-wrap {
+        min-height: auto;
       }
 
       .step {
@@ -608,6 +848,42 @@
             <strong>Jasný postup</strong>
             <span>Nejprve problém vyhodnotíme, potom navrhneme opravu a připravíme cenovou nabídku.</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reasons">
+      <div class="container">
+        <div class="section-head">
+          <h2>Proč si vybrat právě nás?</h2>
+          <p>Spojujeme rychlost, zkušenosti a moderní bezvýkopové technologie v jednom řešení.</p>
+        </div>
+
+        <div class="reasons-grid">
+          <article class="card reason-card">
+            <h3>Bez výkopu a bourání</h3>
+            <p>Opravu provedeme bez zbytečného ničení podlah, dlažby nebo zahrady.</p>
+          </article>
+
+          <article class="card reason-card">
+            <h3>Rychlé řešení problému</h3>
+            <p>Ve většině případů máme hotovo během jednoho dne.</p>
+          </article>
+
+          <article class="card reason-card">
+            <h3>Kamerová prohlídka zdarma při realizaci</h3>
+            <p>Přesně zjistíme problém a při následné opravě ji neplatíte.</p>
+          </article>
+
+          <article class="card reason-card">
+            <h3>Ověřené řešení s dlouhou životností</h3>
+            <p>Používáme technologie, které vydrží roky bez nutnosti dalších zásahů.</p>
+          </article>
+
+          <article class="card reason-card">
+            <h3>Zkušenosti z praxe</h3>
+            <p>Řešíme kanalizace denně – víme, co funguje a co ne.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -692,14 +968,38 @@
         </div>
 
         <div class="regions-grid">
-          <div class="card region">Praha</div>
-          <div class="card region">Středočeský kraj</div>
-          <div class="card region">Jihomoravský kraj</div>
-          <div class="card region">Olomoucký kraj</div>
-          <div class="card region">Zlínský kraj</div>
-          <div class="card region">Jihočeský kraj</div>
-          <div class="card region">Kraj Vysočina</div>
-          <div class="card region">Pardubický kraj</div>
+          <div class="card regions-list-wrap regions-list-left">
+            <ul class="regions-list">
+              <li><button class="region-btn" type="button" data-region="praha">Praha</button></li>
+              <li><button class="region-btn" type="button" data-region="stredocesky">Středočeský kraj</button></li>
+              <li><button class="region-btn" type="button" data-region="jihocesky">Jihočeský kraj</button></li>
+              <li><button class="region-btn" type="button" data-region="vysocina">Kraj Vysočina</button></li>
+            </ul>
+          </div>
+
+          <div class="card regions-map-wrap">
+            <svg class="cz-map" viewBox="0 0 700 440" role="img" aria-label="Mapa ČR s kraji, kde působíme">
+              <path class="map-outline" d="M88 214 C95 130, 163 83, 250 73 L370 59 L468 70 L565 123 L632 201 L611 286 L553 342 L466 375 L343 386 L243 372 L163 343 L111 291 Z"></path>
+
+              <path class="map-region" data-region="jihocesky" d="M132 257 L173 217 L229 215 L241 261 L212 307 L157 318 L127 287 Z"></path>
+              <path class="map-region" data-region="praha" d="M274 196 L285 196 L289 207 L280 214 L270 210 Z"></path>
+              <path class="map-region" data-region="stredocesky" d="M223 168 L284 148 L349 164 L360 224 L327 269 L250 274 L229 216 Z"></path>
+              <path class="map-region" data-region="vysocina" d="M330 214 L360 169 L432 178 L448 242 L422 290 L344 300 Z"></path>
+              <path class="map-region" data-region="pardubicky" d="M349 164 L392 133 L448 146 L432 178 L360 169 Z"></path>
+              <path class="map-region" data-region="olomoucky" d="M448 146 L515 162 L533 216 L488 246 L448 242 L432 178 Z"></path>
+              <path class="map-region" data-region="zlinsky" d="M488 246 L536 223 L570 272 L543 325 L494 313 L468 275 Z"></path>
+              <path class="map-region" data-region="jihomoravsky" d="M422 290 L488 246 L468 275 L494 313 L447 347 L385 341 L349 299 Z"></path>
+            </svg>
+          </div>
+
+          <div class="card regions-list-wrap regions-list-right">
+            <ul class="regions-list">
+              <li><button class="region-btn" type="button" data-region="jihomoravsky">Jihomoravský kraj</button></li>
+              <li><button class="region-btn" type="button" data-region="olomoucky">Olomoucký kraj</button></li>
+              <li><button class="region-btn" type="button" data-region="zlinsky">Zlínský kraj</button></li>
+              <li><button class="region-btn" type="button" data-region="pardubicky">Pardubický kraj</button></li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -718,21 +1018,31 @@
 
         <div class="card form-card">
           <h3>Odeslat poptávku</h3>
-
-          <form>
+          <form action="https://formspree.io/f/xdapjzla" method="POST">
+            <input type="hidden" name="_subject" value="Nová poptávka z pipefix.cz" />
+            <input type="hidden" name="_next" value="https://www.pipefix.cz/?sent=1#contact" />
             <div class="field">
               <label for="name">Jméno</label>
-              <input id="name" name="name" type="text" placeholder="Vaše jméno" />
+              <input id="name" name="name" type="text" placeholder="Vaše jméno" required />
             </div>
 
             <div class="field">
               <label for="phone">Telefon</label>
-              <input id="phone" name="phone" type="tel" placeholder="Telefonní číslo" />
+              <input id="phone" name="phone" type="tel" placeholder="Telefonní číslo" required />
             </div>
 
             <div class="field">
               <label for="email">E-mail</label>
-              <input id="email" name="email" type="email" placeholder="Váš e-mail" />
+              <input id="email" name="email" type="email" placeholder="Váš e-mail" required />
+            </div>
+
+            <div class="field">
+              <label for="service">O jakou službu máte zájem?</label>
+              <select id="service" name="service" required>
+                <option value="" selected disabled>Vyberte službu</option>
+                <option value="Kamerová kontrola + návrh opravy">Kamerová kontrola + návrh opravy</option>
+                <option value="Vyhodnocení vašeho záznamu + nacenění opravy">Vyhodnocení vašeho záznamu + nacenění opravy</option>
+              </select>
             </div>
 
             <div class="field">
@@ -742,11 +1052,23 @@
 
             <div class="field">
               <label for="message">Popis problému</label>
-              <textarea id="message" name="message" placeholder="Napište, co se děje."></textarea>
+              <textarea id="message" name="message" placeholder="Uveďte, jestli se jedná o rodinný dům / bytový dům / firmu a případně délku a průměr přípojky."></textarea>
+            </div>
+
+            <div class="consent">
+              <label class="checkbox-line" for="not-robot">
+                <input id="not-robot" name="not_robot" type="checkbox" required />
+                <span>Nejsem robot.</span>
+              </label>
+
+              <label class="checkbox-line" for="cookies-consent">
+                <input id="cookies-consent" name="cookies_consent" type="checkbox" required />
+                <span>Souhlasím se zpracováním cookies a osobních údajů pro vyřízení poptávky.</span>
+              </label>
             </div>
 
             <button class="btn btn-primary" type="submit">Odeslat poptávku</button>
-            <p class="form-note">Po odeslání formuláře se vám ozveme zpět.</p>
+            <p id="form-success" class="form-note" aria-live="polite"></p>
           </form>
         </div>
       </div>
@@ -756,5 +1078,86 @@
   <footer>
     <div class="container">© 2026 PipeFix CZ</div>
   </footer>
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies souhlas">
+    <p>
+      Používáme cookies pro správné fungování webu a základní měření návštěvnosti.
+      Pokračováním souhlasíte s jejich použitím.
+    </p>
+    <div class="cookie-actions">
+      <button id="cookie-accept" class="btn btn-primary" type="button">Souhlasím</button>
+      <button id="cookie-decline" class="btn btn-secondary" type="button">Pouze nezbytné</button>
+      <button id="cookie-reject-all" class="btn btn-secondary" type="button">Odmítnout vše</button>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const note = document.getElementById("form-success");
+      if (!note) return;
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("sent") === "1") {
+        note.textContent = "Vaše poptávka byla v pořádku odeslaná.";
+        note.style.color = "#7ee0a6";
+      }
+    })();
+
+    (function () {
+      const banner = document.getElementById("cookie-banner");
+      const acceptBtn = document.getElementById("cookie-accept");
+      const declineBtn = document.getElementById("cookie-decline");
+      const rejectAllBtn = document.getElementById("cookie-reject-all");
+      if (!banner || !acceptBtn || !declineBtn || !rejectAllBtn) return;
+
+      const consent = localStorage.getItem("cookie_consent");
+      if (!consent) {
+        banner.classList.add("show");
+      }
+
+      acceptBtn.addEventListener("click", function () {
+        localStorage.setItem("cookie_consent", "accepted");
+        banner.classList.remove("show");
+      });
+
+      declineBtn.addEventListener("click", function () {
+        localStorage.setItem("cookie_consent", "necessary_only");
+        banner.classList.remove("show");
+      });
+
+      rejectAllBtn.addEventListener("click", function () {
+        localStorage.setItem("cookie_consent", "rejected_all");
+        banner.classList.remove("show");
+      });
+    })();
+
+    (function () {
+      const regions = document.querySelectorAll("[data-region]");
+      if (!regions.length) return;
+
+      const clearActive = function () {
+        regions.forEach(function (node) {
+          node.classList.remove("active");
+        });
+      };
+
+      const setActive = function (region) {
+        clearActive();
+        regions.forEach(function (node) {
+          if (node.getAttribute("data-region") === region) {
+            node.classList.add("active");
+          }
+        });
+      };
+
+      regions.forEach(function (node) {
+        const region = node.getAttribute("data-region");
+        node.addEventListener("mouseenter", function () {
+          setActive(region);
+        });
+        node.addEventListener("mouseleave", clearActive);
+        node.addEventListener("click", function () {
+          setActive(region);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
