@@ -8,11 +8,14 @@
     :root {
       --bg: #0b0f1a;
       --surface: #111827;
-      --surface-2: #172033;
-      --text: #f4f7fb;
-      --muted: #9eb1c7;
-      --accent: #1da1f2;
-      --stroke: #26364f;
+      --surface-elev: #18253a;
+      --text: #f7fbff;
+      --muted: #adc1da;
+      --accent: #27b2ff;
+      --accent-soft: rgba(39, 178, 255, 0.2);
+      --stroke: #29405d;
+      --card-h: 86px;
+      --panel-h: clamp(430px, 58vw, 560px);
     }
 
     * { box-sizing: border-box; }
@@ -21,109 +24,124 @@
       margin: 0;
       font-family: "Montserrat", "Segoe UI", system-ui, sans-serif;
       color: var(--text);
-      background: radial-gradient(circle at top, #121b2d, var(--bg) 45%);
+      background: radial-gradient(1000px 600px at 50% -100px, #1a2940, #0b0f1a 60%);
     }
 
     main {
-      width: min(1200px, 100% - 2rem);
+      width: min(1240px, calc(100% - 2rem));
       margin: 0 auto;
-      padding: 3rem 0 4rem;
+      padding: clamp(2rem, 4vw, 3.2rem) 0 4rem;
     }
 
     h1 {
       margin: 0;
       font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: 0.01em;
     }
 
     .sub {
+      margin: 0.85rem 0 0;
       color: var(--muted);
-      margin: 0.75rem 0 0;
-      max-width: 78ch;
-      line-height: 1.55;
+      max-width: 72ch;
+      line-height: 1.6;
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
     }
 
     #regions {
       margin-top: 2rem;
-      background: color-mix(in oklab, var(--surface), black 8%);
-      border: 1px solid #1f2e46;
-      border-radius: 16px;
-      padding: clamp(1rem, 3vw, 2rem);
+      background: linear-gradient(180deg, #121d2f 0%, #101a2b 100%);
+      border: 1px solid #223852;
+      border-radius: 18px;
+      padding: clamp(1rem, 3vw, 1.6rem);
+      box-shadow: 0 24px 44px rgba(0, 0, 0, 0.32);
+    }
+
+    #regions h2 {
+      margin: 0 0 1rem;
+      font-size: clamp(1.3rem, 2vw, 1.7rem);
     }
 
     .regions-layout {
       display: grid;
-      gap: 1rem;
-      grid-template-columns: minmax(220px, 1fr) minmax(380px, 1.35fr) minmax(220px, 1fr);
+      grid-template-columns: minmax(220px, 0.94fr) minmax(380px, 1.24fr) minmax(220px, 0.94fr);
+      gap: 0.95rem;
       align-items: stretch;
     }
 
-    .side-column,
-    .map-column {
-      min-height: 560px;
+    .panel {
+      height: var(--panel-h);
       border: 1px solid var(--stroke);
-      border-radius: 12px;
+      border-radius: 14px;
       background: var(--surface);
       padding: 0.9rem;
+      overflow: hidden;
     }
 
-    .side-column {
+    .side-panel {
       display: flex;
-      align-items: center;
+      align-items: stretch;
     }
 
     .region-list {
       width: 100%;
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.7rem;
+      grid-template-rows: repeat(4, minmax(var(--card-h), 1fr));
+      gap: 0.75rem;
+      align-content: stretch;
     }
 
-    .map-column {
+    .map-panel {
       display: grid;
       align-items: center;
+      justify-items: center;
+      padding: 0.55rem;
+      background: radial-gradient(circle at 50% 45%, #1c2b43 0%, #131f32 65%, #111827 100%);
+    }
+
+    .map-wrap {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
     }
 
     .map-wrap svg {
-      width: 100%;
-      height: auto;
-      max-height: 640px;
+      width: min(100%, 98%);
+      height: min(100%, 98%);
+      max-height: 100%;
       display: block;
     }
 
     .region-chip {
-      border: 1px solid #2d415f;
-      border-radius: 10px;
-      background: var(--surface-2);
+      border: 1px solid #365075;
+      border-radius: 13px;
+      background: linear-gradient(180deg, #1b2b43 0%, #16243a 100%);
       color: var(--text);
-      min-height: 48px;
-      padding: 0.6rem 0.8rem;
+      font: 700 clamp(1rem, 1.22vw, 1.16rem) / 1.2 inherit;
+      letter-spacing: 0.01em;
+      width: 100%;
+      min-height: var(--card-h);
+      padding: 0.9rem 0.95rem;
       text-align: left;
       cursor: pointer;
-      transition: 0.18s ease;
-      font: inherit;
-      font-size: 1rem;
+      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
     }
 
     .region-chip:hover,
     .region-chip:focus-visible,
     .region-chip.is-active {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent), transparent 75%);
-      background: color-mix(in oklab, var(--surface-2), var(--accent) 14%);
+      transform: translateY(-1px);
+      border-color: #67cbff;
+      background: linear-gradient(180deg, #1f3552 0%, #1a2d47 100%);
+      box-shadow: 0 0 0 2px var(--accent-soft), 0 12px 24px rgba(0, 0, 0, 0.24);
       outline: none;
     }
 
-    .region-chip.is-disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-
     .map-region {
-      fill: #2d4363;
-      stroke: #9bb3ce;
-      stroke-width: 1.5;
-      transition: 0.15s ease;
+      fill: #2b3d59;
+      stroke: #8aa5c3;
+      stroke-width: 1.4;
+      transition: fill 0.14s ease, stroke 0.14s ease, filter 0.14s ease;
     }
 
     .map-region.service-region {
@@ -134,65 +152,67 @@
     .map-region.service-region:focus-visible,
     .map-region.service-region.is-active {
       fill: var(--accent) !important;
-      stroke: #f2f8ff;
-      stroke-width: 2.2;
-      filter: drop-shadow(0 4px 8px rgba(29, 161, 242, 0.35));
+      stroke: #f3f9ff;
+      stroke-width: 2.1;
+      filter: drop-shadow(0 4px 8px rgba(39, 178, 255, 0.45));
       outline: none;
     }
 
     .map-region.is-muted {
-      fill: #202b3d !important;
-      stroke: #3a4b67;
-      opacity: 0.55;
+      fill: #1f2b3f !important;
+      stroke: #394d6c;
+      opacity: 0.52;
       pointer-events: none;
     }
 
-    .status {
+    .map-fallback {
+      margin: 0;
       color: var(--muted);
-      margin-top: 0.7rem;
-      font-size: 0.95rem;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1rem;
+      line-height: 1.5;
     }
 
-    @media (max-width: 980px) {
+    @media (max-width: 1040px) {
+      :root { --panel-h: clamp(420px, 84vw, 620px); }
+
       .regions-layout {
         grid-template-columns: 1fr;
       }
 
-      .side-column,
-      .map-column {
-        min-height: auto;
-      }
-
-      .side-column {
-        align-items: stretch;
+      .side-panel,
+      .map-panel {
+        height: auto;
       }
 
       .region-list {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        grid-template-columns: repeat(2, minmax(150px, 1fr));
+        grid-template-rows: auto;
       }
+
+      .region-chip { min-height: 74px; }
     }
   </style>
 </head>
 <body>
   <main>
     <h1>Kde působíme</h1>
-    <p class="sub">Působíme pouze ve vybraných krajích. Mapa používá reálnou geometrii z dodaného <code>cz.svg</code> a zvýraznění je propojené jen pro obsluhovaných 8 krajů.</p>
+    <p class="sub">Působíme ve vybraných krajích a zakázky realizujeme bez zbytečných výkopů a bourání.</p>
 
     <section id="regions" aria-labelledby="regions-heading">
       <h2 id="regions-heading">Kraje, kde realizujeme zakázky</h2>
+
       <div class="regions-layout">
-        <aside class="side-column" aria-label="Kraje vlevo">
+        <aside class="panel side-panel" aria-label="Kraje vlevo">
           <div class="region-list" id="leftRegionList"></div>
         </aside>
 
-        <div>
-          <div class="map-column">
-            <div id="mapWrap" class="map-wrap" aria-live="polite"></div>
-          </div>
-          <p class="status" id="mapStatus">Načítám mapu krajů…</p>
+        <div class="panel map-panel">
+          <div class="map-wrap" id="mapWrap" aria-live="polite"></div>
         </div>
 
-        <aside class="side-column" aria-label="Kraje vpravo">
+        <aside class="panel side-panel" aria-label="Kraje vpravo">
           <div class="region-list" id="rightRegionList"></div>
         </aside>
       </div>
@@ -200,12 +220,15 @@
   </main>
 
   <script>
-    const SVG_URL = 'https://raw.githubusercontent.com/PipeFix/pipefix-web/refs/heads/main/cz.svg';
+    const SVG_URLS = [
+      'https://cdn.jsdelivr.net/gh/PipeFix/pipefix-web@main/cz.svg',
+      'https://raw.githubusercontent.com/PipeFix/pipefix-web/main/cz.svg',
+      'https://raw.githubusercontent.com/PipeFix/pipefix-web/refs/heads/main/cz.svg'
+    ];
 
     const leftRegionList = document.getElementById('leftRegionList');
     const rightRegionList = document.getElementById('rightRegionList');
     const mapWrap = document.getElementById('mapWrap');
-    const mapStatus = document.getElementById('mapStatus');
 
     const SERVICE_REGIONS = [
       { key: 'praha', label: 'Praha', side: 'left', aliases: ['praha', 'hlavni mesto praha', 'hl_m_praha'] },
@@ -219,7 +242,6 @@
     ];
 
     const TECHNICAL_IDS = new Set(['features', 'points', 'label points', 'label-points', 'labels', 'labelpoints']);
-
     const chipByKey = new Map();
     const mapRegionByKey = new Map();
 
@@ -242,11 +264,17 @@
     const bindPair = (key, chip, region) => {
       const activate = () => setActiveByKey(key, true);
       const deactivate = () => setActiveByKey(key, false);
+      const onClick = () => {
+        const shouldActivate = !chip.classList.contains('is-active');
+        setActiveByKey(key, shouldActivate);
+      };
+
       for (const el of [chip, region]) {
         el.addEventListener('mouseenter', activate);
         el.addEventListener('mouseleave', deactivate);
         el.addEventListener('focus', activate);
         el.addEventListener('blur', deactivate);
+        el.addEventListener('click', onClick);
       }
     };
 
@@ -255,9 +283,8 @@
         const chip = document.createElement('button');
         chip.type = 'button';
         chip.className = 'region-chip';
-        chip.dataset.regionKey = region.key;
         chip.textContent = region.label;
-        chip.setAttribute('aria-label', `Kraj: ${region.label}`);
+        chip.dataset.regionKey = region.key;
         chipByKey.set(region.key, chip);
 
         if (region.side === 'left') {
@@ -277,9 +304,7 @@
       ].map(normalize).filter(Boolean);
 
       return SERVICE_REGIONS.find((service) =>
-        candidates.some((candidate) =>
-          service.aliases.some((alias) => candidate.includes(normalize(alias)))
-        )
+        candidates.some((candidate) => service.aliases.some((alias) => candidate.includes(normalize(alias))))
       );
     };
 
@@ -291,17 +316,28 @@
       }
     };
 
+    const fetchSvgText = async () => {
+      for (const url of SVG_URLS) {
+        try {
+          const response = await fetch(url, { cache: 'no-store' });
+          if (response.ok) return response.text();
+        } catch (_) {
+          // Try next endpoint.
+        }
+      }
+
+      throw new Error('SVG map is unavailable on all configured endpoints.');
+    };
+
     const initMap = async () => {
       buildRegionLists();
 
       try {
-        const res = await fetch(SVG_URL, { cache: 'no-store' });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-        const svgText = await res.text();
+        const svgText = await fetchSvgText();
         mapWrap.innerHTML = svgText;
+
         const svg = mapWrap.querySelector('svg');
-        if (!svg) throw new Error('SVG se nepodařilo vložit inline.');
+        if (!svg) throw new Error('Invalid SVG content.');
 
         svg.setAttribute('role', 'img');
         svg.setAttribute('aria-label', 'Mapa krajů České republiky');
@@ -314,6 +350,7 @@
         for (const node of nodes) {
           node.classList.add('map-region');
           const matched = resolveServiceRegion(node);
+
           if (!matched || mapRegionByKey.has(matched.key)) {
             node.classList.add('is-muted');
             continue;
@@ -326,19 +363,8 @@
           const chip = chipByKey.get(matched.key);
           if (chip) bindPair(matched.key, chip, node);
         }
-
-        for (const service of SERVICE_REGIONS) {
-          const chip = chipByKey.get(service.key);
-          if (!mapRegionByKey.has(service.key) && chip) {
-            chip.classList.add('is-disabled');
-            chip.title = 'Region se ve zdrojovém SVG nepodařilo spárovat podle id/name.';
-          }
-        }
-
-        mapStatus.textContent = `Mapa načtena. Aktivní jsou pouze vybrané kraje (${mapRegionByKey.size}/8).`;
-      } catch (err) {
-        mapStatus.textContent = 'Mapu se nepodařilo načíst. Zkontrolujte dostupnost souboru cz.svg.';
-        console.error(err);
+      } catch (_) {
+        mapWrap.innerHTML = '<p class="map-fallback">Mapa je dočasně nedostupná. Zkuste prosím stránku znovu načíst.</p>';
       }
     };
 
