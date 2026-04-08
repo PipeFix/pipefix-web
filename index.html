@@ -600,6 +600,7 @@
       color: var(--muted);
       line-height: 1.6;
       font-size: 14px;
+      text-align: center;
     }
 
     .cookie-actions {
@@ -912,6 +913,7 @@
     <div class="cookie-actions">
       <button id="cookie-accept" class="btn btn-primary" type="button">Souhlasím</button>
       <button id="cookie-decline" class="btn btn-secondary" type="button">Pouze nezbytné</button>
+      <button id="cookie-reject-all" class="btn btn-secondary" type="button">Odmítnout vše</button>
     </div>
   </div>
   <script>
@@ -929,7 +931,8 @@
       const banner = document.getElementById("cookie-banner");
       const acceptBtn = document.getElementById("cookie-accept");
       const declineBtn = document.getElementById("cookie-decline");
-      if (!banner || !acceptBtn || !declineBtn) return;
+      const rejectAllBtn = document.getElementById("cookie-reject-all");
+      if (!banner || !acceptBtn || !declineBtn || !rejectAllBtn) return;
 
       const consent = localStorage.getItem("cookie_consent");
       if (!consent) {
@@ -943,6 +946,11 @@
 
       declineBtn.addEventListener("click", function () {
         localStorage.setItem("cookie_consent", "necessary_only");
+        banner.classList.remove("show");
+      });
+
+      rejectAllBtn.addEventListener("click", function () {
+        localStorage.setItem("cookie_consent", "rejected_all");
         banner.classList.remove("show");
       });
     })();
