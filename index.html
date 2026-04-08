@@ -316,25 +316,17 @@ footer {
 }
 </style>
 </head>
-
 <body>
+  <main>
+    <h1>Kde působíme</h1>
+    <p class="sub">Působíme ve vybraných krajích a zakázky realizujeme bez zbytečných výkopů a bourání.</p>
 
-<nav>
-  <div class="nav-inner">
-    <a href="#" class="logo-wrap" aria-label="Místo pro nové logo">
-      <div class="logo-slot" role="img" aria-label="Místo pro nové PNG logo">Sem vložte nové logo (PNG)</div>
-    </a>
-    <div class="nav-right">
-      <ul>
-        <li><a href="#problem">Problém</a></li>
-        <li><a href="#services">Služby</a></li>
-        <li><a href="#process">Jak to funguje</a></li>
-        <li><a href="#regions">Kde působíme</a></li>
-        <li><a href="#contact">Kontakt</a></li>
-      </ul>
-      <div class="nav-contact" aria-label="Rychlý kontakt">
-        <a href="tel:+420724340955">📞 +420 724 340 955</a>
-        <a href="mailto:info@pipefix.cz">✉️ info@pipefix.cz</a>
+    <section id="regions" aria-labelledby="regions-heading">
+      <h2 id="regions-heading">Kraje, kde realizujeme zakázky</h2>
+      <div class="regions-layout">
+        <aside class="panel side-panel" aria-label="Kraje vlevo"><div class="region-list" id="leftRegionList"></div></aside>
+        <div class="panel map-panel"><div class="map-wrap" id="mapWrap"></div></div>
+        <aside class="panel side-panel" aria-label="Kraje vpravo"><div class="region-list" id="rightRegionList"></div></aside>
       </div>
     </div>
   </div>
