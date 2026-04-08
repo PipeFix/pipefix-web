@@ -506,24 +506,25 @@
     }
 
     .regions-grid {
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 0.9fr 1.25fr 0.9fr;
       align-items: stretch;
+      gap: 16px;
     }
 
     .regions-map-wrap,
     .regions-list-wrap {
-      padding: 20px;
+      padding: 16px;
     }
 
     .regions-map-wrap {
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 420px;
+      min-height: 460px;
     }
 
     .cz-map {
-      width: min(100%, 560px);
+      width: min(100%, 620px);
       height: auto;
     }
 
@@ -551,7 +552,7 @@
 
     .regions-list {
       display: grid;
-      gap: 10px;
+      gap: 8px;
       margin: 0;
       padding: 0;
       list-style: none;
@@ -563,9 +564,10 @@
       background: rgba(255,255,255,0.02);
       color: var(--text);
       border-radius: 12px;
-      padding: 12px 14px;
+      padding: 10px 12px;
       text-align: left;
       font: inherit;
+      font-size: 14px;
       font-weight: 600;
       cursor: pointer;
       transition: border-color .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
@@ -734,9 +736,24 @@
 
     @media (max-width: 1100px) {
       .problem-grid,
-      .regions-grid,
       .reasons-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .regions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .regions-map-wrap {
+        order: 1;
+      }
+
+      .regions-list-left {
+        order: 2;
+      }
+
+      .regions-list-right {
+        order: 3;
       }
 
       .reason-card {
@@ -752,6 +769,18 @@
       .hero-grid,
       .contact-wrap {
         grid-template-columns: 1fr;
+      }
+
+      .regions-map-wrap {
+        min-height: auto;
+      }
+
+      .cz-map {
+        width: min(100%, 680px);
+      }
+
+      .regions-list {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
@@ -803,6 +832,10 @@
       .problem-grid,
       .regions-grid,
       .reasons-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .regions-list {
         grid-template-columns: 1fr;
       }
 
@@ -992,6 +1025,15 @@
         </div>
 
         <div class="regions-grid">
+          <div class="card regions-list-wrap regions-list-left">
+            <ul class="regions-list">
+              <li><button class="region-btn" type="button" data-region="praha">Praha</button></li>
+              <li><button class="region-btn" type="button" data-region="stredocesky">Středočeský kraj</button></li>
+              <li><button class="region-btn" type="button" data-region="jihocesky">Jihočeský kraj</button></li>
+              <li><button class="region-btn" type="button" data-region="vysocina">Kraj Vysočina</button></li>
+            </ul>
+          </div>
+
           <div class="card regions-map-wrap">
             <svg class="cz-map" viewBox="0 0 700 440" role="img" aria-label="Mapa ČR s kraji, kde působíme">
               <path class="map-outline" d="M88 214 C95 130, 163 83, 250 73 L370 59 L468 70 L565 123 L632 201 L611 286 L553 342 L466 375 L343 386 L243 372 L163 343 L111 291 Z"></path>
@@ -1007,15 +1049,11 @@
             </svg>
           </div>
 
-          <div class="card regions-list-wrap">
+          <div class="card regions-list-wrap regions-list-right">
             <ul class="regions-list">
-              <li><button class="region-btn" type="button" data-region="praha">Praha</button></li>
-              <li><button class="region-btn" type="button" data-region="stredocesky">Středočeský kraj</button></li>
               <li><button class="region-btn" type="button" data-region="jihomoravsky">Jihomoravský kraj</button></li>
               <li><button class="region-btn" type="button" data-region="olomoucky">Olomoucký kraj</button></li>
               <li><button class="region-btn" type="button" data-region="zlinsky">Zlínský kraj</button></li>
-              <li><button class="region-btn" type="button" data-region="jihocesky">Jihočeský kraj</button></li>
-              <li><button class="region-btn" type="button" data-region="vysocina">Kraj Vysočina</button></li>
               <li><button class="region-btn" type="button" data-region="pardubicky">Pardubický kraj</button></li>
             </ul>
           </div>
