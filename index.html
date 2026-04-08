@@ -777,11 +777,8 @@
 
         <div class="card form-card">
           <h3>Odeslat poptávku</h3>
-
-          <form action="submit.php" method="POST">
+          <form action="https://formspree.io/f/info@pipefix.cz" method="POST">
             <input type="hidden" name="_subject" value="Nová poptávka z pipefix.cz" />
-            <input type="hidden" name="_next" value="/#contact" />
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
             <div class="field">
               <label for="name">Jméno</label>
               <input id="name" name="name" type="text" placeholder="Vaše jméno" required />
@@ -817,8 +814,7 @@
             </div>
 
             <button class="btn btn-primary" type="submit">Odeslat poptávku</button>
-            <p class="form-note">Po odeslání formuláře se vám ozveme zpět.</p>
-            <p id="form-status" class="form-note" aria-live="polite"></p>
+            <p class="form-note">Po prvním odeslání potvrďte aktivaci formuláře v e-mailu od Formspree.</p>
           </form>
         </div>
       </div>
