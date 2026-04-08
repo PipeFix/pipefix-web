@@ -1,110 +1,809 @@
 <!DOCTYPE html>
 <html lang="cs">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PipeFix CZ | Oprava kanalizace bez výkopu</title>
-<link rel="icon" type="image/png" href="assets/logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0b0f1a;--panel:#111827;--panel2:#151f30;--text:#f3f7ff;--muted:#a6b8cf;--accent:#1da1f2;--line:#24354f}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;font-family:'Montserrat',sans-serif;background:radial-gradient(1000px 600px at 50% -120px,#17253a,var(--bg) 58%);color:var(--text)}
-nav{position:sticky;top:0;z-index:1000;background:rgba(11,15,26,.86);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
-.nav-inner{width:min(1140px,100% - 32px);margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:12px 0;gap:20px}
-.brand{font-weight:800;letter-spacing:.02em;color:#fff;text-decoration:none}
-.nav-right{display:flex;align-items:center;gap:18px}
-nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
-nav a{color:#d6e3f3;text-decoration:none;font-weight:600}nav a:hover{color:var(--accent)}
-.nav-contact{display:flex;flex-direction:column;gap:4px;font-size:14px}
-section{width:min(1140px,100% - 32px);margin:0 auto;padding:76px 0}
-.hero{text-align:center;padding-top:120px}
-.hero h1{font-size:clamp(34px,6vw,58px);margin:0}.hero h1 span{color:var(--accent)}
-.hero p{color:var(--muted);font-size:clamp(18px,2.5vw,22px);margin:16px auto 0;max-width:820px}
-.btn{display:inline-block;margin-top:28px;padding:15px 34px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700}
-.hero-image{width:min(840px,100%);display:block;margin:34px auto 0;border-radius:16px;border:1px solid rgba(255,255,255,.12)}
-h2{font-size:clamp(28px,4vw,42px);margin:0 0 10px}.sub{color:var(--muted);margin:0 0 28px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px}
-.step{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:0 0 14px}.step h3{margin:0 0 8px;color:var(--accent)}.step p{margin:0;color:#d8e4f5}
-.regions-simple{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.region-box{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:18px;font-weight:700}
-.contact-box{background:var(--panel);border:1px solid var(--line);padding:24px;border-radius:12px}
-input,textarea{width:100%;padding:12px;margin:8px 0 14px;background:#0d1322;border:1px solid #32435f;color:#fff;border-radius:8px;font-family:inherit}textarea{min-height:120px}
-button{width:100%;border:0;border-radius:8px;padding:14px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer}
-footer{text-align:center;color:#7f93ac;padding:36px 16px 50px}
-@media (max-width:820px){.nav-inner{flex-direction:column;align-items:flex-start}.nav-right{width:100%;flex-direction:column;align-items:flex-start}.hero{padding-top:140px}}
-</style>
-</head>
-<body>
-<nav>
-  <div class="nav-inner">
-    <a class="brand" href="#">PipeFix CZ</a>
-    <div class="nav-right">
-      <ul>
-        <li><a href="#problem">Problém</a></li>
-        <li><a href="#services">Služby</a></li>
-        <li><a href="#process">Jak to funguje</a></li>
-        <li><a href="#regions">Kde působíme</a></li>
-        <li><a href="#contact">Kontakt</a></li>
-      </ul>
-      <div class="nav-contact">
-        <a href="tel:+420724340955">📞 +420 724 340 955</a>
-        <a href="mailto:info@pipefix.cz">✉️ info@pipefix.cz</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PipeFix CZ | Oprava kanalizace bez výkopu</title>
+    <meta
+      name="description"
+      content="Sanace kanalizace bez výkopu. Kamerová prohlídka, rychlá oprava potrubí a realizace ve vybraných krajích bez zbytečného bourání."
+    />
+    <style>
+      :root {
+        --bg: #020814;
+        --bg-2: #07101f;
+        --panel: rgba(15, 30, 56, 0.92);
+        --panel-soft: rgba(14, 28, 49, 0.78);
+        --line: rgba(79, 153, 255, 0.28);
+        --line-strong: rgba(79, 153, 255, 0.55);
+        --text: #f5f8ff;
+        --muted: #b7c7ea;
+        --primary: #36a3ff;
+        --primary-soft: rgba(54, 163, 255, 0.16);
+        --shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
+        --radius: 24px;
+        --radius-sm: 18px;
+        --container: 1180px;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 50% 16%, rgba(32, 88, 170, 0.35), transparent 22%),
+          linear-gradient(180deg, #020813 0%, #031028 36%, #020814 100%);
+        line-height: 1.5;
+      }
+
+      img { max-width: 100%; display: block; }
+      a { color: inherit; text-decoration: none; }
+      button { font: inherit; }
+
+      .container {
+        width: min(var(--container), calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .section { padding: 88px 0; }
+      .section-tight { padding: 64px 0; }
+      .section-title {
+        margin: 0 0 12px;
+        font-size: clamp(2.4rem, 5vw, 4rem);
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+      }
+      .section-lead {
+        margin: 0;
+        max-width: 760px;
+        color: var(--muted);
+        font-size: 1.125rem;
+      }
+
+      .accent { color: var(--primary); }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        backdrop-filter: blur(18px);
+        background: rgba(2, 8, 20, 0.74);
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+      .nav {
+        min-height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+      .brand {
+        font-weight: 800;
+        font-size: 1.5rem;
+        letter-spacing: -0.03em;
+      }
+      .brand span { color: var(--primary); }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        color: #d8e4ff;
+        font-weight: 600;
+      }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .nav-contact {
+        display: grid;
+        gap: 4px;
+        text-align: right;
+        font-size: 0.95rem;
+        color: #dfe9ff;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 52px;
+        padding: 0 22px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: 180ms ease;
+        font-weight: 700;
+      }
+      .btn-primary {
+        background: linear-gradient(180deg, #49b1ff, #238cf0);
+        color: white;
+        box-shadow: 0 14px 30px rgba(40, 140, 240, 0.35);
+      }
+      .btn-primary:hover { transform: translateY(-1px); }
+      .btn-ghost {
+        background: rgba(255,255,255,0.04);
+        border-color: rgba(255,255,255,0.08);
+        color: var(--text);
+      }
+
+      .hero {
+        padding: 76px 0 54px;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 34px;
+        align-items: center;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(54, 163, 255, 0.11);
+        border: 1px solid rgba(54, 163, 255, 0.22);
+        color: #d9ebff;
+        font-weight: 700;
+      }
+      .hero h1 {
+        margin: 0 0 18px;
+        font-size: clamp(3.3rem, 7vw, 5.8rem);
+        line-height: 0.95;
+        letter-spacing: -0.055em;
+      }
+      .hero p {
+        margin: 0;
+        max-width: 700px;
+        color: var(--muted);
+        font-size: 1.25rem;
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 30px;
+      }
+      .hero-points {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 26px;
+      }
+      .pill {
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        color: #dce7ff;
+        font-weight: 600;
+      }
+      .hero-card {
+        padding: 26px;
+        border-radius: var(--radius);
+        background: linear-gradient(180deg, rgba(17,33,59,0.98), rgba(10,23,42,0.96));
+        border: 1px solid rgba(77, 153, 255, 0.18);
+        box-shadow: var(--shadow);
+      }
+      .hero-media {
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        border-radius: 22px;
+        background:
+          linear-gradient(180deg, rgba(59,114,200,0.22), rgba(13,23,39,0.12)),
+          url('https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=1200&q=80') center/cover;
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+      .hero-stats {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .stat {
+        padding: 16px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.06);
+      }
+      .stat strong {
+        display: block;
+        font-size: 1.4rem;
+        margin-bottom: 4px;
+      }
+      .stat span { color: var(--muted); font-size: 0.92rem; }
+
+      .problems-grid,
+      .services-grid,
+      .process-grid,
+      .why-grid,
+      .contact-grid {
+        display: grid;
+        gap: 18px;
+      }
+      .problems-grid { grid-template-columns: repeat(3, 1fr); margin-top: 34px; }
+      .services-grid { grid-template-columns: repeat(3, 1fr); margin-top: 34px; }
+      .process-grid { grid-template-columns: repeat(4, 1fr); margin-top: 34px; }
+      .why-grid { grid-template-columns: repeat(5, 1fr); margin-top: 34px; }
+      .contact-grid { grid-template-columns: 1fr 0.92fr; align-items: start; margin-top: 34px; }
+
+      .card {
+        height: 100%;
+        padding: 24px;
+        border-radius: var(--radius-sm);
+        background: linear-gradient(180deg, rgba(18,33,58,0.98), rgba(9,21,39,0.96));
+        border: 1px solid rgba(77, 153, 255, 0.18);
+        box-shadow: var(--shadow);
+      }
+      .card-icon {
+        width: 46px;
+        height: 46px;
+        display: inline-grid;
+        place-items: center;
+        margin-bottom: 14px;
+        border-radius: 14px;
+        background: rgba(54, 163, 255, 0.12);
+        border: 1px solid rgba(54, 163, 255, 0.2);
+        color: #dff0ff;
+        font-size: 1.25rem;
+      }
+      .card h3 {
+        margin: 0 0 12px;
+        font-size: 1.45rem;
+        line-height: 1.12;
+      }
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1rem;
+      }
+      .process-step .step-index {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        margin-bottom: 16px;
+        background: linear-gradient(180deg, #47adff, #2189ef);
+        color: white;
+        font-weight: 800;
+      }
+
+      .map-shell {
+        margin-top: 34px;
+        padding: 26px;
+        border-radius: 28px;
+        background: linear-gradient(180deg, rgba(15,29,52,0.96), rgba(8,19,37,0.98));
+        border: 1px solid rgba(77,153,255,0.18);
+        box-shadow: var(--shadow);
+      }
+      .map-shell h3 {
+        margin: 0 0 24px;
+        font-size: 1.95rem;
+      }
+      .map-layout {
+        display: grid;
+        grid-template-columns: 220px minmax(0, 1fr) 220px;
+        gap: 18px;
+        align-items: stretch;
+      }
+      .map-side,
+      .map-center {
+        min-height: 520px;
+        padding: 18px;
+        border-radius: 22px;
+        background: rgba(10, 22, 40, 0.68);
+        border: 1px solid rgba(77,153,255,0.2);
+      }
+      .map-side {
+        display: grid;
+        align-content: center;
+        gap: 14px;
+      }
+      .region-btn {
+        width: 100%;
+        min-height: 72px;
+        padding: 0 18px;
+        border-radius: 18px;
+        text-align: left;
+        border: 1px solid rgba(86, 157, 255, 0.34);
+        background: linear-gradient(180deg, rgba(27, 45, 75, 0.95), rgba(20, 36, 61, 0.94));
+        color: #f1f6ff;
+        font-weight: 800;
+        font-size: 1.15rem;
+        transition: 180ms ease;
+        cursor: pointer;
+      }
+      .region-btn:hover,
+      .region-btn.is-active,
+      .region-btn:focus-visible {
+        outline: none;
+        transform: translateY(-1px);
+        border-color: rgba(116, 187, 255, 0.85);
+        box-shadow: 0 0 0 1px rgba(116, 187, 255, 0.18), 0 14px 32px rgba(34, 121, 217, 0.24);
+        background: linear-gradient(180deg, rgba(37, 63, 102, 1), rgba(21, 42, 72, 0.98));
+      }
+      .map-center {
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+      #cz-map {
+        width: 100%;
+        max-width: 760px;
+        aspect-ratio: 1000 / 570;
+        display: grid;
+        place-items: center;
+      }
+      #cz-map svg {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+      }
+      #cz-map [id='points'],
+      #cz-map [id='label_points'] {
+        display: none;
+      }
+      #cz-map path {
+        fill: rgba(120, 150, 205, 0.2);
+        stroke: rgba(201, 223, 255, 0.4);
+        stroke-width: 1.2;
+        transition: fill 160ms ease, stroke 160ms ease, filter 160ms ease, opacity 160ms ease;
+        opacity: 0.42;
+      }
+      #cz-map path.region-active {
+        fill: rgba(54, 163, 255, 0.42);
+        stroke: rgba(189, 228, 255, 0.92);
+        opacity: 1;
+        filter: drop-shadow(0 0 14px rgba(54, 163, 255, 0.38));
+      }
+      #cz-map path.region-muted {
+        opacity: 0.18;
+      }
+
+      .contact-card {
+        padding: 28px;
+        border-radius: 26px;
+        background: linear-gradient(180deg, rgba(16,31,56,0.96), rgba(9,20,38,0.98));
+        border: 1px solid rgba(77,153,255,0.18);
+        box-shadow: var(--shadow);
+      }
+      .contact-list {
+        display: grid;
+        gap: 14px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .contact-item {
+        padding: 18px 20px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.06);
+      }
+      .contact-item strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 1rem;
+      }
+      .contact-item span { color: var(--muted); }
+
+      .contact-form {
+        display: grid;
+        gap: 14px;
+      }
+      .field {
+        width: 100%;
+        min-height: 54px;
+        padding: 0 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(255,255,255,0.04);
+        color: white;
+      }
+      textarea.field {
+        min-height: 140px;
+        padding: 16px;
+        resize: vertical;
+      }
+      .field::placeholder { color: #9db0d8; }
+      .field:focus {
+        outline: none;
+        border-color: rgba(93, 173, 255, 0.8);
+        box-shadow: 0 0 0 3px rgba(54, 163, 255, 0.14);
+      }
+
+      .footer {
+        padding: 28px 0 44px;
+        color: #aebede;
+      }
+      .footer-inner {
+        border-top: 1px solid rgba(255,255,255,0.08);
+        padding-top: 22px;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 1180px) {
+        .why-grid { grid-template-columns: repeat(3, 1fr); }
+        .map-layout { grid-template-columns: 200px minmax(0, 1fr) 200px; }
+      }
+      @media (max-width: 980px) {
+        .nav-links, .nav-contact { display: none; }
+        .hero-grid,
+        .contact-grid,
+        .map-layout { grid-template-columns: 1fr; }
+        .problems-grid,
+        .services-grid,
+        .process-grid,
+        .why-grid { grid-template-columns: repeat(2, 1fr); }
+        .map-side,
+        .map-center { min-height: auto; }
+        .map-side { grid-template-columns: repeat(2, 1fr); }
+        .map-side.left { order: 2; }
+        .map-center { order: 1; min-height: 420px; }
+        .map-side.right { order: 3; }
+      }
+      @media (max-width: 640px) {
+        .section, .hero { padding: 64px 0; }
+        .container { width: min(var(--container), calc(100% - 20px)); }
+        .hero h1 { font-size: clamp(2.5rem, 12vw, 4rem); }
+        .section-title { font-size: clamp(2rem, 11vw, 3rem); }
+        .problems-grid,
+        .services-grid,
+        .process-grid,
+        .why-grid,
+        .map-side { grid-template-columns: 1fr; }
+        .hero-stats { grid-template-columns: 1fr; }
+        .btn { width: 100%; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a class="brand" href="#hero">PipeFix <span>CZ</span></a>
+        <nav class="nav-links">
+          <a href="#problem">Problém</a>
+          <a href="#sluzby">Služby</a>
+          <a href="#jak">Jak to funguje</a>
+          <a href="#kde">Kde působíme</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav-actions">
+          <div class="nav-contact">
+            <strong>+420 724 340 955</strong>
+            <span>info@pipefix.cz</span>
+          </div>
+          <a class="btn btn-primary" href="#kontakt">Získat nabídku</a>
+        </div>
       </div>
-    </div>
-  </div>
-</nav>
+    </header>
 
-<section class="hero">
-  <h1>Oprava kanalizace <span>bez výkopu</span></h1>
-  <p>Rychlé řešení prasklého potrubí bez rozkopání zahrady.</p>
-  <img class="hero-image" src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=1600&q=80" alt="Technik při kontrole potrubí" loading="lazy">
-  <a href="#contact" class="btn">Nezávazná konzultace zdarma</a>
-</section>
+    <main>
+      <section class="hero" id="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow">Bez výkopu • rychle • profesionálně</div>
+            <h1>Oprava kanalizace <span class="accent">bez výkopu</span></h1>
+            <p>
+              Rychlé řešení prasklého nebo poškozeného potrubí bez zbytečného rozkopání podlah, zahrady nebo příjezdové cesty.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#kontakt">Nechat si zpracovat nabídku</a>
+              <a class="btn btn-ghost" href="tel:+420724340955">Zavolat hned</a>
+            </div>
+            <div class="hero-points">
+              <span class="pill">Bez bourání</span>
+              <span class="pill">Hotovo často do 1 dne</span>
+              <span class="pill">Kamera zdarma při realizaci</span>
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-media"></div>
+            <div class="hero-stats">
+              <div class="stat"><strong>1 den</strong><span>častá doba realizace</span></div>
+              <div class="stat"><strong>8 krajů</strong><span>kde zakázky realizujeme</span></div>
+              <div class="stat"><strong>Bez výkopu</strong><span>žádné zbytečné ničení</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<section id="problem">
-  <h2>Máte tyto problémy?</h2>
-  <p class="sub">Tyto příznaky často znamenají poškozené potrubí.</p>
-  <div class="grid">
-    <div class="card">Zápach z odpadu</div><div class="card">Vlhkost u základů</div><div class="card">Opakované ucpávání</div><div class="card">Propadlá dlažba</div>
-  </div>
-</section>
+      <section class="section-tight" id="problem">
+        <div class="container">
+          <h2 class="section-title">Řešíte jeden z těchto problémů?</h2>
+          <p class="section-lead">Přesně na tohle je PipeFix. Zaměřujeme se na poruchy, které majitele domu nebo bytu nejvíc trápí a chtějí je vyřešit rychle a bez zbytečného nepořádku.</p>
+          <div class="problems-grid">
+            <article class="card">
+              <div class="card-icon">💧</div>
+              <h3>Zase se ucpává odpad?</h3>
+              <p>Opakující se problém v potrubí často znamená poškození nebo závadu, kterou je potřeba vyřešit trvale.</p>
+            </article>
+            <article class="card">
+              <div class="card-icon">👃</div>
+              <h3>Zapáchá vám kanalizace?</h3>
+              <p>Silný zápach bývá signál praskliny, netěsnosti nebo jiného problému v kanalizačním potrubí.</p>
+            </article>
+            <article class="card">
+              <div class="card-icon">🏠</div>
+              <h3>Vlhne vám základ?</h3>
+              <p>Únik odpadní vody se může projevit vlhkostí ve zdivu, podlaze nebo kolem domu.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-<section id="services">
-  <h2>Naše služby</h2>
-  <p class="sub">Vyberte variantu, která vám nejvíc vyhovuje.</p>
-  <div class="grid">
-    <div class="card"><h3>📹 Kamerová kontrola + návrh opravy</h3><p>Přijedeme, provedeme kamerovou kontrolu potrubí a pošleme vám záznam. Současně připravíme navrhovaný postup opravy a cenovou nabídku.</p></div>
-    <div class="card"><h3>📩 Vyhodnocení vašeho záznamu + nacenění opravy</h3><p>Pokud už záznam z kamery máte, stačí nám ho poslat. Záznam vyhodnotíme a připravíme nacenění samotné opravy bez další kamerové prohlídky.</p></div>
-  </div>
-</section>
+      <section class="section" id="sluzby">
+        <div class="container">
+          <h2 class="section-title">Služby</h2>
+          <p class="section-lead">Neřešíme jen jednu věc. Umíme zjistit skutečný stav potrubí, navrhnout opravu a zrealizovat ji bez zbytečných výkopů.</p>
+          <div class="services-grid">
+            <article class="card">
+              <div class="card-icon">📹</div>
+              <h3>Kamerová prohlídka</h3>
+              <p>Přesně zjistíme stav potrubí a místo poškození. Při následné realizaci opravy se cena prohlídky odečítá z konečné faktury.</p>
+            </article>
+            <article class="card">
+              <div class="card-icon">🛠️</div>
+              <h3>Lokální opravy potrubí</h3>
+              <p>Řešíme konkrétní poškozená místa bez nutnosti měnit celý úsek kanalizace.</p>
+            </article>
+            <article class="card">
+              <div class="card-icon">🧩</div>
+              <h3>Sanace bez výkopu</h3>
+              <p>Moderní technologie bez bourání a rozkopávání. Rychlejší, čistší a šetrnější řešení pro dům i zahradu.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-<section id="process">
-  <h2>Jak probíhá oprava</h2>
-  <p class="sub">Rychlý proces bez zbytečného zásahu.</p>
-  <div class="step"><h3>1️⃣ Kamerová kontrola</h3><p>Najdeme problém a přesně určíme poškození.</p></div>
-  <div class="step"><h3>2️⃣ Vložkování rukávcem</h3><p>Vytvoříme novou vrstvu uvnitř potrubí.</p></div>
-  <div class="step"><h3>3️⃣ Vytvrzení a hotovo</h3><p>Bez kopání, hotovo během jednoho dne.</p></div>
-</section>
+      <section class="section-tight" id="jak">
+        <div class="container">
+          <h2 class="section-title">Jak to funguje</h2>
+          <p class="section-lead">Jednoduchý proces od první poptávky až po realizaci. Bez zbytečného natahování a s jasným dalším krokem.</p>
+          <div class="process-grid">
+            <article class="card process-step">
+              <div class="step-index">1</div>
+              <h3>Pošlete poptávku</h3>
+              <p>Krátce popíšete problém. Přidáte telefon a ideálně i fotku nebo základní info o přístupu ke kanalizaci.</p>
+            </article>
+            <article class="card process-step">
+              <div class="step-index">2</div>
+              <h3>Ozveme se vám</h3>
+              <p>Projdeme s vámi situaci a doporučíme další krok. Často rovnou kamerovou prohlídku nebo návrh opravy.</p>
+            </article>
+            <article class="card process-step">
+              <div class="step-index">3</div>
+              <h3>Dostanete nabídku</h3>
+              <p>Připravíme cenovou nabídku podle zjištěného stavu potrubí a rozsahu poškození.</p>
+            </article>
+            <article class="card process-step">
+              <div class="step-index">4</div>
+              <h3>Realizace bez výkopu</h3>
+              <p>Po odsouhlasení zakázku předáváme do realizace a domlouvá se konkrétní termín.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-<section id="regions">
-  <h2>Kde působíme</h2>
-  <p class="sub">Sekce je dočasně zjednodušená. Pokrytí krajů doplníme v dalším kroku.</p>
-  <div class="regions-simple">
-    <div class="region-box">Praha</div><div class="region-box">Středočeský kraj</div><div class="region-box">Jihočeský kraj</div><div class="region-box">Kraj Vysočina</div>
-    <div class="region-box">Jihomoravský kraj</div><div class="region-box">Olomoucký kraj</div><div class="region-box">Zlínský kraj</div><div class="region-box">Pardubický kraj</div>
-  </div>
-</section>
+      <section class="section" id="proc">
+        <div class="container">
+          <h2 class="section-title">Proč si vybrat právě nás?</h2>
+          <p class="section-lead">Spojujeme rychlost, zkušenosti a moderní bezvýkopové technologie v jednom řešení.</p>
+          <div class="why-grid">
+            <article class="card">
+              <div class="card-icon">🔧</div>
+              <h3>Bez výkopu a bourání</h3>
+              <p>Opravu provedeme bez zbytečného ničení podlah, dlažby nebo zahrady.</p>
+            </article>
+            <article class="card">
+              <div class="card-icon">⚡</div>
+              <h3>Rychlé řešení problému</h3>
+              <p>Ve většině případů máme hotovo během jednoho dne.</p>
+            </article>
+            <article class="card">
+              <div class="card-icon">📹</div>
+              <h3>Kamerová prohlídka zdarma při realizaci</h3>
+              <p>Přesně zjistíme problém a při následné opravě ji neplatíte.</p>
+            </article>
+            <article class="card">
+              <div class="card-icon">✅</div>
+              <h3>Ověřené řešení s dlouhou životností</h3>
+              <p>Používáme technologie, které vydrží roky bez nutnosti dalších zásahů.</p>
+            </article>
+            <article class="card">
+              <div class="card-icon">🏅</div>
+              <h3>Zkušenosti z praxe</h3>
+              <p>Řešíme kanalizace denně – víme, co funguje a co ne.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-<section id="contact">
-  <h2>Kontaktujte nás</h2>
-  <p>📞 +420 724 340 955</p>
-  <p>✉️ info@pipefix.cz</p>
-  <div class="contact-box">
-    <input type="text" placeholder="Jméno"><input type="tel" placeholder="Telefon"><input type="email" placeholder="E-mail"><input type="text" placeholder="Adresa"><textarea placeholder="Popis problému"></textarea><button>Odeslat poptávku</button>
-  </div>
-</section>
+      <section class="section" id="kde">
+        <div class="container">
+          <h2 class="section-title">Kde působíme</h2>
+          <p class="section-lead">Působíme ve vybraných krajích a zakázky realizujeme bez zbytečných výkopů a bourání.</p>
 
-<footer>© 2026 PipeFix CZ</footer>
-</body>
+          <div class="map-shell">
+            <h3>Kraje, kde realizujeme zakázky</h3>
+            <div class="map-layout">
+              <div class="map-side left" id="left-regions"></div>
+              <div class="map-center">
+                <div id="cz-map" aria-label="Mapa České republiky"></div>
+              </div>
+              <div class="map-side right" id="right-regions"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="kontakt">
+        <div class="container">
+          <h2 class="section-title">Kontakt</h2>
+          <p class="section-lead">Pošlete nám poptávku a ozveme se vám zpět. Ideálně připište stručný popis problému a kde se kanalizace nachází.</p>
+          <div class="contact-grid">
+            <div class="contact-card">
+              <ul class="contact-list">
+                <li class="contact-item">
+                  <strong>Telefon</strong>
+                  <span><a href="tel:+420724340955">+420 724 340 955</a></span>
+                </li>
+                <li class="contact-item">
+                  <strong>E-mail</strong>
+                  <span><a href="mailto:info@pipefix.cz">info@pipefix.cz</a></span>
+                </li>
+                <li class="contact-item">
+                  <strong>Kamerová prohlídka</strong>
+                  <span>Při následné realizaci odečítáme cenu z konečné faktury.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="contact-card">
+              <form class="contact-form">
+                <input class="field" type="text" placeholder="Jméno a příjmení" />
+                <input class="field" type="tel" placeholder="Telefon" />
+                <input class="field" type="email" placeholder="E-mail" />
+                <textarea class="field" placeholder="Popis problému, město, přístup ke kanalizaci..."></textarea>
+                <button class="btn btn-primary" type="button">Odeslat poptávku</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>© <span id="year"></span> PipeFix CZ</div>
+        <div>Bezvýkopové opravy kanalizace • Kamerová diagnostika • Vybrané kraje ČR</div>
+      </div>
+    </footer>
+
+    <script>
+      const regionData = [
+        { id: 'CZ10', label: 'Praha', side: 'left' },
+        { id: 'CZ20', label: 'Středočeský kraj', side: 'left' },
+        { id: 'CZ31', label: 'Jihočeský kraj', side: 'left' },
+        { id: 'CZ63', label: 'Kraj Vysočina', side: 'left' },
+        { id: 'CZ64', label: 'Jihomoravský kraj', side: 'right' },
+        { id: 'CZ71', label: 'Olomoucký kraj', side: 'right' },
+        { id: 'CZ72', label: 'Zlínský kraj', side: 'right' },
+        { id: 'CZ53', label: 'Pardubický kraj', side: 'right' },
+      ];
+
+      const leftContainer = document.getElementById('left-regions');
+      const rightContainer = document.getElementById('right-regions');
+      const mapHost = document.getElementById('cz-map');
+      const year = document.getElementById('year');
+      year.textContent = new Date().getFullYear();
+
+      let activeRegionId = null;
+      let svgRoot = null;
+      const regionButtons = new Map();
+      const regionPaths = new Map();
+
+      function renderButtons() {
+        regionData.forEach((region) => {
+          const btn = document.createElement('button');
+          btn.className = 'region-btn';
+          btn.type = 'button';
+          btn.textContent = region.label;
+          btn.dataset.region = region.id;
+          btn.addEventListener('mouseenter', () => setActiveRegion(region.id));
+          btn.addEventListener('focus', () => setActiveRegion(region.id));
+          btn.addEventListener('mouseleave', () => clearActiveRegion());
+          btn.addEventListener('blur', () => clearActiveRegion());
+          btn.addEventListener('click', () => {
+            activeRegionId = activeRegionId === region.id ? null : region.id;
+            updateUI();
+          });
+          regionButtons.set(region.id, btn);
+          if (region.side === 'left') leftContainer.appendChild(btn);
+          else rightContainer.appendChild(btn);
+        });
+      }
+
+      function setActiveRegion(id) {
+        activeRegionId = id;
+        updateUI();
+      }
+
+      function clearActiveRegion() {
+        activeRegionId = null;
+        updateUI();
+      }
+
+      function updateUI() {
+        regionData.forEach((region) => {
+          const btn = regionButtons.get(region.id);
+          const path = regionPaths.get(region.id);
+          if (!btn || !path) return;
+
+          const isActive = activeRegionId === region.id;
+          btn.classList.toggle('is-active', isActive);
+          path.classList.toggle('region-active', isActive);
+          path.classList.toggle('region-muted', activeRegionId && !isActive);
+        });
+      }
+
+      async function loadMap() {
+        try {
+          const res = await fetch('./cz.svg');
+          if (!res.ok) throw new Error('Nepodařilo se načíst cz.svg');
+          const raw = await res.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(raw, 'image/svg+xml');
+          svgRoot = doc.querySelector('svg');
+          if (!svgRoot) throw new Error('SVG nebylo nalezeno');
+
+          svgRoot.removeAttribute('width');
+          svgRoot.removeAttribute('height');
+          svgRoot.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+          svgRoot.setAttribute('role', 'img');
+          svgRoot.setAttribute('aria-label', 'Mapa České republiky');
+
+          const allowed = new Set(regionData.map((r) => r.id));
+          const allPaths = svgRoot.querySelectorAll('g#features path');
+          allPaths.forEach((path) => {
+            const id = path.getAttribute('id');
+            if (!allowed.has(id)) {
+              path.classList.add('region-muted');
+              path.style.pointerEvents = 'none';
+              path.style.opacity = '0.12';
+              return;
+            }
+            regionPaths.set(id, path);
+            path.style.cursor = 'pointer';
+            path.addEventListener('mouseenter', () => setActiveRegion(id));
+            path.addEventListener('mouseleave', () => clearActiveRegion());
+            path.addEventListener('focus', () => setActiveRegion(id));
+            path.addEventListener('blur', () => clearActiveRegion());
+            path.addEventListener('click', () => {
+              activeRegionId = activeRegionId === id ? null : id;
+              updateUI();
+            });
+          });
+
+          mapHost.innerHTML = '';
+          mapHost.appendChild(svgRoot);
+          updateUI();
+        } catch (error) {
+          mapHost.innerHTML = '<div style="color:#dce7ff;text-align:center;font-weight:700;">Nepodařilo se načíst mapu. Zkontrolujte, že je soubor <strong>cz.svg</strong> ve stejné složce jako stránka.</div>';
+          console.error(error);
+        }
+      }
+
+      renderButtons();
+      loadMap();
+    </script>
+  </body>
 </html>
