@@ -332,7 +332,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        overflow: visible;
+        overflow: hidden;
       }
       #cz-map {
         width: 100%;
@@ -340,15 +340,18 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        overflow: hidden;
       }
       #cz-map svg {
         width: 100%;
         height: auto;
         max-width: 620px;
-        max-height: 100%;
+        max-height: 400px;
         display: block;
         margin: 0 auto;
-        overflow: visible;
+        overflow: hidden;
+        transform: none;
+        position: static;
       }
       #cz-map [id='points'],
       #cz-map [id='label_points'] {
@@ -775,6 +778,8 @@
           svgRoot.style.transform = 'none';
           svgRoot.style.margin = '0 auto';
           svgRoot.style.display = 'block';
+          svgRoot.style.maxWidth = '620px';
+          svgRoot.style.maxHeight = '400px';
           svgRoot.setAttribute('preserveAspectRatio', 'xMidYMid meet');
           svgRoot.setAttribute('role', 'img');
           svgRoot.setAttribute('aria-label', 'Mapa České republiky');
