@@ -25,7 +25,7 @@
     }
 
     main {
-      width: min(1120px, 100% - 2rem);
+      width: min(1200px, 100% - 2rem);
       margin: 0 auto;
       padding: 3rem 0 4rem;
     }
@@ -38,7 +38,7 @@
     .sub {
       color: var(--muted);
       margin: 0.75rem 0 0;
-      max-width: 70ch;
+      max-width: 78ch;
       line-height: 1.55;
     }
 
@@ -52,33 +52,42 @@
 
     .regions-layout {
       display: grid;
-      gap: 1.2rem;
-      grid-template-columns: minmax(320px, 1.15fr) minmax(260px, 1fr);
-      align-items: start;
+      gap: 1rem;
+      grid-template-columns: minmax(220px, 1fr) minmax(380px, 1.35fr) minmax(220px, 1fr);
+      align-items: stretch;
     }
 
-    .map-wrap {
-      min-height: 460px;
-      display: grid;
-      align-items: center;
-      background: var(--surface);
+    .side-column,
+    .map-column {
+      min-height: 560px;
       border: 1px solid var(--stroke);
       border-radius: 12px;
-      padding: 0.75rem;
+      background: var(--surface);
+      padding: 0.9rem;
+    }
+
+    .side-column {
+      display: flex;
+      align-items: center;
+    }
+
+    .region-list {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.7rem;
+    }
+
+    .map-column {
+      display: grid;
+      align-items: center;
     }
 
     .map-wrap svg {
       width: 100%;
       height: auto;
-      max-height: 620px;
+      max-height: 640px;
       display: block;
-    }
-
-    .region-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 0.65rem;
-      align-content: start;
     }
 
     .region-chip {
@@ -86,13 +95,13 @@
       border-radius: 10px;
       background: var(--surface-2);
       color: var(--text);
-      min-height: 44px;
-      padding: 0.55rem 0.75rem;
+      min-height: 48px;
+      padding: 0.6rem 0.8rem;
       text-align: left;
       cursor: pointer;
       transition: 0.18s ease;
       font: inherit;
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
 
     .region-chip:hover,
@@ -104,37 +113,62 @@
       outline: none;
     }
 
+    .region-chip.is-disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
     .map-region {
       fill: #2d4363;
       stroke: #9bb3ce;
       stroke-width: 1.5;
       transition: 0.15s ease;
+    }
+
+    .map-region.service-region {
       cursor: pointer;
     }
 
-    .map-region:hover,
-    .map-region:focus-visible,
-    .map-region.is-active {
+    .map-region.service-region:hover,
+    .map-region.service-region:focus-visible,
+    .map-region.service-region.is-active {
       fill: var(--accent) !important;
       stroke: #f2f8ff;
       stroke-width: 2.2;
-      filter: drop-shadow(0 4px 8px rgba(29,161,242,0.35));
+      filter: drop-shadow(0 4px 8px rgba(29, 161, 242, 0.35));
       outline: none;
+    }
+
+    .map-region.is-muted {
+      fill: #202b3d !important;
+      stroke: #3a4b67;
+      opacity: 0.55;
+      pointer-events: none;
     }
 
     .status {
       color: var(--muted);
-      margin-top: 0.6rem;
+      margin-top: 0.7rem;
       font-size: 0.95rem;
     }
 
-    @media (max-width: 920px) {
+    @media (max-width: 980px) {
       .regions-layout {
         grid-template-columns: 1fr;
       }
 
-      .map-wrap {
-        min-height: 360px;
+      .side-column,
+      .map-column {
+        min-height: auto;
+      }
+
+      .side-column {
+        align-items: stretch;
+      }
+
+      .region-list {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       }
     }
   </style>
@@ -142,16 +176,25 @@
 <body>
   <main>
     <h1>Kde působíme</h1>
-    <p class="sub">Interaktivní mapa krajů ČR je načtená ze zdrojového souboru <code>cz.svg</code> a vložená jako inline SVG, aby šlo propojit zvýraznění mezi mapou a seznamem krajů.</p>
+    <p class="sub">Působíme pouze ve vybraných krajích. Mapa používá reálnou geometrii z dodaného <code>cz.svg</code> a zvýraznění je propojené jen pro obsluhovaných 8 krajů.</p>
 
     <section id="regions" aria-labelledby="regions-heading">
       <h2 id="regions-heading">Kraje, kde realizujeme zakázky</h2>
       <div class="regions-layout">
+        <aside class="side-column" aria-label="Kraje vlevo">
+          <div class="region-list" id="leftRegionList"></div>
+        </aside>
+
         <div>
-          <div id="mapWrap" class="map-wrap" aria-live="polite"></div>
+          <div class="map-column">
+            <div id="mapWrap" class="map-wrap" aria-live="polite"></div>
+          </div>
           <p class="status" id="mapStatus">Načítám mapu krajů…</p>
         </div>
-        <div class="region-list" id="regionList" aria-label="Seznam krajů"></div>
+
+        <aside class="side-column" aria-label="Kraje vpravo">
+          <div class="region-list" id="rightRegionList"></div>
+        </aside>
       </div>
     </section>
   </main>
@@ -159,27 +202,47 @@
   <script>
     const SVG_URL = 'https://raw.githubusercontent.com/PipeFix/pipefix-web/refs/heads/main/cz.svg';
 
+    const leftRegionList = document.getElementById('leftRegionList');
+    const rightRegionList = document.getElementById('rightRegionList');
     const mapWrap = document.getElementById('mapWrap');
     const mapStatus = document.getElementById('mapStatus');
-    const regionList = document.getElementById('regionList');
 
-    const formatName = (raw) => raw
+    const SERVICE_REGIONS = [
+      { key: 'praha', label: 'Praha', side: 'left', aliases: ['praha', 'hlavni mesto praha', 'hl_m_praha'] },
+      { key: 'stredocesky', label: 'Středočeský kraj', side: 'left', aliases: ['stredocesky kraj', 'stredocesky', 'stredni cechy'] },
+      { key: 'jihocesky', label: 'Jihočeský kraj', side: 'left', aliases: ['jihocesky kraj', 'jihocesky'] },
+      { key: 'vysocina', label: 'Kraj Vysočina', side: 'left', aliases: ['kraj vysocina', 'vysocina'] },
+      { key: 'jihomoravsky', label: 'Jihomoravský kraj', side: 'right', aliases: ['jihomoravsky kraj', 'jihomoravsky'] },
+      { key: 'olomoucky', label: 'Olomoucký kraj', side: 'right', aliases: ['olomoucky kraj', 'olomoucky'] },
+      { key: 'zlinsky', label: 'Zlínský kraj', side: 'right', aliases: ['zlinsky kraj', 'zlinsky'] },
+      { key: 'pardubicky', label: 'Pardubický kraj', side: 'right', aliases: ['pardubicky kraj', 'pardubicky'] }
+    ];
+
+    const TECHNICAL_IDS = new Set(['features', 'points', 'label points', 'label-points', 'labels', 'labelpoints']);
+
+    const chipByKey = new Map();
+    const mapRegionByKey = new Map();
+
+    const normalize = (value) => (value || '')
+      .toString()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
       .replace(/[_-]+/g, ' ')
       .replace(/\s+/g, ' ')
-      .trim();
+      .trim()
+      .toLowerCase();
 
-    const setActive = (id, active) => {
-      const region = mapWrap.querySelector(`[id="${CSS.escape(id)}"]`);
-      const chip = regionList.querySelector(`[data-region="${CSS.escape(id)}"]`);
-      if (region) region.classList.toggle('is-active', active);
+    const setActiveByKey = (key, active) => {
+      const chip = chipByKey.get(key);
+      const region = mapRegionByKey.get(key);
       if (chip) chip.classList.toggle('is-active', active);
+      if (region) region.classList.toggle('is-active', active);
     };
 
-    const bindInteractivePair = (id, region, chip) => {
-      const activate = () => setActive(id, true);
-      const deactivate = () => setActive(id, false);
-
-      for (const el of [region, chip]) {
+    const bindPair = (key, chip, region) => {
+      const activate = () => setActiveByKey(key, true);
+      const deactivate = () => setActiveByKey(key, false);
+      for (const el of [chip, region]) {
         el.addEventListener('mouseenter', activate);
         el.addEventListener('mouseleave', deactivate);
         el.addEventListener('focus', activate);
@@ -187,7 +250,50 @@
       }
     };
 
+    const buildRegionLists = () => {
+      for (const region of SERVICE_REGIONS) {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'region-chip';
+        chip.dataset.regionKey = region.key;
+        chip.textContent = region.label;
+        chip.setAttribute('aria-label', `Kraj: ${region.label}`);
+        chipByKey.set(region.key, chip);
+
+        if (region.side === 'left') {
+          leftRegionList.appendChild(chip);
+        } else {
+          rightRegionList.appendChild(chip);
+        }
+      }
+    };
+
+    const resolveServiceRegion = (node) => {
+      const candidates = [
+        node.id,
+        node.getAttribute('name'),
+        node.getAttribute('inkscape:label'),
+        node.getAttribute('aria-label')
+      ].map(normalize).filter(Boolean);
+
+      return SERVICE_REGIONS.find((service) =>
+        candidates.some((candidate) =>
+          service.aliases.some((alias) => candidate.includes(normalize(alias)))
+        )
+      );
+    };
+
+    const hideTechnicalLayers = (svg) => {
+      for (const node of svg.querySelectorAll('[id]')) {
+        if (TECHNICAL_IDS.has(normalize(node.id))) {
+          node.style.display = 'none';
+        }
+      }
+    };
+
     const initMap = async () => {
+      buildRegionLists();
+
       try {
         const res = await fetch(SVG_URL, { cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -195,45 +301,41 @@
         const svgText = await res.text();
         mapWrap.innerHTML = svgText;
         const svg = mapWrap.querySelector('svg');
-
         if (!svg) throw new Error('SVG se nepodařilo vložit inline.');
 
         svg.setAttribute('role', 'img');
         svg.setAttribute('aria-label', 'Mapa krajů České republiky');
 
-        const regions = [...svg.querySelectorAll('[id]')]
+        hideTechnicalLayers(svg);
+
+        const nodes = [...svg.querySelectorAll('[id]')]
           .filter((node) => /^(path|polygon|g)$/i.test(node.tagName));
 
-        if (!regions.length) {
-          throw new Error('Ve vloženém SVG nebyly nalezené regiony s atributem id.');
+        for (const node of nodes) {
+          node.classList.add('map-region');
+          const matched = resolveServiceRegion(node);
+          if (!matched || mapRegionByKey.has(matched.key)) {
+            node.classList.add('is-muted');
+            continue;
+          }
+
+          node.classList.add('service-region');
+          node.setAttribute('tabindex', '0');
+          mapRegionByKey.set(matched.key, node);
+
+          const chip = chipByKey.get(matched.key);
+          if (chip) bindPair(matched.key, chip, node);
         }
 
-        const uniqueById = new Map();
-        for (const node of regions) {
-          if (!uniqueById.has(node.id)) uniqueById.set(node.id, node);
+        for (const service of SERVICE_REGIONS) {
+          const chip = chipByKey.get(service.key);
+          if (!mapRegionByKey.has(service.key) && chip) {
+            chip.classList.add('is-disabled');
+            chip.title = 'Region se ve zdrojovém SVG nepodařilo spárovat podle id/name.';
+          }
         }
 
-        const prepared = [...uniqueById.values()].map((region) => {
-          region.classList.add('map-region');
-          region.setAttribute('tabindex', '0');
-
-          const sourceName = region.getAttribute('name') || region.id;
-          const label = formatName(sourceName);
-
-          const chip = document.createElement('button');
-          chip.type = 'button';
-          chip.className = 'region-chip';
-          chip.dataset.region = region.id;
-          chip.textContent = label;
-          chip.setAttribute('aria-label', `Kraj: ${label}`);
-
-          regionList.appendChild(chip);
-          bindInteractivePair(region.id, region, chip);
-
-          return label;
-        });
-
-        mapStatus.textContent = `Mapa načtena. Aktivních krajů: ${prepared.length}.`;
+        mapStatus.textContent = `Mapa načtena. Aktivní jsou pouze vybrané kraje (${mapRegionByKey.size}/8).`;
       } catch (err) {
         mapStatus.textContent = 'Mapu se nepodařilo načíst. Zkontrolujte dostupnost souboru cz.svg.';
         console.error(err);
