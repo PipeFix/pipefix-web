@@ -576,6 +576,39 @@
       font-size: 14px;
     }
 
+    .cookie-banner {
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 1200;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(9, 19, 34, 0.96);
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      display: none;
+    }
+
+    .cookie-banner.show {
+      display: block;
+    }
+
+    .cookie-banner p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .cookie-actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
     @media (max-width: 1100px) {
       .problem-grid,
       .regions-grid {
@@ -870,6 +903,16 @@
   <footer>
     <div class="container">© 2026 PipeFix CZ</div>
   </footer>
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies souhlas">
+    <p>
+      Používáme cookies pro správné fungování webu a základní měření návštěvnosti.
+      Pokračováním souhlasíte s jejich použitím.
+    </p>
+    <div class="cookie-actions">
+      <button id="cookie-accept" class="btn btn-primary" type="button">Souhlasím</button>
+      <button id="cookie-decline" class="btn btn-secondary" type="button">Pouze nezbytné</button>
+    </div>
+  </div>
   <script>
     (function () {
       const note = document.getElementById("form-success");
@@ -879,6 +922,28 @@
         note.textContent = "Vaše poptávka byla v pořádku odeslaná.";
         note.style.color = "#7ee0a6";
       }
+    })();
+
+    (function () {
+      const banner = document.getElementById("cookie-banner");
+      const acceptBtn = document.getElementById("cookie-accept");
+      const declineBtn = document.getElementById("cookie-decline");
+      if (!banner || !acceptBtn || !declineBtn) return;
+
+      const consent = localStorage.getItem("cookie_consent");
+      if (!consent) {
+        banner.classList.add("show");
+      }
+
+      acceptBtn.addEventListener("click", function () {
+        localStorage.setItem("cookie_consent", "accepted");
+        banner.classList.remove("show");
+      });
+
+      declineBtn.addEventListener("click", function () {
+        localStorage.setItem("cookie_consent", "necessary_only");
+        banner.classList.remove("show");
+      });
     })();
   </script>
 </body>
