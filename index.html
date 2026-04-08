@@ -359,18 +359,24 @@
     }
 
     .reasons {
-      padding-top: 20px;
+      padding-top: 26px;
     }
 
     .reasons-grid {
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
     }
 
     .reason-card {
-      padding: 22px;
+      grid-column: span 2;
+      min-height: 220px;
+      padding: 28px 24px;
       position: relative;
       overflow: hidden;
       border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
 
     .reason-card::before {
@@ -384,16 +390,28 @@
     }
 
     .reason-card h3 {
-      margin: 0 0 10px;
+      margin: 0;
       font-size: 18px;
       line-height: 1.3;
+      min-height: 54px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+      letter-spacing: 0.01em;
     }
 
     .reason-card p {
-      margin: 0;
+      margin: 14px 0 0;
       color: var(--muted);
-      line-height: 1.65;
+      line-height: 1.75;
       font-size: 14px;
+    }
+
+    .reasons-grid .reason-card:nth-child(4) {
+      grid-column: 2 / span 2;
+    }
+
+    .reasons-grid .reason-card:nth-child(5) {
+      grid-column: 4 / span 2;
     }
 
     .problem-grid {
@@ -719,6 +737,16 @@
       .regions-grid,
       .reasons-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .reason-card {
+        grid-column: span 1;
+        min-height: 200px;
+      }
+
+      .reasons-grid .reason-card:nth-child(4),
+      .reasons-grid .reason-card:nth-child(5) {
+        grid-column: span 1;
       }
 
       .hero-grid,
