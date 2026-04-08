@@ -363,20 +363,24 @@
     }
 
     .reasons-grid {
-      grid-template-columns: repeat(6, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 16px;
     }
 
     .reason-card {
-      grid-column: span 2;
-      min-height: 220px;
-      padding: 28px 24px;
+      grid-column: span 3;
+      min-height: 176px;
+      padding: 20px 18px;
       position: relative;
       overflow: hidden;
       border-radius: 18px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      background:
+        radial-gradient(circle at top right, rgba(93,194,255,0.18), transparent 40%),
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
     }
 
     .reason-card::before {
@@ -389,29 +393,50 @@
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
     }
 
+    .reason-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(93,194,255,0.45);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.33), 0 0 0 1px rgba(93,194,255,0.2);
+    }
+
+    .reason-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .reason-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      background: linear-gradient(135deg, rgba(37,168,255,0.30), rgba(93,194,255,0.14));
+      border: 1px solid rgba(93,194,255,0.35);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.07) inset;
+      flex: 0 0 auto;
+    }
+
     .reason-card h3 {
       margin: 0;
-      font-size: 18px;
-      line-height: 1.3;
-      min-height: 54px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.14);
+      font-size: 17px;
+      line-height: 1.35;
+      min-height: 46px;
       letter-spacing: 0.01em;
     }
 
     .reason-card p {
-      margin: 14px 0 0;
+      margin: 12px 0 0;
       color: var(--muted);
-      line-height: 1.75;
+      line-height: 1.62;
       font-size: 14px;
     }
 
-    .reasons-grid .reason-card:nth-child(4) {
-      grid-column: 2 / span 2;
-    }
-
-    .reasons-grid .reason-card:nth-child(5) {
-      grid-column: 4 / span 2;
+    .reasons-grid .reason-card.featured {
+      grid-column: 4 / span 6;
+      min-height: 168px;
     }
 
     .problem-grid {
@@ -735,9 +760,12 @@
     }
 
     @media (max-width: 1100px) {
-      .problem-grid,
-      .reasons-grid {
+      .problem-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .reasons-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
       }
 
       .regions-grid {
@@ -757,13 +785,12 @@
       }
 
       .reason-card {
-        grid-column: span 1;
-        min-height: 200px;
+        grid-column: span 3;
+        min-height: 170px;
       }
 
-      .reasons-grid .reason-card:nth-child(4),
-      .reasons-grid .reason-card:nth-child(5) {
-        grid-column: span 1;
+      .reasons-grid .reason-card.featured {
+        grid-column: 1 / -1;
       }
 
       .hero-grid,
@@ -833,6 +860,12 @@
       .regions-grid,
       .reasons-grid {
         grid-template-columns: 1fr;
+      }
+
+      .reason-card,
+      .reasons-grid .reason-card.featured {
+        grid-column: span 1;
+        min-height: auto;
       }
 
       .regions-list {
@@ -918,27 +951,42 @@
 
         <div class="reasons-grid">
           <article class="card reason-card">
-            <h3>Bez výkopu a bourání</h3>
+            <div class="reason-head">
+              <div class="reason-icon" aria-hidden="true">🛠️</div>
+              <h3>Bez výkopu a bourání</h3>
+            </div>
             <p>Opravu provedeme bez zbytečného ničení podlah, dlažby nebo zahrady.</p>
           </article>
 
           <article class="card reason-card">
-            <h3>Rychlé řešení problému</h3>
+            <div class="reason-head">
+              <div class="reason-icon" aria-hidden="true">⚡</div>
+              <h3>Rychlé řešení problému</h3>
+            </div>
             <p>Ve většině případů máme hotovo během jednoho dne.</p>
           </article>
 
           <article class="card reason-card">
-            <h3>Kamerová prohlídka zdarma při realizaci</h3>
+            <div class="reason-head">
+              <div class="reason-icon" aria-hidden="true">🎥</div>
+              <h3>Kamerová prohlídka zdarma při realizaci</h3>
+            </div>
             <p>Přesně zjistíme problém a při následné opravě ji neplatíte.</p>
           </article>
 
           <article class="card reason-card">
-            <h3>Ověřené řešení s dlouhou životností</h3>
+            <div class="reason-head">
+              <div class="reason-icon" aria-hidden="true">✅</div>
+              <h3>Ověřené řešení s dlouhou životností</h3>
+            </div>
             <p>Používáme technologie, které vydrží roky bez nutnosti dalších zásahů.</p>
           </article>
 
-          <article class="card reason-card">
-            <h3>Zkušenosti z praxe</h3>
+          <article class="card reason-card featured">
+            <div class="reason-head">
+              <div class="reason-icon" aria-hidden="true">🏅</div>
+              <h3>Zkušenosti z praxe</h3>
+            </div>
             <p>Řešíme kanalizace denně – víme, co funguje a co ne.</p>
           </article>
         </div>
