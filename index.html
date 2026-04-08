@@ -531,21 +531,21 @@
     }
 
     .regions-grid {
-      grid-template-columns: 0.9fr 1.25fr 0.9fr;
-      align-items: stretch;
-      gap: 16px;
+      grid-template-columns: 0.72fr 1.56fr 0.72fr;
+      align-items: center;
+      gap: 12px;
     }
 
     .regions-map-wrap,
     .regions-list-wrap {
-      padding: 16px;
+      padding: 12px;
     }
 
     .regions-map-wrap {
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 460px;
+      min-height: 0;
     }
 
     .cz-map {
@@ -581,29 +581,38 @@
       margin: 0;
       padding: 0;
       list-style: none;
+      width: 100%;
+      max-width: 220px;
     }
 
     .region-btn {
       width: 100%;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(93,194,255,0.30);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
       color: var(--text);
-      border-radius: 12px;
-      padding: 10px 12px;
+      border-radius: 10px;
+      padding: 9px 11px;
       text-align: left;
       font: inherit;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      transition: border-color .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+      transition: border-color .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
     }
 
     .region-btn:hover,
     .region-btn.active {
-      border-color: rgba(255,255,255,0.45);
-      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.80);
+      background: rgba(255,255,255,0.16);
       color: #fff;
-      box-shadow: 0 0 0 2px rgba(255,255,255,0.12);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.18), 0 0 14px rgba(93,194,255,0.28);
+      transform: translateY(-1px);
+    }
+
+    .regions-list-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .contact-wrap {
@@ -808,6 +817,7 @@
 
       .regions-list {
         grid-template-columns: repeat(2, 1fr);
+        max-width: 560px;
       }
     }
 
@@ -860,6 +870,21 @@
       .regions-grid,
       .reasons-grid {
         grid-template-columns: 1fr;
+      }
+
+      .reason-card,
+      .reasons-grid .reason-card.featured {
+        grid-column: span 1;
+        min-height: auto;
+      }
+
+      .regions-list {
+        grid-template-columns: 1fr;
+        max-width: none;
+      }
+
+      .regions-map-wrap {
+        min-height: auto;
       }
 
       .reason-card,
