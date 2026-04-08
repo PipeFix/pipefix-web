@@ -529,6 +529,39 @@
       min-height: 128px;
     }
 
+    .field select option {
+      background: #0a4c8a;
+      color: #ffffff;
+    }
+
+    .consent {
+      margin-top: 8px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .checkbox-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .checkbox-line input[type="checkbox"] {
+      margin-top: 3px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      flex: 0 0 auto;
+    }
+
+    .checkbox-line a {
+      color: var(--accent-2);
+      text-decoration: underline;
+    }
+
     .form-note {
       font-size: 13px;
       color: var(--muted);
@@ -814,8 +847,19 @@
               <textarea id="message" name="message" placeholder="Uveďte, jestli se jedná o rodinný dům / bytový dům / firmu a případně délku a průměr přípojky."></textarea>
             </div>
 
+            <div class="consent">
+              <label class="checkbox-line" for="not-robot">
+                <input id="not-robot" name="not_robot" type="checkbox" required />
+                <span>Nejsem robot.</span>
+              </label>
+
+              <label class="checkbox-line" for="cookies-consent">
+                <input id="cookies-consent" name="cookies_consent" type="checkbox" required />
+                <span>Souhlasím se zpracováním cookies a osobních údajů pro vyřízení poptávky.</span>
+              </label>
+            </div>
+
             <button class="btn btn-primary" type="submit">Odeslat poptávku</button>
-            <p class="form-note">Po prvním odeslání potvrďte aktivaci formuláře v e-mailu od Formspree.</p>
             <p id="form-success" class="form-note" aria-live="polite"></p>
           </form>
         </div>
