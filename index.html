@@ -533,9 +533,10 @@
 
     .cookie-banner {
       position: fixed;
-      left: 16px;
-      right: 16px;
-      bottom: 16px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(620px, calc(100% - 32px));
       z-index: 1200;
       border: 1px solid var(--line);
       border-radius: 16px;
