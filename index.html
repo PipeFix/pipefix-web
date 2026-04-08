@@ -188,6 +188,45 @@ h2 {
   border-radius:10px;
 }
 
+/* REGIONS */
+
+.regions-layout {
+  display:grid;
+  grid-template-columns:minmax(200px,1fr) minmax(280px,1.3fr) minmax(200px,1fr);
+  gap:20px;
+  align-items:stretch;
+}
+
+.regions-col {
+  display:grid;
+  gap:14px;
+}
+
+.region-item {
+  padding:20px;
+  background:#111827;
+  border-radius:10px;
+  font-weight:600;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.regions-map {
+  background:#111827;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.08);
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.regions-map img {
+  width:100%;
+  max-height:420px;
+  object-fit:contain;
+  display:block;
+}
+
 /* PROCESS */
 
 .step {
@@ -238,6 +277,12 @@ footer {
   text-align:center;
   padding:40px;
   color:#666;
+}
+
+@media (max-width: 920px) {
+  .regions-layout {
+    grid-template-columns:1fr;
+  }
 }
 
 @media (max-width: 760px) {
@@ -358,15 +403,31 @@ footer {
 <section id="regions">
   <h2>Kde působíme</h2>
   <p class="sub">Realizace provádíme v těchto krajích:</p>
-  <div class="grid">
-    <div class="card">Praha</div>
-    <div class="card">Středočeský kraj</div>
-    <div class="card">Jihomoravský kraj</div>
-    <div class="card">Olomoucký kraj</div>
-    <div class="card">Zlínský kraj</div>
-    <div class="card">Jihočeský kraj</div>
-    <div class="card">Kraj Vysočina</div>
-    <div class="card">Pardubický kraj</div>
+
+  <div class="regions-layout">
+    <div class="regions-col">
+      <div class="region-item">Praha</div>
+      <div class="region-item">Středočeský kraj</div>
+      <div class="region-item">Jihočeský kraj</div>
+      <div class="region-item">Kraj Vysočina</div>
+      <div class="region-item">Ústecký kraj</div>
+      <div class="region-item">Liberecký kraj</div>
+      <div class="region-item">Karlovarský kraj</div>
+    </div>
+
+    <div class="regions-map">
+      <img src="https://raw.githubusercontent.com/PipeFix/pipefix-web/refs/heads/main/cz.svg" alt="Mapa krajů České republiky" loading="lazy">
+    </div>
+
+    <div class="regions-col">
+      <div class="region-item">Jihomoravský kraj</div>
+      <div class="region-item">Olomoucký kraj</div>
+      <div class="region-item">Zlínský kraj</div>
+      <div class="region-item">Pardubický kraj</div>
+      <div class="region-item">Královéhradecký kraj</div>
+      <div class="region-item">Plzeňský kraj</div>
+      <div class="region-item">Moravskoslezský kraj</div>
+    </div>
   </div>
 </section>
 
