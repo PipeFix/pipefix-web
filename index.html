@@ -101,6 +101,9 @@
         align-items: center;
         gap: 14px;
       }
+      .menu-toggle {
+        display: none;
+      }
       .nav-contact {
         display: grid;
         gap: 4px;
@@ -542,17 +545,44 @@
         .map-layout { grid-template-columns: 200px minmax(0, 1fr) 200px; }
       }
       @media (max-width: 980px) {
-        .nav-links, .nav-contact { display: none; }
         .topbar {
-          position: static;
+          position: sticky;
+          top: 0;
           backdrop-filter: blur(12px);
         }
         .nav {
           min-height: 66px;
           gap: 12px;
           padding: 10px 0;
+          flex-wrap: wrap;
         }
         .brand { font-size: 1.28rem; }
+        .nav-links {
+          display: none;
+          width: 100%;
+          order: 4;
+          padding: 14px;
+          border-radius: 14px;
+          background: rgba(7, 17, 33, 0.98);
+          border: 1px solid rgba(255,255,255,0.08);
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        .nav.is-open .nav-links {
+          display: flex;
+        }
+        .menu-toggle {
+          display: inline-flex;
+          min-height: 44px;
+          padding: 0 14px;
+        }
+        .nav-contact {
+          display: grid;
+          gap: 2px;
+          text-align: right;
+          font-size: 0.84rem;
+        }
         .nav-actions .btn {
           min-height: 44px;
           padding: 0 16px;
@@ -605,6 +635,9 @@
         .nav-actions {
           flex: 1;
           justify-content: flex-end;
+        }
+        .nav-contact {
+          display: none;
         }
         .nav-actions .btn {
           width: auto;
@@ -715,7 +748,7 @@
     <header class="topbar">
       <div class="container nav">
         <a class="brand" href="#hero">PipeFix <span>CZ</span></a>
-        <nav class="nav-links">
+        <nav class="nav-links" id="main-nav">
           <a href="#problem">Problém</a>
           <a href="#sluzby">Služby</a>
           <a href="#jak">Jak to funguje</a>
@@ -724,11 +757,12 @@
           <a href="#kontakt">Kontakt</a>
         </nav>
         <div class="nav-actions">
+          <button class="btn btn-ghost menu-toggle" type="button" id="menu-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
           <div class="nav-contact">
             <strong>+420 724 340 955</strong>
             <span>info@pipefix.cz</span>
           </div>
-          <a class="btn btn-primary" href="#kontakt">Získat nabídku</a>
+          <a class="btn btn-primary" href="#poptavka">Získat nabídku</a>
         </div>
       </div>
     </header>
@@ -743,7 +777,7 @@
               Rychlé řešení prasklého nebo poškozeného potrubí bez zbytečného rozkopání podlah, zahrady nebo příjezdové cesty.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#kontakt">Nechat si zpracovat nabídku</a>
+              <a class="btn btn-primary" href="#poptavka">Nechat si zpracovat nabídku</a>
               <a class="btn btn-ghost" href="tel:+420724340955">Zavolat hned</a>
             </div>
             <div class="hero-points">
@@ -975,7 +1009,7 @@
               </ul>
             </div>
             <div class="contact-card">
-              <form class="contact-form" action="https://formspree.io/f/xdapjzla" method="post">
+              <form class="contact-form" id="poptavka" action="https://formspree.io/f/xdapjzla" method="post">
                 <input type="hidden" name="_next" value="/#kontakt" />
                 <input type="hidden" name="_subject" value="Nová poptávka z pipefix.cz" />
                 <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
@@ -1057,6 +1091,9 @@
       const leftContainer = document.getElementById('left-regions');
       const rightContainer = document.getElementById('right-regions');
       const mapHost = document.getElementById('cz-map');
+      const navRoot = document.querySelector('.nav');
+      const menuToggle = document.getElementById('menu-toggle');
+      const navLinks = document.querySelectorAll('.nav-links a');
       const faqToggle = document.getElementById('faq-toggle');
       const faqExtraItems = Array.from(document.querySelectorAll('.faq-extra'));
       const year = document.getElementById('year');
@@ -1124,6 +1161,22 @@
             ? 'Skrýt často kladené otázky'
             : 'Zobrazit všechny často kladené otázky';
           faqToggle.setAttribute('aria-expanded', String(expanded));
+        });
+      }
+
+      function setupMobileMenu() {
+        if (!navRoot || !menuToggle) return;
+
+        menuToggle.addEventListener('click', () => {
+          const isOpen = navRoot.classList.toggle('is-open');
+          menuToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        navLinks.forEach((link) => {
+          link.addEventListener('click', () => {
+            navRoot.classList.remove('is-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
         });
       }
 
@@ -1209,6 +1262,7 @@
 
       renderButtons();
       loadMap();
+      setupMobileMenu();
       setupFaqToggle();
 
       const cookieBanner = document.getElementById('cookie-banner');
