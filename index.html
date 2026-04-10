@@ -84,11 +84,13 @@
         gap: 24px;
       }
       .brand {
-        font-weight: 800;
-        font-size: 1.5rem;
-        letter-spacing: -0.03em;
+        display: inline-flex;
+        align-items: center;
       }
-      .brand span { color: var(--primary); }
+      .brand img {
+        width: auto;
+        height: 44px;
+      }
       .nav-links {
         display: flex;
         align-items: center;
@@ -564,7 +566,6 @@
           padding: 10px 0;
           flex-wrap: wrap;
         }
-        .brand { font-size: 1.28rem; }
         .nav-links {
           display: none;
           width: 100%;
@@ -638,7 +639,9 @@
         .brand {
           display: flex;
           align-items: center;
-          font-size: 1.16rem;
+        }
+        .brand img {
+          height: 34px;
         }
         .nav-actions {
           flex: 1;
@@ -755,7 +758,9 @@
   <body>
     <header class="topbar">
       <div class="container nav">
-        <a class="brand" href="#hero">PipeFix <span>CZ</span></a>
+        <a class="brand" href="#hero" aria-label="PipeFix CZ">
+          <img src="assets/logo-removebg-preview%20(1).png" alt="PipeFix CZ" loading="eager" />
+        </a>
         <nav class="nav-links" id="main-nav">
           <a href="#problem">Problém</a>
           <a href="#sluzby">Služby</a>
