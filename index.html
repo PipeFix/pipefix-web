@@ -437,7 +437,7 @@
       }
       .consent-row {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         gap: 10px;
         font-size: 0.95rem;
         color: #dce7ff;
@@ -723,8 +723,8 @@
                   O jakou službu máte zájem?
                   <select class="field" name="service" required>
                     <option value="" selected disabled>Vyberte službu</option>
-                    <option value="Kamerová prohlídka">Kamerová prohlídka</option>
-                    <option value="Sanace bez výkopu">Sanace bez výkopu</option>
+                    <option value="Kamerová kontrola + návrh opravy">Kamerová kontrola + návrh opravy</option>
+                    <option value="Vyhodnocení vašeho záznamu + nacenění opravy">Vyhodnocení vašeho záznamu + nacenění opravy</option>
                   </select>
                 </label>
                 <label>
@@ -734,6 +734,10 @@
                 <label class="consent-row">
                   <input type="checkbox" name="gdpr_consent" value="1" required />
                   <span>Souhlasím se zpracováním osobních údajů.</span>
+                </label>
+                <label class="consent-row">
+                  <input type="checkbox" name="not_robot" value="1" required />
+                  <span>Nejsem robot.</span>
                 </label>
                 <button class="btn btn-primary" type="submit">Odeslat poptávku</button>
               </form>
