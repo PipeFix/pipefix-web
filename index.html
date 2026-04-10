@@ -510,6 +510,21 @@
       }
       @media (max-width: 980px) {
         .nav-links, .nav-contact { display: none; }
+        .topbar {
+          position: static;
+          backdrop-filter: blur(12px);
+        }
+        .nav {
+          min-height: 66px;
+          gap: 12px;
+          padding: 10px 0;
+        }
+        .brand { font-size: 1.28rem; }
+        .nav-actions .btn {
+          min-height: 44px;
+          padding: 0 16px;
+          font-size: 0.94rem;
+        }
         .hero-grid,
         .contact-grid,
         .map-layout { grid-template-columns: 1fr; }
@@ -517,6 +532,19 @@
         .services-grid,
         .process-grid,
         .why-grid { grid-template-columns: repeat(2, 1fr); }
+        .hero {
+          padding-top: 54px;
+        }
+        .hero p,
+        .section-lead {
+          font-size: 1.05rem;
+        }
+        .hero-card,
+        .card,
+        .contact-card,
+        .map-shell {
+          padding: 20px;
+        }
         .map-side,
         .map-center { min-height: auto; }
         .map-side { grid-template-columns: repeat(2, 1fr); }
@@ -525,18 +553,117 @@
         .map-side.right { order: 3; }
       }
       @media (max-width: 640px) {
-        .section, .hero { padding: 64px 0; }
+        .section, .hero { padding: 52px 0; }
+        .section-tight { padding: 48px 0; }
         .container { width: min(var(--container), calc(100% - 20px)); }
-        .hero h1 { font-size: clamp(2.5rem, 12vw, 4rem); }
-        .section-title { font-size: clamp(2rem, 11vw, 3rem); }
+        .topbar {
+          border-bottom-color: rgba(255,255,255,0.09);
+        }
+        .nav {
+          min-height: 60px;
+          gap: 10px;
+          align-items: stretch;
+        }
+        .brand {
+          display: flex;
+          align-items: center;
+          font-size: 1.16rem;
+        }
+        .nav-actions {
+          flex: 1;
+          justify-content: flex-end;
+        }
+        .nav-actions .btn {
+          width: auto;
+          min-height: 40px;
+          padding: 0 13px;
+          border-radius: 14px;
+          font-size: 0.88rem;
+        }
+        .eyebrow {
+          margin-bottom: 14px;
+          font-size: 0.88rem;
+          padding: 8px 12px;
+        }
+        .hero h1 { font-size: clamp(2.1rem, 11.5vw, 3rem); }
+        .hero p { font-size: 1rem; }
+        .section-title {
+          font-size: clamp(1.75rem, 10vw, 2.4rem);
+          margin-bottom: 10px;
+        }
+        .section-lead {
+          font-size: 0.98rem;
+        }
         .problems-grid,
         .services-grid,
         .process-grid,
         .why-grid,
         .map-side { grid-template-columns: 1fr; }
+        .problems-grid,
+        .services-grid,
+        .process-grid,
+        .why-grid,
+        .contact-grid,
+        .map-shell {
+          margin-top: 22px;
+        }
+        .hero-actions,
+        .hero-points,
+        .hero-stats {
+          margin-top: 18px;
+          gap: 10px;
+        }
+        .hero-card,
+        .card,
+        .contact-card,
+        .map-shell {
+          border-radius: 16px;
+          padding: 16px;
+        }
+        .card h3 {
+          font-size: 1.26rem;
+          margin-bottom: 10px;
+        }
+        .card p {
+          font-size: 0.96rem;
+        }
+        .map-shell h3 {
+          font-size: 1.5rem;
+          margin-bottom: 14px;
+        }
+        .map-side,
+        .map-center {
+          padding: 12px;
+          border-radius: 14px;
+        }
+        .map-center { min-height: 270px; }
+        .region-btn {
+          min-height: 54px;
+          border-radius: 12px;
+          font-size: 1rem;
+          padding: 0 12px;
+        }
+        .contact-form {
+          gap: 10px;
+        }
+        .contact-item {
+          padding: 14px;
+          border-radius: 14px;
+        }
+        .field {
+          min-height: 48px;
+          border-radius: 12px;
+        }
+        textarea.field {
+          min-height: 120px;
+          padding: 12px;
+        }
         .hero-stats { grid-template-columns: 1fr; }
         .btn { width: 100%; }
         .cookie-actions .btn { width: 100%; }
+        .footer {
+          padding: 18px 0 30px;
+        }
       }
     </style>
   </head>
@@ -738,6 +865,14 @@
                 <li class="contact-item">
                   <strong>Kamerová prohlídka</strong>
                   <span>Při následné realizaci odečítáme cenu z konečné faktury.</span>
+                </li>
+                <li class="contact-item">
+                  <strong>Fakturační údaje</strong>
+                  <span>
+                    IČ: 210 13 314<br />
+                    DIČ: CZ210 13 314<br />
+                    Číslo účtu: 349414572/0300
+                  </span>
                 </li>
               </ul>
             </div>
