@@ -195,7 +195,7 @@
         border-radius: 22px;
         background:
           linear-gradient(180deg, rgba(59,114,200,0.22), rgba(13,23,39,0.12)),
-          url('https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=1200&q=80') center/cover;
+          url('https://images.unsplash.com/photo-1613069426871-2f0f0c7a69b7?auto=format&fit=crop&w=1200&q=80') center/cover;
         border: 1px solid rgba(255,255,255,0.08);
       }
       .hero-stats {
@@ -397,6 +397,12 @@
         display: grid;
         gap: 14px;
       }
+      .contact-form label {
+        display: grid;
+        gap: 8px;
+        color: #dce7ff;
+        font-weight: 600;
+      }
       .field {
         width: 100%;
         min-height: 54px;
@@ -405,6 +411,22 @@
         border: 1px solid rgba(255,255,255,0.08);
         background: rgba(255,255,255,0.04);
         color: white;
+      }
+      select.field {
+        appearance: none;
+        background-image:
+          linear-gradient(45deg, transparent 50%, #b9d4ff 50%),
+          linear-gradient(135deg, #b9d4ff 50%, transparent 50%);
+        background-position:
+          calc(100% - 20px) calc(50% - 3px),
+          calc(100% - 14px) calc(50% - 3px);
+        background-size: 6px 6px, 6px 6px;
+        background-repeat: no-repeat;
+        padding-right: 34px;
+      }
+      select.field option {
+        background: #0f1f38;
+        color: #ffffff;
       }
       textarea.field {
         min-height: 140px;
@@ -416,6 +438,18 @@
         outline: none;
         border-color: rgba(93, 173, 255, 0.8);
         box-shadow: 0 0 0 3px rgba(54, 163, 255, 0.14);
+      }
+      .contact-form label.consent-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.95rem;
+        color: #dce7ff;
+      }
+      .consent-row input[type="checkbox"] {
+        margin-top: 3px;
+        width: 18px;
+        height: 18px;
       }
 
       .footer {
@@ -429,6 +463,41 @@
         justify-content: space-between;
         gap: 16px;
         flex-wrap: wrap;
+      }
+      .cookie-banner {
+        position: fixed;
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        z-index: 60;
+        display: none;
+      }
+      .cookie-banner.is-visible {
+        display: block;
+      }
+      .cookie-banner-inner {
+        width: min(980px, 100%);
+        margin: 0 auto;
+        padding: 18px;
+        border-radius: 18px;
+        background: rgba(8, 20, 41, 0.96);
+        border: 1px solid rgba(77, 153, 255, 0.3);
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
+        text-align: center;
+      }
+      .cookie-banner p {
+        margin: 0 0 14px;
+        color: #e3edff;
+        font-weight: 600;
+      }
+      .cookie-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+      .cookie-actions .btn {
+        min-height: 46px;
       }
 
       @media (max-width: 1180px) {
@@ -463,6 +532,7 @@
         .map-side { grid-template-columns: 1fr; }
         .hero-stats { grid-template-columns: 1fr; }
         .btn { width: 100%; }
+        .cookie-actions .btn { width: 100%; }
       }
     </style>
   </head>
@@ -668,12 +738,48 @@
               </ul>
             </div>
             <div class="contact-card">
-              <form class="contact-form">
-                <input class="field" type="text" placeholder="Jméno a příjmení" />
-                <input class="field" type="tel" placeholder="Telefon" />
-                <input class="field" type="email" placeholder="E-mail" />
-                <textarea class="field" placeholder="Popis problému, město, přístup ke kanalizaci..."></textarea>
-                <button class="btn btn-primary" type="button">Odeslat poptávku</button>
+              <form class="contact-form" action="https://formspree.io/f/xdapjzla" method="post">
+                <input type="hidden" name="_next" value="/#kontakt" />
+                <input type="hidden" name="_subject" value="Nová poptávka z pipefix.cz" />
+                <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+                <label>
+                  Jméno a příjmení
+                  <input class="field" type="text" name="name" placeholder="Jan Novák" required />
+                </label>
+                <label>
+                  Telefon
+                  <input class="field" type="tel" name="phone" placeholder="+420 777 123 456" required />
+                </label>
+                <label>
+                  E-mail
+                  <input class="field" type="email" name="email" placeholder="jan.novak@email.cz" required />
+                </label>
+                <label>
+                  Adresa
+                  <input class="field" type="text" name="address" placeholder="Ulice 123, Město" required />
+                </label>
+                <label>
+                  O jakou službu máte zájem?
+                  <select class="field" name="service" required>
+                    <option value="" selected disabled>Vyberte službu</option>
+                    <option value="Kamerová kontrola + návrh opravy">Kamerová kontrola + návrh opravy</option>
+                    <option value="Vyhodnocení vašeho záznamu + nacenění opravy">Vyhodnocení vašeho záznamu + nacenění opravy</option>
+                  </select>
+                </label>
+                <label>
+                  Popis problému
+                  <textarea class="field" name="message" placeholder="Např: popis problému, délka přípojky, průměr kanalizace"></textarea>
+                </label>
+                <label class="consent-row">
+                  <input type="checkbox" name="gdpr_consent" value="1" required />
+                  <span>Souhlasím se zpracováním osobních údajů.</span>
+                </label>
+                <label class="consent-row">
+                  <input type="checkbox" name="not_robot" value="1" required />
+                  <span>Nejsem robot.</span>
+                </label>
+                <button class="btn btn-primary" type="submit">Odeslat poptávku</button>
               </form>
             </div>
           </div>
@@ -687,6 +793,17 @@
         <div>Bezvýkopové opravy kanalizace • Kamerová diagnostika • Vybrané kraje ČR</div>
       </div>
     </footer>
+
+    <div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Nastavení cookies">
+      <div class="cookie-banner-inner">
+        <p>Používáme cookies pro správné fungování webu. Vyberte, prosím, jaké cookies chcete povolit.</p>
+        <div class="cookie-actions">
+          <button type="button" class="btn btn-primary" data-consent="all">Přijmout vše</button>
+          <button type="button" class="btn btn-ghost" data-consent="necessary">Pouze nezbytné</button>
+          <button type="button" class="btn btn-ghost" data-consent="reject">Odmítnout vše</button>
+        </div>
+      </div>
+    </div>
 
     <script>
       const regionData = [
@@ -837,6 +954,30 @@
 
       renderButtons();
       loadMap();
+
+      const cookieBanner = document.getElementById('cookie-banner');
+      const consentButtons = document.querySelectorAll('[data-consent]');
+      const cookieConsentKey = 'pipefix_cookie_consent';
+
+      function hideCookieBanner() {
+        cookieBanner.classList.remove('is-visible');
+      }
+
+      function showCookieBanner() {
+        cookieBanner.classList.add('is-visible');
+      }
+
+      if (!localStorage.getItem(cookieConsentKey)) {
+        showCookieBanner();
+      }
+
+      consentButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const consentValue = button.dataset.consent;
+          localStorage.setItem(cookieConsentKey, consentValue);
+          hideCookieBanner();
+        });
+      });
     </script>
   </body>
 </html>
