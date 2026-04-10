@@ -84,11 +84,13 @@
         gap: 24px;
       }
       .brand {
-        font-weight: 800;
-        font-size: 1.5rem;
-        letter-spacing: -0.03em;
+        display: inline-flex;
+        align-items: center;
       }
-      .brand span { color: var(--primary); }
+      .brand img {
+        width: auto;
+        height: 58px;
+      }
       .nav-links {
         display: flex;
         align-items: center;
@@ -100,6 +102,9 @@
         display: flex;
         align-items: center;
         gap: 14px;
+      }
+      .menu-toggle {
+        display: none;
       }
       .nav-contact {
         display: grid;
@@ -197,10 +202,13 @@
         aspect-ratio: 4 / 3;
         overflow: hidden;
         border-radius: 22px;
-        background:
-          linear-gradient(180deg, rgba(59,114,200,0.22), rgba(13,23,39,0.12)),
-          url('https://images.unsplash.com/photo-1613069426871-2f0f0c7a69b7?auto=format&fit=crop&w=1200&q=80') center/cover;
+        background: rgba(6, 18, 34, 0.8);
         border: 1px solid rgba(255,255,255,0.08);
+      }
+      .hero-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
       .hero-stats {
         margin-top: 18px;
@@ -418,6 +426,7 @@
       }
       select.field {
         appearance: none;
+        color: #9db0d8;
         background-image:
           linear-gradient(45deg, transparent 50%, #b9d4ff 50%),
           linear-gradient(135deg, #b9d4ff 50%, transparent 50%);
@@ -454,6 +463,35 @@
         margin-top: 3px;
         width: 18px;
         height: 18px;
+      }
+      .faq-list {
+        margin-top: 34px;
+        display: grid;
+        gap: 14px;
+      }
+      .faq-item {
+        padding: 22px;
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(16,31,56,0.96), rgba(9,20,38,0.98));
+        border: 1px solid rgba(77,153,255,0.18);
+        box-shadow: var(--shadow);
+      }
+      .faq-item h3 {
+        margin: 0 0 10px;
+        font-size: 1.2rem;
+      }
+      .faq-item p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .faq-toggle-wrap {
+        margin-top: 16px;
+        display: flex;
+        justify-content: center;
+      }
+      .faq-toggle {
+        min-height: 46px;
+        padding: 0 20px;
       }
 
       .footer {
@@ -508,8 +546,57 @@
         .why-grid { grid-template-columns: repeat(3, 1fr); }
         .map-layout { grid-template-columns: 200px minmax(0, 1fr) 200px; }
       }
+      @media (min-width: 981px) {
+        .menu-toggle {
+          display: none !important;
+        }
+        .nav-links {
+          display: flex !important;
+        }
+      }
       @media (max-width: 980px) {
-        .nav-links, .nav-contact { display: none; }
+        .topbar {
+          position: sticky;
+          top: 0;
+          backdrop-filter: blur(12px);
+        }
+        .nav {
+          min-height: 66px;
+          gap: 12px;
+          padding: 10px 0;
+          flex-wrap: wrap;
+        }
+        .nav-links {
+          display: none;
+          width: 100%;
+          order: 4;
+          padding: 14px;
+          border-radius: 14px;
+          background: rgba(7, 17, 33, 0.98);
+          border: 1px solid rgba(255,255,255,0.08);
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        .nav.is-open .nav-links {
+          display: flex;
+        }
+        .menu-toggle {
+          display: inline-flex;
+          min-height: 44px;
+          padding: 0 14px;
+        }
+        .nav-contact {
+          display: grid;
+          gap: 2px;
+          text-align: right;
+          font-size: 0.84rem;
+        }
+        .nav-actions .btn {
+          min-height: 44px;
+          padding: 0 16px;
+          font-size: 0.94rem;
+        }
         .hero-grid,
         .contact-grid,
         .map-layout { grid-template-columns: 1fr; }
@@ -517,6 +604,19 @@
         .services-grid,
         .process-grid,
         .why-grid { grid-template-columns: repeat(2, 1fr); }
+        .hero {
+          padding-top: 54px;
+        }
+        .hero p,
+        .section-lead {
+          font-size: 1.05rem;
+        }
+        .hero-card,
+        .card,
+        .contact-card,
+        .map-shell {
+          padding: 20px;
+        }
         .map-side,
         .map-center { min-height: auto; }
         .map-side { grid-template-columns: repeat(2, 1fr); }
@@ -525,38 +625,157 @@
         .map-side.right { order: 3; }
       }
       @media (max-width: 640px) {
-        .section, .hero { padding: 64px 0; }
+        .section, .hero { padding: 52px 0; }
+        .section-tight { padding: 48px 0; }
         .container { width: min(var(--container), calc(100% - 20px)); }
-        .hero h1 { font-size: clamp(2.5rem, 12vw, 4rem); }
-        .section-title { font-size: clamp(2rem, 11vw, 3rem); }
+        .topbar {
+          border-bottom-color: rgba(255,255,255,0.09);
+        }
+        .nav {
+          min-height: 60px;
+          gap: 10px;
+          align-items: stretch;
+        }
+        .brand {
+          display: flex;
+          align-items: center;
+        }
+        .brand img {
+          height: 34px;
+        }
+        .nav-actions {
+          flex: 1;
+          justify-content: flex-end;
+        }
+        .nav-contact {
+          display: none;
+        }
+        .nav-actions .btn {
+          width: auto;
+          min-height: 40px;
+          padding: 0 13px;
+          border-radius: 14px;
+          font-size: 0.88rem;
+        }
+        .eyebrow {
+          margin-bottom: 14px;
+          font-size: 0.88rem;
+          padding: 8px 12px;
+        }
+        .hero h1 { font-size: clamp(2.1rem, 11.5vw, 3rem); }
+        .hero p { font-size: 1rem; }
+        .section-title {
+          font-size: clamp(1.75rem, 10vw, 2.4rem);
+          margin-bottom: 10px;
+        }
+        .section-lead {
+          font-size: 0.98rem;
+        }
         .problems-grid,
         .services-grid,
         .process-grid,
         .why-grid,
         .map-side { grid-template-columns: 1fr; }
+        .problems-grid,
+        .services-grid,
+        .process-grid,
+        .why-grid,
+        .contact-grid,
+        .faq-list,
+        .map-shell {
+          margin-top: 22px;
+        }
+        .hero-actions,
+        .hero-points,
+        .hero-stats {
+          margin-top: 18px;
+          gap: 10px;
+        }
+        .hero-card,
+        .card,
+        .contact-card,
+        .map-shell {
+          border-radius: 16px;
+          padding: 16px;
+        }
+        .card h3 {
+          font-size: 1.26rem;
+          margin-bottom: 10px;
+        }
+        .card p {
+          font-size: 0.96rem;
+        }
+        .map-shell h3 {
+          font-size: 1.5rem;
+          margin-bottom: 14px;
+        }
+        .map-side,
+        .map-center {
+          padding: 12px;
+          border-radius: 14px;
+        }
+        .map-center { min-height: 270px; }
+        .region-btn {
+          min-height: 54px;
+          border-radius: 12px;
+          font-size: 1rem;
+          padding: 0 12px;
+        }
+        .contact-form {
+          gap: 10px;
+        }
+        .contact-item {
+          padding: 14px;
+          border-radius: 14px;
+        }
+        .field {
+          min-height: 48px;
+          border-radius: 12px;
+        }
+        textarea.field {
+          min-height: 120px;
+          padding: 12px;
+        }
         .hero-stats { grid-template-columns: 1fr; }
         .btn { width: 100%; }
         .cookie-actions .btn { width: 100%; }
+        .faq-item {
+          padding: 16px;
+          border-radius: 14px;
+        }
+        .faq-item h3 {
+          font-size: 1.1rem;
+        }
+        .faq-toggle {
+          width: 100%;
+        }
+        .footer {
+          padding: 18px 0 30px;
+        }
       }
     </style>
   </head>
   <body>
     <header class="topbar">
       <div class="container nav">
-        <a class="brand" href="#hero">PipeFix <span>CZ</span></a>
-        <nav class="nav-links">
+        <a class="brand" href="#hero" aria-label="PipeFix CZ">
+          <img src="assets/logo-removebg-preview%20(1).png" alt="PipeFix CZ" loading="eager" />
+        </a>
+        <nav class="nav-links" id="main-nav">
           <a href="#problem">Problém</a>
           <a href="#sluzby">Služby</a>
           <a href="#jak">Jak to funguje</a>
           <a href="#kde">Kde působíme</a>
+          <a href="#faq">FAQ</a>
           <a href="#kontakt">Kontakt</a>
         </nav>
         <div class="nav-actions">
+          <button class="btn btn-ghost menu-toggle" type="button" id="menu-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
           <div class="nav-contact">
             <strong>+420 724 340 955</strong>
             <span>info@pipefix.cz</span>
           </div>
-          <a class="btn btn-primary" href="#kontakt">Získat nabídku</a>
+          <a class="btn btn-primary" href="#poptavka">Získat nabídku</a>
         </div>
       </div>
     </header>
@@ -571,7 +790,7 @@
               Rychlé řešení prasklého nebo poškozeného potrubí bez zbytečného rozkopání podlah, zahrady nebo příjezdové cesty.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#kontakt">Nechat si zpracovat nabídku</a>
+              <a class="btn btn-primary" href="#poptavka">Nechat si zpracovat nabídku</a>
               <a class="btn btn-ghost" href="tel:+420724340955">Zavolat hned</a>
             </div>
             <div class="hero-points">
@@ -581,7 +800,9 @@
             </div>
           </div>
           <div class="hero-card">
-            <div class="hero-media"></div>
+            <div class="hero-media">
+              <img src="assets/Přidat podnadpis.png" alt="Ukázka bezvýkopové opravy potrubí PipeFix" loading="eager" />
+            </div>
             <div class="hero-stats">
               <div class="stat"><strong>1 den</strong><span>častá doba realizace</span></div>
               <div class="stat"><strong>8 krajů</strong><span>kde zakázky realizujeme</span></div>
@@ -720,6 +941,57 @@
         </div>
       </section>
 
+      <section class="section" id="faq">
+        <div class="container">
+          <h2 class="section-title">❓ Často kladené otázky</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Musí se při opravě kopat?</h3>
+              <p>Ne. Většinu oprav provádíme bez výkopu – potrubí opravíme zevnitř pomocí speciální vložky. ➡️ Žádné rozkopané zahrady, dlažba ani podlahy.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Jak dlouho oprava trvá?</h3>
+              <p>Ve většině případů je hotovo během 1 dne. Menší opravy zvládneme i během několika hodin.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Kolik oprava stojí?</h3>
+              <p>Cena se liší podle rozsahu poškození a délky potrubí. 👉 Většinou se ale pohybuje v řádu nižších desítek tisíc Kč a často je levnější než klasický výkop. Rádi vám uděláme nezávaznou cenovou nabídku zdarma.</p>
+            </article>
+            <article class="faq-item faq-extra" hidden>
+              <h3>Jak dlouho oprava vydrží?</h3>
+              <p>Používané materiály mají životnost 50 let a více. Opravené potrubí je často pevnější než původní.</p>
+            </article>
+            <article class="faq-item faq-extra" hidden>
+              <h3>Je tato metoda vhodná pro každý problém?</h3>
+              <p>Ne vždy, ale ve většině případů ano (praskliny, netěsnosti, menší deformace). 👉 Nejprve provedeme kamerovou kontrolu a navrhneme nejlepší řešení.</p>
+            </article>
+            <article class="faq-item faq-extra" hidden>
+              <h3>Jak probíhá samotná oprava?</h3>
+              <p>Kamerou zjistíme stav potrubí, potrubí vyčistíme, aplikujeme speciální vložku zevnitř a necháme vytvrdnout. ➡️ Bez kopání, rychle a efektivně.</p>
+            </article>
+            <article class="faq-item faq-extra" hidden>
+              <h3>Musím být při realizaci doma?</h3>
+              <p>Stačí, když nám zajistíte přístup k potrubí (např. revizní šachta, WC apod.). Zbytek už zařídíme.</p>
+            </article>
+            <article class="faq-item faq-extra" hidden>
+              <h3>V jakých lokalitách působíte?</h3>
+              <p>Působíme v Praze, Středočeském kraji, Jihočeském kraji, Kraji Vysočina, Jihomoravském kraji, Olomouckém kraji, Zlínském kraji a Pardubickém kraji a okolí. 👉 V případě zájmu nás kontaktujte – rádi potvrdíme dostupnost.</p>
+            </article>
+            <article class="faq-item faq-extra" hidden>
+              <h3>Jak rychle můžete přijet?</h3>
+              <p>Ve většině případů jsme schopni reagovat do 24–48 hodin.</p>
+            </article>
+            <article class="faq-item faq-extra" hidden>
+              <h3>Jak vás můžu kontaktovat?</h3>
+              <p>Stačí vyplnit formulář nebo zavolat. 👉 Ozveme se vám co nejdříve a domluvíme další postup.</p>
+            </article>
+          </div>
+          <div class="faq-toggle-wrap">
+            <button class="btn btn-ghost faq-toggle" type="button" id="faq-toggle" aria-expanded="false">Zobrazit všechny často kladené otázky</button>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="kontakt">
         <div class="container">
           <h2 class="section-title">Kontakt</h2>
@@ -739,10 +1011,18 @@
                   <strong>Kamerová prohlídka</strong>
                   <span>Při následné realizaci odečítáme cenu z konečné faktury.</span>
                 </li>
+                <li class="contact-item">
+                  <strong>Fakturační údaje</strong>
+                  <span>
+                    IČ: 210 13 314<br />
+                    DIČ: CZ210 13 314<br />
+                    Číslo účtu: 349414572/0300
+                  </span>
+                </li>
               </ul>
             </div>
             <div class="contact-card">
-              <form class="contact-form" action="https://formspree.io/f/xdapjzla" method="post">
+              <form class="contact-form" id="poptavka" action="https://formspree.io/f/xdapjzla" method="post">
                 <input type="hidden" name="_next" value="/#kontakt" />
                 <input type="hidden" name="_subject" value="Nová poptávka z pipefix.cz" />
                 <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
@@ -824,6 +1104,11 @@
       const leftContainer = document.getElementById('left-regions');
       const rightContainer = document.getElementById('right-regions');
       const mapHost = document.getElementById('cz-map');
+      const navRoot = document.querySelector('.nav');
+      const menuToggle = document.getElementById('menu-toggle');
+      const navLinks = document.querySelectorAll('.nav-links a');
+      const faqToggle = document.getElementById('faq-toggle');
+      const faqExtraItems = Array.from(document.querySelectorAll('.faq-extra'));
       const year = document.getElementById('year');
       year.textContent = new Date().getFullYear();
 
@@ -873,6 +1158,38 @@
           btn.classList.toggle('is-active', isActive);
           path.classList.toggle('region-active', isActive);
           path.classList.toggle('region-muted', activeRegionId && !isActive);
+        });
+      }
+
+      function setupFaqToggle() {
+        if (!faqToggle || faqExtraItems.length === 0) return;
+
+        let expanded = false;
+        faqToggle.addEventListener('click', () => {
+          expanded = !expanded;
+          faqExtraItems.forEach((item) => {
+            item.hidden = !expanded;
+          });
+          faqToggle.textContent = expanded
+            ? 'Skrýt často kladené otázky'
+            : 'Zobrazit všechny často kladené otázky';
+          faqToggle.setAttribute('aria-expanded', String(expanded));
+        });
+      }
+
+      function setupMobileMenu() {
+        if (!navRoot || !menuToggle) return;
+
+        menuToggle.addEventListener('click', () => {
+          const isOpen = navRoot.classList.toggle('is-open');
+          menuToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        navLinks.forEach((link) => {
+          link.addEventListener('click', () => {
+            navRoot.classList.remove('is-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
         });
       }
 
@@ -958,6 +1275,8 @@
 
       renderButtons();
       loadMap();
+      setupMobileMenu();
+      setupFaqToggle();
 
       const cookieBanner = document.getElementById('cookie-banner');
       const consentButtons = document.querySelectorAll('[data-consent]');
