@@ -476,6 +476,15 @@
         margin: 0;
         color: var(--muted);
       }
+      .faq-toggle-wrap {
+        margin-top: 16px;
+        display: flex;
+        justify-content: center;
+      }
+      .faq-toggle {
+        min-height: 46px;
+        padding: 0 20px;
+      }
 
       .footer {
         padding: 28px 0 44px;
@@ -690,6 +699,9 @@
         .faq-item h3 {
           font-size: 1.1rem;
         }
+        .faq-toggle {
+          width: 100%;
+        }
         .footer {
           padding: 18px 0 30px;
         }
@@ -705,6 +717,7 @@
           <a href="#sluzby">Služby</a>
           <a href="#jak">Jak to funguje</a>
           <a href="#kde">Kde působíme</a>
+          <a href="#faq">FAQ</a>
           <a href="#kontakt">Kontakt</a>
         </nav>
         <div class="nav-actions">
@@ -892,34 +905,37 @@
               <h3>Kolik oprava stojí?</h3>
               <p>Cena se liší podle rozsahu poškození a délky potrubí. 👉 Většinou se ale pohybuje v řádu nižších desítek tisíc Kč a často je levnější než klasický výkop. Rádi vám uděláme nezávaznou cenovou nabídku zdarma.</p>
             </article>
-            <article class="faq-item">
+            <article class="faq-item faq-extra" hidden>
               <h3>Jak dlouho oprava vydrží?</h3>
               <p>Používané materiály mají životnost 50 let a více. Opravené potrubí je často pevnější než původní.</p>
             </article>
-            <article class="faq-item">
+            <article class="faq-item faq-extra" hidden>
               <h3>Je tato metoda vhodná pro každý problém?</h3>
               <p>Ne vždy, ale ve většině případů ano (praskliny, netěsnosti, menší deformace). 👉 Nejprve provedeme kamerovou kontrolu a navrhneme nejlepší řešení.</p>
             </article>
-            <article class="faq-item">
+            <article class="faq-item faq-extra" hidden>
               <h3>Jak probíhá samotná oprava?</h3>
               <p>Kamerou zjistíme stav potrubí, potrubí vyčistíme, aplikujeme speciální vložku zevnitř a necháme vytvrdnout. ➡️ Bez kopání, rychle a efektivně.</p>
             </article>
-            <article class="faq-item">
+            <article class="faq-item faq-extra" hidden>
               <h3>Musím být při realizaci doma?</h3>
               <p>Stačí, když nám zajistíte přístup k potrubí (např. revizní šachta, WC apod.). Zbytek už zařídíme.</p>
             </article>
-            <article class="faq-item">
+            <article class="faq-item faq-extra" hidden>
               <h3>V jakých lokalitách působíte?</h3>
               <p>Působíme v Praze, Středočeském kraji, Jihočeském kraji, Kraji Vysočina, Jihomoravském kraji, Olomouckém kraji, Zlínském kraji a Pardubickém kraji a okolí. 👉 V případě zájmu nás kontaktujte – rádi potvrdíme dostupnost.</p>
             </article>
-            <article class="faq-item">
+            <article class="faq-item faq-extra" hidden>
               <h3>Jak rychle můžete přijet?</h3>
               <p>Ve většině případů jsme schopni reagovat do 24–48 hodin.</p>
             </article>
-            <article class="faq-item">
+            <article class="faq-item faq-extra" hidden>
               <h3>Jak vás můžu kontaktovat?</h3>
               <p>Stačí vyplnit formulář nebo zavolat. 👉 Ozveme se vám co nejdříve a domluvíme další postup.</p>
             </article>
+          </div>
+          <div class="faq-toggle-wrap">
+            <button class="btn btn-ghost faq-toggle" type="button" id="faq-toggle" aria-expanded="false">Zobrazit všechny často kladené otázky</button>
           </div>
         </div>
       </section>
@@ -1036,6 +1052,8 @@
       const leftContainer = document.getElementById('left-regions');
       const rightContainer = document.getElementById('right-regions');
       const mapHost = document.getElementById('cz-map');
+      const faqToggle = document.getElementById('faq-toggle');
+      const faqExtraItems = Array.from(document.querySelectorAll('.faq-extra'));
       const year = document.getElementById('year');
       year.textContent = new Date().getFullYear();
 
@@ -1085,6 +1103,22 @@
           btn.classList.toggle('is-active', isActive);
           path.classList.toggle('region-active', isActive);
           path.classList.toggle('region-muted', activeRegionId && !isActive);
+        });
+      }
+
+      function setupFaqToggle() {
+        if (!faqToggle || faqExtraItems.length === 0) return;
+
+        let expanded = false;
+        faqToggle.addEventListener('click', () => {
+          expanded = !expanded;
+          faqExtraItems.forEach((item) => {
+            item.hidden = !expanded;
+          });
+          faqToggle.textContent = expanded
+            ? 'Skrýt často kladené otázky'
+            : 'Zobrazit všechny často kladené otázky';
+          faqToggle.setAttribute('aria-expanded', String(expanded));
         });
       }
 
@@ -1170,6 +1204,7 @@
 
       renderButtons();
       loadMap();
+      setupFaqToggle();
 
       const cookieBanner = document.getElementById('cookie-banner');
       const consentButtons = document.querySelectorAll('[data-consent]');
