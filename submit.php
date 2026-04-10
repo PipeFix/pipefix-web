@@ -48,18 +48,27 @@ $email = post_value('email');
 $service = post_value('service');
 $address = post_value('address');
 $message = post_value('message');
+$gdprConsent = post_value('gdpr_consent');
 $subject = post_value('_subject');
 
 if ($subject === '') {
     $subject = 'Nová poptávka z pipefix.cz';
 }
 
-if ($name === '' || $phone === '' || $email === '' || $service === '') {
+if ($name === '' || $phone === '' || $email === '' || $address === '' || $service === '') {
     redirect_back('missing');
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     redirect_back('invalid_email');
+}
+
+if (!in_array($service, ['Kamerová prohlídka', 'Sanace bez výkopu'], true)) {
+    redirect_back('invalid_service');
+}
+
+if ($gdprConsent !== '1') {
+    redirect_back('missing_consent');
 }
 
 $to = 'info@pipefix.cz';
